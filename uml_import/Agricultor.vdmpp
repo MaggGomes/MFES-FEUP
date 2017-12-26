@@ -1,0 +1,5 @@
+class Agricultor
+instance variables
+  tem:[Produto];
+
+end Agricultor

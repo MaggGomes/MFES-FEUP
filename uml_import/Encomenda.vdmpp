@@ -1,0 +1,5 @@
+class Encomenda
+instance variables
+  vende :set of (Agricultor);
+
+end Encomenda

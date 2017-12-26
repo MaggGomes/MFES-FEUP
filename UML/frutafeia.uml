@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_B5f18OpCEeej-cxRWNM9MA" name="frutafeia">
+  <eAnnotations xmi:id="_B5f18epCEeej-cxRWNM9MA" source="Objing">
+    <contents xmi:type="uml:Property" xmi:id="_B5f18upCEeej-cxRWNM9MA" name="exporterVersion">
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_B5f18-pCEeej-cxRWNM9MA" value="3.0.0"/>
+    </contents>
+  </eAnnotations>
+  <packagedElement xmi:type="uml:Class" xmi:id="_B5f19OpCEeej-cxRWNM9MA" name="Produto">
+    <ownedComment xmi:id="_B5f19epCEeej-cxRWNM9MA">
+      <body></body>
+    </ownedComment>
+    <ownedAttribute xmi:id="_B5f19upCEeej-cxRWNM9MA" name="nomeComum" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_B5f19-pCEeej-cxRWNM9MA" name="origem" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_B5f1-OpCEeej-cxRWNM9MA" name="quantidade" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_B5f1-epCEeej-cxRWNM9MA" name="Agricultor">
+    <ownedAttribute xmi:id="_B5f1-upCEeej-cxRWNM9MA" name="tem" visibility="public" type="_B5f19OpCEeej-cxRWNM9MA" aggregation="composite" association="_B5f1_OpCEeej-cxRWNM9MA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_B5f1--pCEeej-cxRWNM9MA"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_B5f1_OpCEeej-cxRWNM9MA" memberEnd="_B5f1-upCEeej-cxRWNM9MA _B5f1_epCEeej-cxRWNM9MA">
+    <ownedEnd xmi:id="_B5f1_epCEeej-cxRWNM9MA" visibility="public" type="_B5f1-epCEeej-cxRWNM9MA" association="_B5f1_OpCEeej-cxRWNM9MA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_B5f1_upCEeej-cxRWNM9MA" name="CentroDistribuição">
+    <ownedComment xmi:id="_B5f1_-pCEeej-cxRWNM9MA">
+      <body>&lt;Enter note text here></body>
+    </ownedComment>
+    <ownedAttribute xmi:id="_B5f2AOpCEeej-cxRWNM9MA" name="entrega" visibility="public" type="_B5f2EOpCEeej-cxRWNM9MA" aggregation="shared" association="_B5f2BupCEeej-cxRWNM9MA">
+      <ownedComment xmi:id="_B5f2AepCEeej-cxRWNM9MA">
+        <body>&lt;Enter note text here></body>
+      </ownedComment>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_B5f2AupCEeej-cxRWNM9MA" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_B5f2A-pCEeej-cxRWNM9MA"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_B5f2BOpCEeej-cxRWNM9MA" name="encomenda" visibility="public" type="_B5f2FepCEeej-cxRWNM9MA" aggregation="shared" association="_B5f2COpCEeej-cxRWNM9MA">
+      <ownedComment xmi:id="_B5f2BepCEeej-cxRWNM9MA">
+        <body>&lt;Enter note text here></body>
+      </ownedComment>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_B5f2BupCEeej-cxRWNM9MA" memberEnd="_B5f2AOpCEeej-cxRWNM9MA _B5f2B-pCEeej-cxRWNM9MA">
+    <ownedEnd xmi:id="_B5f2B-pCEeej-cxRWNM9MA" visibility="public" type="_B5f1_upCEeej-cxRWNM9MA" association="_B5f2BupCEeej-cxRWNM9MA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_B5f2COpCEeej-cxRWNM9MA" memberEnd="_B5f2BOpCEeej-cxRWNM9MA _B5f2CepCEeej-cxRWNM9MA">
+    <ownedEnd xmi:id="_B5f2CepCEeej-cxRWNM9MA" visibility="public" type="_B5f1_upCEeej-cxRWNM9MA" association="_B5f2COpCEeej-cxRWNM9MA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_B5f2CupCEeej-cxRWNM9MA" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_B5f2C-pCEeej-cxRWNM9MA"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_B5f2DOpCEeej-cxRWNM9MA" name="Cliente">
+    <ownedAttribute xmi:id="_B5f2DepCEeej-cxRWNM9MA" name="encomenda" visibility="public" type="_B5f2EOpCEeej-cxRWNM9MA" association="_B5f2DupCEeej-cxRWNM9MA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_B5f2DupCEeej-cxRWNM9MA" memberEnd="_B5f2DepCEeej-cxRWNM9MA _B5f2D-pCEeej-cxRWNM9MA">
+    <ownedEnd xmi:id="_B5f2D-pCEeej-cxRWNM9MA" visibility="public" type="_B5f2DOpCEeej-cxRWNM9MA" association="_B5f2DupCEeej-cxRWNM9MA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_B5f2EOpCEeej-cxRWNM9MA" name="Cesto">
+    <ownedAttribute xmi:id="_B5f2EepCEeej-cxRWNM9MA" name="estaContido" visibility="public" type="_B5f19OpCEeej-cxRWNM9MA" aggregation="composite" association="_B5f2E-pCEeej-cxRWNM9MA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_B5f2EupCEeej-cxRWNM9MA" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_B5f2E-pCEeej-cxRWNM9MA" memberEnd="_B5f2EepCEeej-cxRWNM9MA _B5f2FOpCEeej-cxRWNM9MA">
+    <ownedEnd xmi:id="_B5f2FOpCEeej-cxRWNM9MA" visibility="public" type="_B5f2EOpCEeej-cxRWNM9MA" association="_B5f2E-pCEeej-cxRWNM9MA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_B5f2FepCEeej-cxRWNM9MA" name="Encomenda">
+    <ownedComment xmi:id="_B5f2FupCEeej-cxRWNM9MA">
+      <body>&lt;Enter note text here></body>
+    </ownedComment>
+    <ownedAttribute xmi:id="_B5f2F-pCEeej-cxRWNM9MA" name="vende " visibility="public" type="_B5f1-epCEeej-cxRWNM9MA" aggregation="composite" association="_B5f2GupCEeej-cxRWNM9MA">
+      <ownedComment xmi:id="_B5f2GOpCEeej-cxRWNM9MA">
+        <body>&lt;Enter note text here></body>
+      </ownedComment>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_B5f2GepCEeej-cxRWNM9MA" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_B5f2GupCEeej-cxRWNM9MA" memberEnd="_B5f2F-pCEeej-cxRWNM9MA _B5f2G-pCEeej-cxRWNM9MA">
+    <ownedEnd xmi:id="_B5f2G-pCEeej-cxRWNM9MA" visibility="public" type="_B5f2FepCEeej-cxRWNM9MA" association="_B5f2GupCEeej-cxRWNM9MA"/>
+  </packagedElement>
+</uml:Model>
