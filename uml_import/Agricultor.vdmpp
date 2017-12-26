@@ -1,5 +1,9 @@
 class Agricultor
 instance variables
-  tem:[Produto];
+	private produtos: seq of Produto := []
 
+operations
+	public Agricultor: seq of Produto ==> Agricultor
+	Agricultor() == (return self)
+	post produtos = [];
 end Agricultor
