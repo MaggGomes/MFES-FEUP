@@ -1,0 +1,27 @@
+class Cesta
+instance variables
+  peso:?;
+
+operations
+  public  Cesta : ()  ==> ?
+  Cesta() ==
+    is not yet specified;
+
+  public  adicionaProduto : Produto ==> ?
+  adicionaProduto(produto) ==
+    is not yet specified;
+
+  public  removeProduto : Produto ==> ?
+  removeProduto(produto) ==
+    is not yet specified;
+
+  public  adicionaPesoProduto : seq of (char) * ? ==> ?
+  adicionaPesoProduto(nomeProduto, peso) ==
+    is not yet specified;
+
+  public  removePesoProduto : seq of (char) * ? ==> ?
+  removePesoProduto(nomeProduto, peso) ==
+    is not yet specified;
+
+
+end Cesta

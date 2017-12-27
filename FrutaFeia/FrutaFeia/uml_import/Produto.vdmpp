@@ -1,0 +1,21 @@
+class Produto
+instance variables
+  nome:seq of (char);
+  origem:seq of (char);
+  peso:?;
+
+operations
+  public  Produto : seq of (char) * seq of (char) * ? ==> ?
+  Produto(nome, origem, peso) ==
+    is not yet specified;
+
+  public  adicionaPeso : ? ==> ?
+  adicionaPeso(peso) ==
+    is not yet specified;
+
+  public  removePeso : ? ==> ?
+  removePeso(peso) ==
+    is not yet specified;
+
+
+end Produto

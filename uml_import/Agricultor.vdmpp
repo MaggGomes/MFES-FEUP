@@ -1,9 +1,0 @@
-class Agricultor
-instance variables
-	private produtos: seq of Produto := []
-
-operations
-	public Agricultor: seq of Produto ==> Agricultor
-	Agricultor() == (return self)
-	post produtos = [];
-end Agricultor

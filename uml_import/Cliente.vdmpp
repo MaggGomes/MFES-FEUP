@@ -1,5 +1,0 @@
-class Cliente
-instance variables
-  encomenda:Cesto;
-
-end Cliente

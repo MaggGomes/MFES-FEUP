@@ -1,7 +1,0 @@
-class Produto
-instance variables
-  nomeComum:seq of (char);
-  origem:seq of (char);
-  quantidade:seq of (char);
-
-end Produto

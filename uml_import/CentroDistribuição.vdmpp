@@ -1,6 +1,0 @@
-class CentroDistribuição
-instance variables
-  entrega:set of (Cesto);
-  encomenda:Encomenda;
-
-end CentroDistribuição

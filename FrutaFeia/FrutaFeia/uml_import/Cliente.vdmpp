@@ -1,0 +1,24 @@
+class Cliente
+instance variables
+  encomenda:Cesta;
+  nome:seq of (char);
+
+operations
+  public  Cliente : seq of (char) ==> ?
+  Cliente(nome) ==
+    is not yet specified;
+
+  public  associaCesta : Cesta ==> ?
+  associaCesta(cesta) ==
+    is not yet specified;
+
+  public  removeCesta : ()  ==> ?
+  removeCesta() ==
+    is not yet specified;
+
+  public  mudaCesta : Cesta ==> ?
+  mudaCesta(cesta) ==
+    is not yet specified;
+
+
+end Cliente

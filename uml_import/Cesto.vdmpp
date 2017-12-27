@@ -1,5 +1,0 @@
-class Cesto
-instance variables
-  estaContido:set of (Produto);
-
-end Cesto
