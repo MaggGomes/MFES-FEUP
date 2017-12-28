@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;FrutaFeia/uml_import&apos; to &apos;model&apos;" description="Rename resource &apos;uml_import&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="uml_import" name="model" stamp="1514503723040" updateReferences="true"/>
+</session>

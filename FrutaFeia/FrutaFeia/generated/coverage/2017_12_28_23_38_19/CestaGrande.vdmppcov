@@ -1,0 +1,5 @@
+class CestaGrande
+instance variables
+  produto:Produto;
+
+end CestaGrande
