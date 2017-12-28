@@ -1,21 +1,27 @@
 class Produto
+
+types
+	public NomeProduto = seq1 of char;
+
 instance variables
-  nome:seq of (char);
-  origem:seq of (char);
-  peso:?;
+  public nome: NomeProduto;
+  public origem:seq of (char);
+  public peso: real;
 
 operations
-  public  Produto : seq of (char) * seq of (char) * ? ==> ?
-  Produto(nome, origem, peso) ==
-    is not yet specified;
+  public  Produto : seq of (char) * seq of (char) * real ==> Produto
+  Produto(n, o, p) == (nome := n; origem := o; peso := p;return self;)
+  pre peso >= 0
+  post nome = n and origem = o and peso = p;
 
-  public  adicionaPeso : ? ==> ?
-  adicionaPeso(peso) ==
-    is not yet specified;
+  public  adicionaPeso : real ==> ()
+  adicionaPeso(p) == peso := peso + p
+  post peso = peso~ + p;
+  
 
-  public  removePeso : ? ==> ?
-  removePeso(peso) ==
-    is not yet specified;
+  public  removePeso : real ==> ()
+  removePeso(p) == peso := peso - p
+  pre peso - p >= 0;
 
 
 end Produto

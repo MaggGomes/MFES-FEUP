@@ -4,17 +4,17 @@ instance variables
   produto:set of (Produto);
 
 operations
-  public  Encomenda : ()  ==> ?
-  Encomenda() ==
-    is not yet specified;
-
-  public  adicionaProduto : Produto ==> ?
-  adicionaProduto(produto) ==
-    is not yet specified;
-
-  public  removeProduto : Produto ==> ?
-  removeProduto(produto) ==
-    is not yet specified;
+  public  Encomenda : ()  ==> Encomenda
+  Encomenda() == (vende := {}; produto := {}; return self; )
+  post vende = {} and produto = {};
+   
+  public  adicionaProduto : Produto ==> ()
+  adicionaProduto(prod) ==  produto := {prod} union produto
+  post produto = {prod} union produto~; 
+  
+  public  removeProduto : Produto ==> ()
+  removeProduto(prod) == produto := produto \ {prod}
+  post produto inter {prod} = {};
 
   public  adicionaPesoProduto : seq of (char) * ? ==> ?
   adicionaPesoProduto(nomeProduto, peso) ==

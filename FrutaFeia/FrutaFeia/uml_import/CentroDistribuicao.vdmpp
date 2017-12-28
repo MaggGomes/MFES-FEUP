@@ -1,14 +1,13 @@
-class CentroDistribuição
+class CentroDistribuicao
 instance variables
   entrega:set of (Cesta);
-  encomenda:set of (Encomenda);
   localizacao:seq of (char);
   encomendas:set of (Encomenda);
 
 operations
-  public  CentroDistribuicao : seq of (char) ==> ?
-  CentroDistribuicao(localizacao) ==
-    is not yet specified;
+  public  CentroDistribuicao : seq of (char) ==> CentroDistribuicao
+  CentroDistribuicao(local) == (entrega := {}; encomendas := {}; localizacao := local; return self;)
+  post entrega = {} and encomendas = {} and localizacao = local;
 
   public  AdicionaEncomenda : Encomenda ==> ?
   AdicionaEncomenda(encomenda) ==
@@ -35,4 +34,4 @@ operations
     is not yet specified;
 
 
-end CentroDistribuição
+end CentroDistribuicao

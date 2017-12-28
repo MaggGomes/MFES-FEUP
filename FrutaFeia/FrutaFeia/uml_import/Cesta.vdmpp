@@ -1,12 +1,12 @@
 class Cesta
 instance variables
-  peso:?;
+  peso: real;
 
 operations
-  public  Cesta : ()  ==> ?
-  Cesta() ==
-    is not yet specified;
-
+  public  Cesta : ()  ==> Cesta
+  Cesta() == (peso := 0; return self;)
+  post peso = 0;
+  
   public  adicionaProduto : Produto ==> ?
   adicionaProduto(produto) ==
     is not yet specified;
@@ -16,11 +16,11 @@ operations
     is not yet specified;
 
   public  adicionaPesoProduto : seq of (char) * ? ==> ?
-  adicionaPesoProduto(nomeProduto, peso) ==
+  adicionaPesoProduto(nomeProduto, p) ==
     is not yet specified;
 
   public  removePesoProduto : seq of (char) * ? ==> ?
-  removePesoProduto(nomeProduto, peso) ==
+  removePesoProduto(nomeProduto, p) ==
     is not yet specified;
 
 
