@@ -1,0 +1,26 @@
+class StackTest
+ instance variables
+ s : Stack := new Stack(4);
+ operations
+ private assertTrue: bool ==> ()
+ assertTrue(cond) == return
+ pre cond;
+
+ private testPushPop: () ==> ()
+ testPushPop() ==
+ (
+ s.clear();
+ s.push(1);
+ s.push(2);
+ assertTrue(s.top() = 2);
+ s.pop();
+ assertTrue(s.top() = 1);
+ s.pop()
+ );
+ public static main: () ==> ()
+ main() ==
+ (
+ new StackTest().testPushPop();
+
+ );
+end StackTest

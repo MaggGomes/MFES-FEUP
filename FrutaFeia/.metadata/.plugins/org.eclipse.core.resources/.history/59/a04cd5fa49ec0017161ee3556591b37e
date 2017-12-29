@@ -1,0 +1,34 @@
+-- Main class of Tests
+class TestFrutaFeia
+types
+-- TODO Define types here
+values
+-- TODO Define values here
+instance variables
+-- TODO Define instance variables here
+
+operations
+  protected assertTrue: bool ==> ()
+  assertTrue(arg) ==
+    return
+  pre arg;
+  
+  protected assertEqual: ? * ? ==> ()
+  assertEqual(expected, actual) ==
+    if expected <> actual then (
+      IO`print("Actual value (");
+      IO`print(actual);
+      IO`print(") different from expected (");
+      IO`print(expected);
+      IO`println(")\n")
+    )
+  post expected = actual
+
+
+
+
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end TestFrutaFeia

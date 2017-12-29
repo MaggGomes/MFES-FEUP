@@ -1,0 +1,32 @@
+class Agricultor
+instance variables
+  stock: map NomeProduto to Produto := { |-> };
+  nome:seq of (char);
+  localizacao:seq of (char);
+
+types	
+	public NomeProduto = Produto`NomeProduto;
+
+operations
+  public  Agricultor : seq of (char) * seq of (char) ==> Agricultor
+  	Agricultor(n, l) == ( nome := n; localizacao := l; stock := {|->}; return self)
+ 	post nome = n and localizacao = l and stock = {|->};
+ 
+  public  adicionaProduto : Produto ==> ()
+  	adicionaProduto(produto) == stock := stock munion {produto.nome |-> produto}
+  post  stock = stock~ munion {produto.nome |-> produto};
+
+  public  removeProduto : NomeProduto ==> ()
+  	removeProduto(nomeProduto) == 
+  	stock := {nomeProduto} <-: stock ;
+  	
+  public  adicionaPesoProduto : seq of (char) * real ==> ()
+  adicionaPesoProduto(nomeProduto, peso) == 
+    is not yet specified;
+
+  public  removePesoProduto : seq of (char) * real ==> ()
+  removePesoProduto(nomeProduto, peso) ==
+    is not yet specified;
+
+
+end Agricultor

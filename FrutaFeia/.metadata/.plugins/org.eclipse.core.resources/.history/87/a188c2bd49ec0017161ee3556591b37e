@@ -1,0 +1,37 @@
+class CentroDistribuicao
+instance variables
+  entrega:set of (Cesta);
+  localizacao:seq of (char);
+  encomendas:set of (Encomenda);
+
+operations
+  public  CentroDistribuicao : seq of (char) ==> CentroDistribuicao
+  CentroDistribuicao(local) == (entrega := {}; encomendas := {}; localizacao := local; return self;)
+  post entrega = {} and encomendas = {} and localizacao = local;
+
+  public  AdicionaEncomenda : Encomenda ==> ?
+  AdicionaEncomenda(encomenda) ==
+    is not yet specified;
+
+  public  removeEncomenda : int ==> ?
+  removeEncomenda(idEncomenda) ==
+    is not yet specified;
+
+  public  adicionaProdutoEncomenda : int * Produto ==> ?
+  adicionaProdutoEncomenda(idEncomenda, produto) ==
+    is not yet specified;
+
+  public  removeProdutoEncomenda : int * seq of (char) ==> ?
+  removeProdutoEncomenda(idEncomenda, nomeProduto) ==
+    is not yet specified;
+
+  public  adicionaPesoProdutoEncomenda : int * seq of (char) * ? ==> ?
+  adicionaPesoProdutoEncomenda(idEncomenda, nomeProduto, peso) ==
+    is not yet specified;
+
+  public  removePesoProdutoEncomenda : int * seq of (char) * ? ==> ?
+  removePesoProdutoEncomenda(idEncomenda, nomeProduto, peso) ==
+    is not yet specified;
+
+
+end CentroDistribuicao

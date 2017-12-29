@@ -1,0 +1,6 @@
+class CestaGrande is subclass of Cesta
+class CestaGrande
+instance variables
+  produto:Produto;
+
+end CestaGrande

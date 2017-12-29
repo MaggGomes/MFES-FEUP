@@ -1,0 +1,17 @@
+class TestAgricultor is subclass of TestFrutaFeia
+instance variables
+	agricultor: Agricultor := new Agricultor("Pedro", "Mirandela");
+
+operations
+  public testConstructor() == (
+    IO`println("\t\t test constructor");
+    assertEqual("Pedro", agricultor.nome);
+    assertEqual("Mirande", agricultor.localizacao);
+  );
+
+  public testAll() == (
+    IO`println("\t Testing Agricultor class");
+    testConstructor();
+  );
+
+end TestAgricultor
