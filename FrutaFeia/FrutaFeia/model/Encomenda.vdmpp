@@ -3,6 +3,10 @@ instance variables
   vende :set of (Agricultor);
   produto:set of (Produto);
 
+
+types 
+	public NomeProduto = Produto`NomeProduto;
+	
 operations
   public  Encomenda : ()  ==> Encomenda
   Encomenda() == (vende := {}; produto := {}; return self; )
@@ -16,13 +20,27 @@ operations
   removeProduto(prod) == produto := produto \ {prod}
   post produto inter {prod} = {};
 
-  public  adicionaPesoProduto : seq of (char) * ? ==> ?
-  adicionaPesoProduto(nomeProduto, peso) ==
-    is not yet specified;
+  public  adicionaPesoProduto : NomeProduto * real ==> bool
+  adicionaPesoProduto(nomeProd, peso) ==
+     (
+      for all elem in set produto  
+      	do 
+        	if elem.nome = nomeProd 
+            then ( elem.adicionaPeso(peso); return true);
+     	return false
+     )
+    pre  peso >= 0; 
 
-  public  removePesoProduto : seq of (char) * ? ==> ?
-  removePesoProduto(nomeProduto, peso) ==
-    is not yet specified;
+  public  removePesoProduto : NomeProduto * real ==> bool
+  removePesoProduto(nomeProd, peso) == 
+  		(
+  			for all elem in set produto
+  				do
+  					if elem.nome = nomeProd
+  						then (elem.removePeso(peso); return true);
+  			return false;
+  		)	
+   	pre  peso >= 0;
 
 
 end Encomenda
