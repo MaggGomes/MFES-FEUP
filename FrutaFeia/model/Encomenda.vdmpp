@@ -4,8 +4,6 @@ class Encomenda
 
 
 types 
-	public NomeProduto = Produto`NomeProduto;
-	public PesoProduto = Produto`Peso;
 	public Id = int;
 	
 
@@ -28,7 +26,7 @@ operations
   removeProduto(prod) == produto := produto \ {prod}
   post produto inter {prod} = {};
 
-  public  adicionaPesoProduto : NomeProduto * PesoProduto ==> bool
+  public  adicionaPesoProduto : Produto`NomeProduto * Produto`Peso ==> bool
   adicionaPesoProduto(nomeProd, peso) ==
      (
       for all elem in set produto  
@@ -39,7 +37,7 @@ operations
      )
     pre  peso >= 0; 
 
-  public  removePesoProduto : NomeProduto * PesoProduto ==> bool
+  public  removePesoProduto : Produto`NomeProduto * Produto`Peso ==> bool
   removePesoProduto(nomeProd, peso) == 
   		(
   			for all elem in set produto
