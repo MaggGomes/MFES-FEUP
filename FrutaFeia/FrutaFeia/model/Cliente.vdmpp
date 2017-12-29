@@ -12,21 +12,28 @@ instance variables
 
 operations
   public  Cliente : seq of (char) * Genero ==> Cliente
-  Cliente(n, gen) == (nome:= n; genero:= gen; estadoEnc := <SEM_ENC>; return self;)
-  	post nome = n and genero = gen and estadoEnc = <SEM_ENC>;
+  Cliente(n, gen) == (nome:= n; genero:= gen; estadoEnc := <SEM_ENC>; encomenda:= undefined; return self;)
+  	post nome = n and genero = gen and estadoEnc = <SEM_ENC> and encomenda = undefined;
   
   public  associaCesta : Cesta ==> ()
   associaCesta(cesta) ==
-    encomenda := cesta
+    (	
+    	encomenda := cesta; 
+    	estadoEnc := <COM_ENC>;
+    )	
     post encomenda = cesta;
 
   public  removeCesta : ()  ==> ()
-  removeCesta() == 
-     is not yet specified;
+  removeCesta() == encomenda := undefined
+  post encomenda = undefined;
 	
   public  mudaCesta : Cesta ==> ()
   mudaCesta(cesta) ==
     encomenda := cesta
-    post encomenda = cesta;
+    post encomenda = cesta and encomenda <> encomenda~;
 
+	public levantaCesta: () ==> () 
+	levantaCesta() == estadoEnc := <ENTREGUE>
+	pre encomenda <> undefined 
+	post estadoEnc = <ENTREGUE>;
 end Cliente
