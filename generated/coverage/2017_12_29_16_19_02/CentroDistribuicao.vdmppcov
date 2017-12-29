@@ -9,12 +9,11 @@ operations
   CentroDistribuicao(local) == (entrega := {}; encomendas := {}; localizacao := local; return self;)
   post entrega = {} and encomendas = {} and localizacao = local;
 
-  public  AdicionaEncomenda : Encomenda ==> ()
-  AdicionaEncomenda(enc) ==
-  encomendas := encomendas union {enc}
-	post encomendas = encomendas~ union {enc} ;
-	
-  public  removeEncomenda : int ==> ()
+  public  AdicionaEncomenda : Encomenda ==> ?
+  AdicionaEncomenda(encomenda) ==
+    is not yet specified;
+
+  public  removeEncomenda : int ==> ?
   removeEncomenda(idEncomenda) ==
     is not yet specified;
 

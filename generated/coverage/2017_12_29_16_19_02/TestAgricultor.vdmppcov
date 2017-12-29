@@ -9,11 +9,7 @@ operations
     assertEqual("Pedro", agricultor.nome);
     assertEqual("Mirandela", agricultor.localizacao);
   );
-	
-	public manageProduct() == (
-		 IO`println("\t\t Testing add product");
-			agricultor.adicionaProduto(produto);
-	);
+
   public testAll() == (
     IO`println("\t Testing Agricultor class");
     testConstructor();

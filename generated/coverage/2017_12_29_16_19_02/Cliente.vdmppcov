@@ -1,19 +1,12 @@
 class Cliente
-
-types 
-	public Genero = <MALE> | <FEMALE>;
-	public EncomendaStatus = <SEM_ENC> | <COM_ENC> | <ENTREGUE>
-	
 instance variables
   encomenda:Cesta;
-  estadoEnc: EncomendaStatus;
   nome:seq of (char);
-  genero: Genero;
 
 operations
-  public  Cliente : seq of (char) * Genero ==> Cliente
-  Cliente(n, gen) == (nome:= n; genero:= gen; estadoEnc := <SEM_ENC>; return self;)
-  	post nome = n and genero = gen and estadoEnc = <SEM_ENC>;
+  public  Cliente : seq of (char) ==> Cliente
+  Cliente(n) == (nome:= n; return self;)
+  	post nome = n;
   
   public  associaCesta : Cesta ==> ()
   associaCesta(cesta) ==
