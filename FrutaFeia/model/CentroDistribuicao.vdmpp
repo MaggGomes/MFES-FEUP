@@ -1,0 +1,49 @@
+class CentroDistribuicao
+instance variables
+  public entrega:set of (Cesta);
+  public localizacao:seq of (char);
+  public encomendas:set of (Encomenda);
+  
+  types
+  public Encomenda_ID = Encomenda`Id;
+  public PesoProduto = Produto`Peso;
+
+operations
+  public  CentroDistribuicao : seq of (char) ==> CentroDistribuicao
+  CentroDistribuicao(local) == (entrega := {}; encomendas := {}; localizacao := local; return self;)
+  post entrega = {} and encomendas = {} and localizacao = local;
+
+  public  AdicionaEncomenda : Encomenda ==> ()
+  AdicionaEncomenda(enc) ==
+  encomendas := encomendas union {enc}
+	post encomendas = encomendas~ union {enc} ;
+	
+  public  removeEncomenda : int ==> ()
+  removeEncomenda(idEncomenda) ==
+	(dcl result : set of Encomenda := {}; 
+		for all elem in set encomendas 
+		do 
+			if elem.id <> idEncomenda
+				then result := result union {elem}; 
+	 encomendas := result;
+	 )  
+	post encomendas~ inter encomendas = encomendas; 
+  
+  public  adicionaProdutoEncomenda : Encomenda_ID * Produto ==> ()
+  adicionaProdutoEncomenda(idEncomenda, produto) ==
+    is not yet specified;
+
+  public  removeProdutoEncomenda : Encomenda_ID * Produto ==> ()
+  removeProdutoEncomenda(idEncomenda, nomeProduto) ==
+    is not yet specified;
+
+  public  adicionaPesoProdutoEncomenda : Encomenda_ID * Produto * PesoProduto ==> bool
+  adicionaPesoProdutoEncomenda(idEncomenda, nomeProduto, peso) ==
+    is not yet specified;
+
+  public  removePesoProdutoEncomenda : Encomenda_ID * Produto * PesoProduto ==> bool
+  removePesoProdutoEncomenda(idEncomenda, nomeProduto, peso) ==
+    is not yet specified;
+
+
+end CentroDistribuicao
