@@ -1,0 +1,25 @@
+class Cliente
+instance variables
+  encomenda:Cesta;
+  nome:seq of (char);
+
+operations
+  public  Cliente : seq of (char) ==> Cliente
+  Cliente(n) == (nome:= n; return self;)
+  	post nome = n;
+  
+  public  associaCesta : Cesta ==> ()
+  associaCesta(cesta) ==
+    encomenda := cesta
+    post encomenda = cesta;
+
+  public  removeCesta : ()  ==> ()
+  removeCesta() == 
+     is not yet specified;
+	
+  public  mudaCesta : Cesta ==> ()
+  mudaCesta(cesta) ==
+    encomenda := cesta
+    post encomenda = cesta;
+
+end Cliente

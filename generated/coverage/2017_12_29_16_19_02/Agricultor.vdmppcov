@@ -20,21 +20,13 @@ operations
   	removeProduto(nomeProduto) == 
   	stock := {nomeProduto} <-: stock ;
   	
-  public  adicionaPesoProduto : NomeProduto * real ==> bool
+  public  adicionaPesoProduto : NomeProduto * real ==> ()
   adicionaPesoProduto(nomeProduto, peso) == 
-  	(
-  		if ( nomeProduto in set dom stock ) 
-  			then  ( stock(nomeProduto).adicionaPeso(peso); return true;);
-  		return false
-  	);
-	
-  public  removePesoProduto : NomeProduto * real ==> bool
+    is not yet specified;
+
+  public  removePesoProduto : NomeProduto * real ==> ()
   removePesoProduto(nomeProduto, peso) ==
-    (
-  		if ( nomeProduto in set dom stock ) 
-  			then  ( stock(nomeProduto).removePeso(peso); return true;);
-  		return false
-  	);
+    is not yet specified;
 
 
 end Agricultor
