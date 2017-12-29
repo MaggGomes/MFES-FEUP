@@ -1,0 +1,18 @@
+class TestEncomenda is subclass of TestFrutaFeia
+instance variables
+	agricultor: Agricultor := new Agricultor("Pedro", "Mirandela");
+	produto: Produto := new Produto("Maca", "Golden", 5);
+	encomenda: Encomenda := new Encomenda();
+
+operations
+  public testConstructor() == (
+    IO`println("\t\t Testing constructor");
+    assertEqual({} , agricultor.nome);
+  );
+
+  public testAll() == (
+    IO`println("\t Testing Encomenda class");
+    testConstructor();
+  );
+
+end TestEncomenda

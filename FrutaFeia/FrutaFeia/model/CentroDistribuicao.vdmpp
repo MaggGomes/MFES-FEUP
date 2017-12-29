@@ -1,8 +1,8 @@
 class CentroDistribuicao
 instance variables
-  entrega:set of (Cesta);
-  localizacao:seq of (char);
-  encomendas:set of (Encomenda);
+  public entrega:set of (Cesta);
+  public localizacao:seq of (char);
+  public encomendas:set of (Encomenda);
 
 operations
   public  CentroDistribuicao : seq of (char) ==> CentroDistribuicao

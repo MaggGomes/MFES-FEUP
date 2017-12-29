@@ -1,0 +1,11 @@
+class Runner
+  operations
+    public static main() == (
+      IO`println("Running tests...");
+      new TestAgricultor().testAll();
+      new TestCentroDistribuicao().testAll();
+      new TestCesta().testAll();
+      IO`println("Tests completed!");
+    );
+    
+end Runner
