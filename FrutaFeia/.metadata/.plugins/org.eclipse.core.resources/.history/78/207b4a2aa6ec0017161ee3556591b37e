@@ -1,7 +1,6 @@
-class TestAgricultor is subclass of TestFrutaFeia
+class TestProduto is subclass of TestFrutaFeia
 instance variables
-	agricultor: Agricultor := new Agricultor("Pedro", "Mirandela");
-	produto: Produto := new Produto("Maca", "Golden", 5);
+	produto: Produto := new Produto("Maca", "Golden");
 
 operations
   public testConstructor() == (
@@ -15,4 +14,4 @@ operations
     testConstructor();
   );
 
-end TestAgricultor
+end TestProduto
