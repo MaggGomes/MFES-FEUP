@@ -6,14 +6,24 @@ instance variables
 
 operations
   public testConstructor() == (
-    IO`println("\t\t Testing constructor");
+    IO`println("\t\t Testing Constructor");
     assertEqual({} , encomenda.vende);
-    assertEqual({} , encomenda.compra);
+    assertEqual({} , encomenda.produto);
+  );
+  
+  public testAdicionaAndRemoveProduto() == (
+  	IO`println("\t\t Testing AdicionaProdutor");
+  	assertEqual(0, card encomenda.produto); 
+  	encomenda.adicionaProduto(produto);
+  	assertEqual(1, card encomenda.produto);  
+  	encomenda.adicionaProduto(produto);
+  	assertEqual(0, card encomenda.produto);  
   );
 
   public testAll() == (
     IO`println("\t Testing Encomenda class");
     testConstructor();
+    testAdicionaAndRemoveProduto()
   );
 
 end TestEncomenda

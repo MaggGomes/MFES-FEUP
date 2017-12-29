@@ -1,0 +1,46 @@
+class Encomenda
+instance variables
+  public vende :set of (Agricultor);
+  public produto:set of (Produto);
+
+
+types 
+	public NomeProduto = Produto`NomeProduto;
+	
+operations
+  public  Encomenda : ()  ==> Encomenda
+  Encomenda() == (vende := {}; produto := {}; return self;)
+  post vende = {} and produto = {};
+   
+  public  adicionaProduto : Produto ==> ()
+  adicionaProduto(prod) ==  produto := {prod} union produto
+  post produto = {prod} union produto~; 
+  
+  public  removeProduto : Produto ==> ()
+  removeProduto(prod) == produto := produto \ {prod}
+  post produto inter {prod} = {};
+
+  public  adicionaPesoProduto : NomeProduto * real ==> bool
+  adicionaPesoProduto(nomeProd, peso) ==
+     (
+      for all elem in set produto  
+      	do 
+        	if elem.nome = nomeProd 
+            then ( elem.adicionaPeso(peso); return true);
+     	return false
+     )
+    pre  peso >= 0; 
+
+  public  removePesoProduto : NomeProduto * real ==> bool
+  removePesoProduto(nomeProd, peso) == 
+  		(
+  			for all elem in set produto
+  				do
+  					if elem.nome = nomeProd
+  						then (elem.removePeso(peso); return true);
+  			return false;
+  		)	
+   	pre  peso >= 0;
+
+
+end Encomenda
