@@ -1,16 +1,22 @@
 class Encomenda
-instance variables
-  public vende :set of (Agricultor);
-  public produto:set of (Produto);
+
+  
 
 
 types 
-	public NomeProduto = Produto`NomeProduto;
+	public Id = int;
 	
+
+instance variables
+	static public GLOBAL_ID: Id := 0;
+  public vende :set of (Agricultor);
+  public produto:set of (Produto);
+  public id: Id;
+
 operations
   public  Encomenda : ()  ==> Encomenda
-  Encomenda() == (vende := {}; produto := {}; return self;)
-  post vende = {} and produto = {};
+  Encomenda() == (vende := {}; produto := {}; id := GLOBAL_ID; GLOBAL_ID := GLOBAL_ID + 1;  return self;)
+  post vende = {} and produto = {} and GLOBAL_ID = GLOBAL_ID~ + 1 and id = GLOBAL_ID~;
    
   public  adicionaProduto : Produto ==> ()
   adicionaProduto(prod) ==  produto := {prod} union produto
@@ -20,7 +26,7 @@ operations
   removeProduto(prod) == produto := produto \ {prod}
   post produto inter {prod} = {};
 
-  public  adicionaPesoProduto : NomeProduto * real ==> bool
+  public  adicionaPesoProduto : Produto`NomeProduto * Produto`Peso ==> bool
   adicionaPesoProduto(nomeProd, peso) ==
      (
       for all elem in set produto  
@@ -31,7 +37,7 @@ operations
      )
     pre  peso >= 0; 
 
-  public  removePesoProduto : NomeProduto * real ==> bool
+  public  removePesoProduto : Produto`NomeProduto * Produto`Peso ==> bool
   removePesoProduto(nomeProd, peso) == 
   		(
   			for all elem in set produto

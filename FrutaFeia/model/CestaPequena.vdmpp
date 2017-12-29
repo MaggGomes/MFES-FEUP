@@ -1,6 +1,5 @@
 class CestaPequena is subclass of Cesta
 instance variables
-  produto:Produto;
   
 operations
 

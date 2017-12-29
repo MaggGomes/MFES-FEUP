@@ -8,6 +8,7 @@ operations
   public testConstructor() == (
     IO`println("\t\t Testing Constructor");
     assertEqual({} , encomenda.vende);
+<<<<<<< HEAD:FrutaFeia/FrutaFeia/tests/TestEncomenda.vdmpp
     assertEqual({} , encomenda.produto);
   );
   
@@ -18,6 +19,9 @@ operations
   	assertEqual(1, card encomenda.produto);  
   	encomenda.adicionaProduto(produto);
   	assertEqual(0, card encomenda.produto);  
+=======
+   -- assertEqual({} , encomenda.compra);
+>>>>>>> f2873348c7d4cb9cb9d80bdcdcceea75615e1c5c:FrutaFeia/tests/TestEncomenda.vdmpp
   );
 
   public testAll() == (
