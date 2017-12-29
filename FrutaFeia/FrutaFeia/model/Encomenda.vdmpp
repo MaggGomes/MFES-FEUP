@@ -1,7 +1,7 @@
 class Encomenda
 instance variables
-  vende :set of (Agricultor);
-  produto:set of (Produto);
+  public vende :set of (Agricultor);
+  public produto:set of (Produto);
 
 
 types 
