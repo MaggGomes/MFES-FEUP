@@ -11,29 +11,18 @@ operations
   );
   
   public testAdicionaAndRemoveProduto() == (
-  	IO`println("\t\t Testing AdicionaAndRemoveProduto");
+  	IO`println("\t\t Testing AdicionaAndRemoveProdutor");
   	assertEqual(0, card encomenda.produto); 
   	encomenda.adicionaProduto(produto);
   	assertEqual(1, card encomenda.produto);  
   	encomenda.removeProduto(produto);
   	assertEqual(0, card encomenda.produto);  
   );
-  
-  public testAdicionaAndRemovePesoProduto() == (
-		IO`println("\t\t AdicionaAndRemovePesoProduto");
-		encomenda.adicionaProduto(produto);
-		assertEqual(5, produto.peso);  
-		assertTrue(encomenda.adicionaPesoProduto(produto.nome, 5));
-		assertEqual(10, produto.peso);  
-		assertTrue(encomenda.removePesoProduto(produto.nome, 5));	
-		assertEqual(5, produto.peso); 
-  );
 
   public testAll() == (
     IO`println("\t Testing Encomenda class");
     testConstructor();
-    testAdicionaAndRemoveProduto();
-    testAdicionaAndRemovePesoProduto(); 
+    testAdicionaAndRemoveProduto()
   );
 
 end TestEncomenda

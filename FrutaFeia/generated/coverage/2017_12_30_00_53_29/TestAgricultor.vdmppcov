@@ -10,20 +10,13 @@ operations
     assertEqual("Mirandela", agricultor.localizacao);
   );
 	
-	public testAdicionaAndRemovePesoProduto() == (
-		IO`println("\t\t AdicionaAndRemovePesoProduto");
-		agricultor.adicionaProduto(produto);
-		assertEqual(5, produto.peso);  
-		assertTrue(agricultor.adicionaPesoProduto(produto.nome, 5));
-		assertEqual(10, produto.peso);  
-		assertTrue(agricultor.removePesoProduto(produto.nome, 5));
-		assertEqual(5, produto.peso); 	
-  );
-  	
+	public manageProduct() == (
+		 IO`println("\t\t Testing add product");
+			agricultor.adicionaProduto(produto);
+	);
   public testAll() == (
     IO`println("\t Testing Agricultor class");
     testConstructor();
-    testAdicionaAndRemovePesoProduto();
   );
 
 end TestAgricultor

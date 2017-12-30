@@ -1,0 +1,70 @@
+class CentroDistribuicao
+instance variables
+  public entrega:set of (Cesta);
+  public localizacao:seq of (char);
+  public encomendas:set of (Encomenda);
+  
+
+operations
+  public  CentroDistribuicao : seq of (char) ==> CentroDistribuicao
+  CentroDistribuicao(local) == (entrega := {}; encomendas := {}; localizacao := local; return self;)
+  post entrega = {} and encomendas = {} and localizacao = local;
+
+  public  AdicionaEncomenda : Encomenda ==> ()
+  AdicionaEncomenda(enc) ==
+  encomendas := encomendas union {enc}
+	post encomendas = encomendas~ union {enc} ;
+	
+  public  removeEncomenda : Encomenda`Id ==> ()
+  removeEncomenda(idEncomenda) ==
+	(dcl result : set of Encomenda := {}; 
+		for all elem in set encomendas 
+		do 
+			if elem.id <> idEncomenda
+				then result := result union {elem}; 
+	 encomendas := result;
+	 )  
+	post encomendas~ inter encomendas = encomendas; 
+  
+  public  adicionaProdutoEncomenda : Encomenda`Id * Produto ==> bool
+  adicionaProdutoEncomenda(idEncomenda, produto) ==
+  (
+    for all elem in set encomendas
+    do
+     	if elem.id = idEncomenda
+     		then (elem.adicionaProduto(produto); return true;);
+    return false;
+  );
+  
+  public  removeProdutoEncomenda : Encomenda`Id * Produto ==> bool
+  removeProdutoEncomenda(idEncomenda, produto) ==
+   (
+    for all elem in set encomendas
+    do
+     	if elem.id = idEncomenda
+     		then (elem.removeProduto(produto); return true;);
+    return false;
+  );
+
+  public  adicionaPesoProdutoEncomenda : Encomenda`Id * Produto`NomeProduto * Produto`Peso ==> bool
+  adicionaPesoProdutoEncomenda(idEncomenda, nomeProduto, peso) ==
+   (
+    for all elem in set encomendas
+    do
+     	if elem.id = idEncomenda
+     		then ( return elem.adicionaPesoProduto(nomeProduto,peso));
+    return false;
+  );
+
+  public  removePesoProdutoEncomenda : Encomenda`Id * Produto`NomeProduto * Produto`Peso ==> bool
+  removePesoProdutoEncomenda(idEncomenda, nomeProduto, peso) ==
+  (
+    for all elem in set encomendas
+    do
+     	if elem.id = idEncomenda
+     		then ( return elem.removePesoProduto(nomeProduto,peso));
+    return false;
+  );
+
+
+end CentroDistribuicao

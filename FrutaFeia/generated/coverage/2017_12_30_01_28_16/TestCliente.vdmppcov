@@ -4,11 +4,10 @@ instance variables
 	produto: Produto := new Produto("Maca", "Golden", 5);
 
 operations
-  public testConstructor() == (  
-  	dcl cesta: Cesta := new Cesta();
-  	dcl cliente: Cliente := new Cliente("Fernando", <HOMEM>, cesta);
+  public testConstructor() == (
     IO`println("\t\t Testing Constructor");
-    assertEqual("Fernando", cliente.nome);
+    assertEqual("Pedro", agricultor.nome);
+    assertEqual("Mirandela", agricultor.localizacao);
   );
 
   public testAll() == (

@@ -1,0 +1,32 @@
+class Cesta
+instance variables
+	public produtos:set of Produto;
+  public peso: real;
+
+operations
+  public  Cesta : ()  ==> Cesta
+  Cesta() == (peso := 0; produtos := {}; return self;)
+  post peso = 0;
+  
+  public  adicionaProduto : Produto ==> ()
+  adicionaProduto(produto) == 
+  produtos := produtos union {produto}
+  pre produto not in set produtos 
+  post peso = produto.peso + peso~ and card produtos~ + 1 = card produtos;  
+	
+  public  removeProduto : Produto ==> ()
+  removeProduto(produto) ==
+  produtos := produtos \ {produto}
+  pre produto not in set produtos 
+  post peso = produto.peso + peso~ and card produtos~ - 1 = card produtos;  
+
+  public  adicionaPesoProduto : Produto`NomeProduto * Produto`Peso ==> ()
+  adicionaPesoProduto(nomeProduto, p) ==
+    is not yet specified;
+
+  public  removePesoProduto : Produto`NomeProduto * Produto`Peso ==> ()
+  removePesoProduto(nomeProduto, p) ==
+    is not yet specified;
+
+
+end Cesta
