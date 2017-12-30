@@ -1,0 +1,20 @@
+class TestCesta is subclass of TestFrutaFeia
+instance variables
+	agricultor: Agricultor := new Agricultor("Pedro", "Mirandela");
+	produto: Produto := new Produto("Maca", "Golden", 5);
+	cesta: Cesta := new Cesta();
+
+operations
+  public testConstructor() == (
+  	dcl cesta: Cesta := new Cesta();
+    IO`println("\t\t Testing Constructor");
+    assertEqual(<PEQUENA>, cesta.tamanho);
+    assertEqual(0, cesta.peso);
+  );
+
+  public testAll() == (
+    IO`println("\t Testing Cesta class");
+    testConstructor();
+  );
+
+end TestCesta

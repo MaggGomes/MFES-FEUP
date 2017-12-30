@@ -1,0 +1,44 @@
+class Cliente
+
+types 
+	public Genero = <HOMEM> | <MULHER>;
+	public EncomendaStatus = <SEM_ENC> | <COM_ENC> | <ENTREGUE> | <CANCELADA> | <PRONTA>
+	
+instance variables
+  encomenda:Cesta;
+  estadoEnc: EncomendaStatus;
+  nome:seq1 of (char);
+  genero: Genero;
+
+operations
+  public  Cliente : seq1 of (char) * Genero * Cesta ==> Cliente
+  Cliente(n, gen, cesta) == (nome:= n; genero:= gen; estadoEnc := <SEM_ENC>; encomenda:= cesta; return self;)
+  	post nome = n and genero = gen and estadoEnc = <SEM_ENC> and encomenda = cesta;
+  
+  public  associaCesta : Cesta ==> ()
+  associaCesta(cesta) ==
+    (	
+    	encomenda := cesta; 
+    	estadoEnc := <COM_ENC>;
+    )	
+    post encomenda = cesta;
+
+  public  removeCesta : ()  ==> ()
+  removeCesta() == estadoEnc := <CANCELADA>
+  post estadoEnc = <CANCELADA>;
+	
+  public  mudaCesta : Cesta ==> ()
+  mudaCesta(cesta) ==
+    (encomenda := cesta; estadoEnc := <COM_ENC>)
+    post encomenda = cesta and encomenda <> encomenda~ and estadoEnc = <COM_ENC>;
+
+	public levantaCesta: () ==> () 
+	levantaCesta() == estadoEnc := <ENTREGUE>
+	pre estadoEnc = <PRONTA> 
+	post estadoEnc = <ENTREGUE>;
+	
+	public encomendaPronta: () ==> () 
+	encomendaPronta() == estadoEnc := <PRONTA>
+	pre estadoEnc = <COM_ENC>
+	post estadoEnc = <PRONTA>;
+end Cliente

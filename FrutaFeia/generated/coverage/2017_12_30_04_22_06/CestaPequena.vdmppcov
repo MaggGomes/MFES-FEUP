@@ -1,0 +1,6 @@
+class CestaPequena is subclass of Cesta
+instance variables
+  
+operations
+
+end CestaPequena

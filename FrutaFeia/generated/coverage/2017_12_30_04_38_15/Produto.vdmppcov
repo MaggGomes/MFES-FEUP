@@ -1,0 +1,28 @@
+class Produto
+
+types
+	public NomeProduto = seq of char;
+	public Origem = seq of char;
+	public Peso = real;
+instance variables
+  public nome: NomeProduto;
+  public origem:seq of (char);
+  public peso: Peso;
+
+operations
+  public  Produto : NomeProduto * Origem * Peso ==> Produto
+  Produto(n, o, p) == (nome := n; origem := o; peso := p;return self;)
+  pre p >= 0
+  post nome = n and origem = o and peso = p;
+
+  public  adicionaPeso : Peso ==> ()
+  adicionaPeso(p) == peso := peso + p
+  post peso = peso~ + p;
+  
+
+  public  removePeso : Peso ==> ()
+  removePeso(p) == peso := peso - p
+  pre peso - p >= 0;
+
+
+end Produto

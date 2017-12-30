@@ -1,0 +1,7 @@
+class CestaGrande is subclass of Cesta
+instance variables
+  
+  
+operations
+
+end CestaGrande

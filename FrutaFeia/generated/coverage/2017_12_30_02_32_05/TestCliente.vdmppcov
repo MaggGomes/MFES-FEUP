@@ -1,0 +1,20 @@
+class TestCliente is subclass of TestFrutaFeia
+instance variables
+	agricultor: Agricultor := new Agricultor("Pedro", "Mirandela");
+	produto: Produto := new Produto("Maca", "Golden", 5);
+
+operations
+  public testConstructor() == (  
+  	dcl cesta: Cesta := new Cesta();
+  	dcl cliente: Cliente := new Cliente("Fernando", <HOMEM>, cesta);
+    IO`println("\t\t Testing Constructor");
+    assertEqual("Fernando", cliente.nome);
+    assertEqual(<HOMEM>, cliente.genero);
+  );
+
+  public testAll() == (
+    IO`println("\t Testing Cliente class");
+    testConstructor();
+  );
+
+end TestCliente

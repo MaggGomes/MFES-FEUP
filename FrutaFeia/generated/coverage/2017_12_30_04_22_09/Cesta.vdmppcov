@@ -1,0 +1,49 @@
+class Cesta
+
+types
+	public Tamanho = <PEQUENA> | <GRANDE>
+	
+instance variables
+	public produtos:set of Produto;
+  public peso: real;
+	public tamanho: Tamanho;
+	
+operations
+  public  Cesta : () ==> Cesta
+  Cesta() == (peso := 0; produtos := {}; tamanho:= <PEQUENA>; return self;)
+  post peso = 0;
+  
+  public  adicionaProduto : Produto ==> ()
+  adicionaProduto(produto) == 
+  produtos := produtos union {produto}
+  pre produto not in set produtos; 
+	
+  public  removeProduto : Produto ==> ()
+  removeProduto(produto) ==
+  produtos := produtos \ {produto}
+  pre produto in set produtos 
+  post peso = produto.peso + peso~ and card produtos~ - 1 = card produtos;  
+
+  public  adicionaPesoProduto : Produto`NomeProduto * Produto`Peso ==> bool
+  adicionaPesoProduto(nomeProduto, p) ==
+	(	for all elem in set produtos
+	 	do 
+			if nomeProduto = elem.nome
+				then (return elem.adicionaPeso(p));
+	return false;);
+	
+	
+	public  removePesoProduto : Produto`NomeProduto * Produto`Peso ==> bool
+  removePesoProduto(nomeProduto, p) == 
+  (	for all elem in set produtos
+  		do
+  			if nomeProduto = elem.nome
+  				then (return elem.removePeso(p););
+  return false);
+  
+  public alterarTamanho: Tamanho ==> ()
+  alterarTamanho(tam)  == 
+  		tamanho := tam
+  post tamanho = tam; 
+    
+end Cesta
