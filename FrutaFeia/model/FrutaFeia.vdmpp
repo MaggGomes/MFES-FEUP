@@ -1,0 +1,48 @@
+class FrutaFeia
+
+
+instance variables
+	clientes : set of Cliente;
+	centros : set of CentroDistribuicao;
+	agricultores: set of Agricultor;
+	
+operations 
+	public FrutaFeia: () ==> FrutaFeia
+	FrutaFeia() == (clientes := {}; centros := {}; agricultores := {})
+	post  clientes = {} and centros = {} and agricultores = {};
+
+	public adicionaCliente: Cliente ==> ()
+	adicionaCliente( cliente ) == 
+		 clientes := clientes union {cliente}
+	post card clientes~ + 1 = card clientes;  
+	
+	public removeCliente: Cliente ==> ()
+	removeCliente(cliente) == 
+		 clientes := clientes \ {cliente}
+	post card clientes~ - 1 = card clientes; 
+	
+	public adicionaCentro: CentroDistribuicao  ==> ()
+	adicionaCentro(cent) ==
+			centros := centros union {cent}
+	post card centros = card centros~ +1 ;
+	
+	public removeCentro: CentroDistribuicao  ==> ()
+	removeCentro(cent) ==
+			centros := centros \ {cent}
+	post card centros = card centros~ - 1 ;
+	
+	public adicionaAgricultor: Agricultor ==> ()
+	adicionaAgricultor(agri) ==
+			agricultores := agricultores union {agri}
+	post card agricultores = card agricultores~ +1 ;
+	
+	public removeAgricultor: Agricultor  ==> ()
+	removeAgricultor(agri) ==
+			agricultores := agricultores \ {agri}
+	post card agricultores = card agricultores~ - 1 ;
+
+end FrutaFeia
+
+
+
+
