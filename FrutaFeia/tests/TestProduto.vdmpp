@@ -12,11 +12,6 @@ operations
   
   public testAdicionaAndRemovePeso() == (
 		IO`println("\t\t AdicionaAndRemovePeso");
-		assertEqual(5, produto.peso);  
-		produto.adicionaPeso(5);
-		assertEqual(10, produto.peso);  
-		produto.removePeso(5));	
-		assertEqual(5, produto.peso); 
   );
 
   public testAll() == (
