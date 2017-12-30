@@ -1,19 +1,19 @@
 class Cliente
 
 types 
-	public Genero = <MALE> | <FEMALE>;
-	public EncomendaStatus = <SEM_ENC> | <COM_ENC> | <ENTREGUE>
+	public Genero = <HOMEM> | <MULHER>;
+	public EncomendaStatus = <SEM_ENC> | <COM_ENC> | <ENTREGUE> | <CANCELADA> | <PRONTA>
 	
 instance variables
   encomenda:Cesta;
   estadoEnc: EncomendaStatus;
-  nome:seq of (char);
+  nome:seq1 of (char);
   genero: Genero;
 
 operations
-  public  Cliente : seq of (char) * Genero ==> Cliente
-  Cliente(n, gen) == (nome:= n; genero:= gen; estadoEnc := <SEM_ENC>; encomenda:= undefined; return self;)
-  	post nome = n and genero = gen and estadoEnc = <SEM_ENC> and encomenda = undefined;
+  public  Cliente : seq1 of (char) * Genero * Cesta ==> Cliente
+  Cliente(n, gen, cesta) == (nome:= n; genero:= gen; estadoEnc := <SEM_ENC>; encomenda:= cesta; return self;)
+  	post nome = n and genero = gen and estadoEnc = <SEM_ENC> and encomenda = cesta;
   
   public  associaCesta : Cesta ==> ()
   associaCesta(cesta) ==
@@ -24,16 +24,21 @@ operations
     post encomenda = cesta;
 
   public  removeCesta : ()  ==> ()
-  removeCesta() == encomenda := undefined
-  post encomenda = undefined;
+  removeCesta() == estadoEnc := <CANCELADA>
+  post estadoEnc = <CANCELADA>;
 	
   public  mudaCesta : Cesta ==> ()
   mudaCesta(cesta) ==
-    encomenda := cesta
-    post encomenda = cesta and encomenda <> encomenda~;
+    (encomenda := cesta; estadoEnc := <COM_ENC>)
+    post encomenda = cesta and encomenda <> encomenda~ and estadoEnc = <COM_ENC>;
 
 	public levantaCesta: () ==> () 
 	levantaCesta() == estadoEnc := <ENTREGUE>
-	pre encomenda <> undefined 
+	pre estadoEnc = <PRONTA> 
 	post estadoEnc = <ENTREGUE>;
+	
+	public encomendaPronta: () ==> () 
+	encomendaPronta() == estadoEnc := <PRONTA>
+	pre estadoEnc = <COM_ENC>
+	post estadoEnc = <PRONTA>;
 end Cliente
