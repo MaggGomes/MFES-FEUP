@@ -11,19 +11,25 @@ instance variables
 operations
   public  Cesta : () ==> Cesta
   Cesta() == (peso := 0; produtos := {}; tamanho:= <PEQUENA>; return self;)
-  post peso = 0;
+  post peso = 0 and produtos = {} and tamanho = <PEQUENA>;
   
   public  adicionaProduto : Produto ==> ()
   adicionaProduto(produto) == 
-  produtos := produtos union {produto}
+  (
+  	produtos := produtos union {produto};
+   	peso := peso + produto.peso
+  )
   pre produto not in set produtos 
-  post peso = produto.peso + peso~ and card produtos~ + 1 = card produtos;  
+  post peso = produto.peso + peso~ and (card produtos = card produtos~ + 1);  
 	
   public  removeProduto : Produto ==> ()
   removeProduto(produto) ==
-  produtos := produtos \ {produto}
-  pre produto in set produtos 
-  post peso = produto.peso + peso~ and card produtos~ - 1 = card produtos; 
+  ( 
+  	produtos := produtos \ {produto};
+  	peso := peso - produto.peso
+  )
+  pre produto in set produtos and peso - produto.peso >= 0
+  post peso = peso~ - produto.peso and (card produtos + 1  = card produtos~ ); 
 
   public  adicionaPesoProduto : Produto`NomeProduto * Produto`Peso ==> bool
   adicionaPesoProduto(nomeProduto, p) ==
@@ -39,7 +45,7 @@ operations
   (	for all elem in set produtos
   		do
   			if nomeProduto = elem.nome
-  				then (return elem.removePeso(p););
+  				then (elem.removePeso(p); return true;);
   return false);
   
   public alterarTamanho: Tamanho ==> ()

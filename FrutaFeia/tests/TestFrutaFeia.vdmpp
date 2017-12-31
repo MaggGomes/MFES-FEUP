@@ -2,11 +2,11 @@
 class TestFrutaFeia
 
 operations
-  protected assertTrue: bool ==> ()
+ 	protected assertTrue: bool ==> ()
   assertTrue(arg) ==
     return
   pre arg;
-  
+ 
   protected assertEqual: ? * ? ==> ()
   assertEqual(expected, actual) ==
     if expected <> actual then (
