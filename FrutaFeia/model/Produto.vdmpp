@@ -8,6 +8,8 @@ instance variables
   public nome: NomeProduto;
   public origem:seq of (char);
   public peso: Peso;
+  
+  inv peso >= 0;
 
 operations
   public  Produto : NomeProduto * Origem * Peso ==> Produto
