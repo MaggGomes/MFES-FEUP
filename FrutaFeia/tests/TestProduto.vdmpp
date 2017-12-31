@@ -21,7 +21,7 @@ operations
   );
 
   public testAll() == (
-    IO`println("\t Testing Produtor class");
+    IO`println("\t Testing Produto class");
     testConstructor();
     testAdicionaAndRemovePeso();
   );

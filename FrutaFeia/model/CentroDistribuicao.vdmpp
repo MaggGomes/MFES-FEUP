@@ -10,8 +10,8 @@ operations
   CentroDistribuicao(local) == (entrega := {}; encomendas := {}; localizacao := local; return self;)
   post entrega = {} and encomendas = {} and localizacao = local;
 
-  public  AdicionaEncomenda : Encomenda ==> ()
-  AdicionaEncomenda(enc) ==
+  public  adicionaEncomenda : Encomenda ==> ()
+  adicionaEncomenda(enc) ==
   encomendas := encomendas union {enc}
 	post encomendas = encomendas~ union {enc} ;
 	
