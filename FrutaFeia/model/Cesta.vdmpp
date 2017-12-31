@@ -36,7 +36,7 @@ operations
 	(	for all elem in set produtos
 	 	do 
 			if nomeProduto = elem.nome
-				then (return elem.adicionaPeso(p));
+				then (elem.adicionaPeso(p); return true;);
 	return false;);
 	
 	
