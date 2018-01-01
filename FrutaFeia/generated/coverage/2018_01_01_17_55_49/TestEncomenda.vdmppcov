@@ -1,0 +1,39 @@
+class TestEncomenda is subclass of TestFrutaFeia
+instance variables
+	agricultor: Agricultor := new Agricultor("Pedro", "Mirandela");
+	produto: Produto := new Produto("Maca", "Golden", 5);
+	encomenda: Encomenda := new Encomenda();
+
+operations
+  public testConstructor() == (
+    IO`println("\t\t Testing Constructor");
+    assertEqual({} , encomenda.vende);
+  );
+  
+  public testAdicionaAndRemoveProduto() == (
+  	IO`println("\t\t Testing AdicionaAndRemoveProduto");
+  	assertEqual(0, card encomenda.produto); 
+  	encomenda.adicionaProduto(produto);
+  	assertEqual(1, card encomenda.produto);  
+  	encomenda.removeProduto(produto);
+  	assertEqual(0, card encomenda.produto);  
+  );
+  
+  public testAdicionaAndRemovePesoProduto() == (
+		IO`println("\t\t Testing AdicionaAndRemovePesoProduto");
+		encomenda.adicionaProduto(produto);
+		assertEqual(5, produto.peso);  
+		assertTrue(encomenda.adicionaPesoProduto(produto.nome, 5));
+		assertEqual(10, produto.peso);  
+		assertTrue(encomenda.removePesoProduto(produto.nome, 5));	
+		assertEqual(5, produto.peso); 
+  );
+
+  public testAll() == (
+    IO`println("\t Testing Encomenda class");
+    testConstructor();
+    testAdicionaAndRemoveProduto();
+    testAdicionaAndRemovePesoProduto(); 
+  );
+
+end TestEncomenda

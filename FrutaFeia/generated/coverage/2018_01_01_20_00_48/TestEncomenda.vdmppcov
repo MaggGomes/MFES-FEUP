@@ -1,0 +1,40 @@
+class TestEncomenda is subclass of SuiteTestCase	
+
+operations
+  public testConstructor() == (
+  	dcl encomenda: Encomenda := new Encomenda();
+    IO`println("\t\t Testing Constructor");
+    assertEqual({} , encomenda.vende);
+  );
+  
+  public testAdicionaAndRemoveProduto() == (
+  	dcl produto: Produto := new Produto("Maca", "Golden", 5);
+  	dcl encomenda: Encomenda := new Encomenda();
+  	IO`println("\t\t Testing AdicionaAndRemoveProduto");
+  	assertEqual(0, card encomenda.produto); 
+  	encomenda.adicionaProduto(produto);
+  	assertEqual(1, card encomenda.produto);  
+  	encomenda.removeProduto(produto);
+  	assertEqual(0, card encomenda.produto);  
+  );
+  
+  public testAdicionaAndRemovePesoProduto() == (
+  	dcl produto: Produto := new Produto("Maca", "Golden", 5);
+  	dcl encomenda: Encomenda := new Encomenda();
+		IO`println("\t\t Testing AdicionaAndRemovePesoProduto");
+		encomenda.adicionaProduto(produto);
+		assertEqual(5, produto.peso);  
+		assertTrue(encomenda.adicionaPesoProduto(produto.nome, 5));
+		assertEqual(10, produto.peso);  
+		assertTrue(encomenda.removePesoProduto(produto.nome, 5));	
+		assertEqual(5, produto.peso); 
+  );
+
+  public testAll() == (
+    IO`println("\t Testing Encomenda class");
+    testConstructor();
+    testAdicionaAndRemoveProduto();
+    testAdicionaAndRemovePesoProduto(); 
+  );
+
+end TestEncomenda

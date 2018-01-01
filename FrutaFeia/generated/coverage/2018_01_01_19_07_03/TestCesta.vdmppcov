@@ -1,0 +1,50 @@
+class TestCesta is subclass of SuiteTestCase
+
+operations
+  public testConstructor() == (
+  	dcl cesta: Cesta := new Cesta();
+    IO`println("\t\t Testing Constructor");
+    assertEqual(<PEQUENA>, cesta.tamanho);
+    assertEqual(0, cesta.peso);
+  );
+  
+  public testAdicionaAndRemoveProduto() == (
+  	dcl cesta: Cesta := new Cesta();
+  	dcl produto: Produto := new Produto("Maca", "Golden", 5);
+  	IO`println("\t\t Testing AdicionaAndRemoveProduto");
+  	assertEqual(0, card cesta.produtos); 
+  	cesta.adicionaProduto(produto);
+  	assertEqual(1, card cesta.produtos);  
+  	cesta.removeProduto(produto);
+  	assertEqual(0, card cesta.produtos);  
+  );
+  
+  public testAdicionaAndRemovePesoProduto() == (
+  	dcl cesta: Cesta := new Cesta();
+  	dcl produto: Produto := new Produto("Maca", "Golden", 5);
+		IO`println("\t\t AdicionaAndRemovePesoProduto");
+		cesta.adicionaProduto(produto);
+		assertEqual(5, produto.peso);  
+		assertTrue(cesta.adicionaPesoProduto(produto.nome, 5));
+		assertEqual(10, produto.peso);  
+		assertTrue(cesta.removePesoProduto(produto.nome, 5));
+		assertEqual(5, produto.peso); 	
+  );
+  
+  public testAlterarTamanho() == (
+  	dcl cesta: Cesta := new Cesta();
+		IO`println("\t\t AdicionaAndRemovePesoProduto");
+		assertEqual(<PEQUENA>, cesta.tamanho);
+		cesta.alterarTamanho(<GRANDE>);
+		assertEqual(<GRANDE>, cesta.tamanho);
+  );
+
+  public testAll() == (
+    IO`println("\t Testing Cesta class");
+    testConstructor();
+    testAdicionaAndRemoveProduto();
+    testAdicionaAndRemovePesoProduto();
+    testAlterarTamanho();
+  );
+
+end TestCesta

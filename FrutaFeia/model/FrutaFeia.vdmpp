@@ -1,6 +1,5 @@
 class FrutaFeia
 
-
 instance variables
 	clientes : set of Cliente;
 	centros : set of CentroDistribuicao;
@@ -14,31 +13,37 @@ operations
 	public adicionaCliente: Cliente ==> ()
 	adicionaCliente( cliente ) == 
 		 clientes := clientes union {cliente}
+	pre cliente <> undefined and cliente not in set clientes
 	post card clientes~ + 1 = card clientes;  
 	
 	public removeCliente: Cliente ==> ()
 	removeCliente(cliente) == 
 		 clientes := clientes \ {cliente}
+	pre cliente <> undefined and cliente in set clientes
 	post card clientes~ - 1 = card clientes; 
 	
 	public adicionaCentro: CentroDistribuicao  ==> ()
-	adicionaCentro(cent) ==
-			centros := centros union {cent}
+	adicionaCentro(centro) ==
+			centros := centros union {centro}
+	pre centro <> undefined and centro not in set centros
 	post card centros = card centros~ +1 ;
 	
 	public removeCentro: CentroDistribuicao  ==> ()
-	removeCentro(cent) ==
-			centros := centros \ {cent}
+	removeCentro(centro) ==
+			centros := centros \ {centro}
+	pre centro <> undefined and centro in set centros
 	post card centros = card centros~ - 1 ;
 	
 	public adicionaAgricultor: Agricultor ==> ()
-	adicionaAgricultor(agri) ==
-			agricultores := agricultores union {agri}
+	adicionaAgricultor(agricultor) ==
+			agricultores := agricultores union {agricultor}
+	pre agricultor <> undefined and agricultor not in set agricultores
 	post card agricultores = card agricultores~ +1 ;
 	
 	public removeAgricultor: Agricultor  ==> ()
-	removeAgricultor(agri) ==
-			agricultores := agricultores \ {agri}
+	removeAgricultor(agricultor) ==
+			agricultores := agricultores \ {agricultor}
+	pre agricultor <> undefined and agricultor in set agricultores
 	post card agricultores = card agricultores~ - 1 ;
 
 end FrutaFeia
