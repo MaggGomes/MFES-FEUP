@@ -13,16 +13,19 @@ operations
   pre len n > 0 and len l > 0
  	post nome = n and localizacao = l and stock = {|->};
  
+ --adiciona um produto ao agricultor
   public  adicionaProduto : Produto ==> ()
   	adicionaProduto(produto) == stock := stock munion {produto.nome |-> produto}
-  pre produto <> undefined
+  pre produto <> undefined and produto.nome not in set dom stock
   post  stock = stock~ munion {produto.nome |-> produto};
 
+	--remove um produto do agricultor
   public removeProduto : NomeProduto ==> ()
   	removeProduto(nomeProduto) == stock := {nomeProduto} <-: stock
   pre len nomeProduto > 0 and nomeProduto in set dom stock
   post nomeProduto not in set dom stock;
-  	
+  
+  --adicona peso a um produto no agricultor se existir 
   public  adicionaPesoProduto : NomeProduto * real ==> bool
   adicionaPesoProduto(nomeProduto, peso) == 
   	(
@@ -30,8 +33,11 @@ operations
   			then  ( stock(nomeProduto).adicionaPeso(peso); return true;);
   		return false
   	)
-  pre len nomeProduto > 0 and peso > 0 and nomeProduto in set dom stock;
+  pre len nomeProduto > 0 and peso > 0
+  post (nomeProduto in set dom stock and RESULT=true ) or (nomeProduto not in set dom stock and RESULT = false);
   
+  
+  -- remove peso de um produto se existir 
   public  removePesoProduto : NomeProduto * real ==> bool
   removePesoProduto(nomeProduto, peso) ==
     (
@@ -39,7 +45,8 @@ operations
   			then  ( stock(nomeProduto).removePeso(peso); return true;);
   		return false
   	)
-  pre len nomeProduto > 0 and peso > 0 and nomeProduto in set dom stock;
+  pre len nomeProduto > 0 and peso > 0
+  post (nomeProduto in set dom stock and RESULT=true ) or (nomeProduto not in set dom stock and RESULT = false);
 
 
 end Agricultor
