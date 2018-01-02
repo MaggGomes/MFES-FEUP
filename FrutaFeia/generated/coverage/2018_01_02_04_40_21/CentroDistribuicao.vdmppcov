@@ -25,8 +25,7 @@ operations
 			if elem.id <> idEncomenda
 				then result := result union {elem}; 
 	 encomendas := result;
-	 )
-	pre idEncomenda >= 0
+	 )  
 	post encomendas~ inter encomendas = encomendas; 
   
   public  adicionaProdutoEncomenda : Encomenda`Id * Produto ==> bool
@@ -37,8 +36,7 @@ operations
      	if elem.id = idEncomenda
      		then (elem.adicionaProduto(produto); return true;);
     return false;
-  )  
-  pre idEncomenda >= 0 and produto <> undefined;
+  );
   
   public  removeProdutoEncomenda : Encomenda`Id * Produto ==> bool
   removeProdutoEncomenda(idEncomenda, produto) ==
@@ -48,8 +46,7 @@ operations
      	if elem.id = idEncomenda
      		then (elem.removeProduto(produto); return true;);
     return false;
-  )
-  pre idEncomenda >= 0 and produto <> undefined;
+  );
 
   public  adicionaPesoProdutoEncomenda : Encomenda`Id * Produto`NomeProduto * Produto`Peso ==> bool
   adicionaPesoProdutoEncomenda(idEncomenda, nomeProduto, peso) ==
@@ -59,8 +56,7 @@ operations
      	if elem.id = idEncomenda
      		then ( return elem.adicionaPesoProduto(nomeProduto,peso));
     return false;
-  )
-  pre idEncomenda >= 0 and len nomeProduto > 0 and peso > 0;
+  );
 
   public  removePesoProdutoEncomenda : Encomenda`Id * Produto`NomeProduto * Produto`Peso ==> bool
   removePesoProdutoEncomenda(idEncomenda, nomeProduto, peso) ==
