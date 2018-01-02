@@ -9,13 +9,11 @@ operations
     assertEqual(<SEM_ENC>, cliente.estadoEnc);
   );
   
-  public testAssociaMudaRemoveCesta() == (
+  public testMudaRemoveCesta() == (
   	dcl cliente: Cliente := new Cliente("Fernando", <HOMEM>);
-  	dcl cestaA: Cesta := new Cesta();
   	dcl cestaB: Cesta := new Cesta();
   	IO`println("\t\t Testing AssociaCesta");
   	assertEqual(<SEM_ENC>, cliente.estadoEnc);
-  	cliente.associaCesta(cestaA);
   	cliente.mudaCesta(cestaB);
   	assertEqual(<COM_ENC>, cliente.estadoEnc);
   	cliente.removeCesta();
@@ -27,7 +25,7 @@ operations
   	dcl cesta: Cesta := new Cesta();
   	IO`println("\t\t Testing AssociaCesta");
   	assertEqual(<SEM_ENC>, cliente.estadoEnc);
-  	cliente.associaCesta(cesta);
+  	cliente.mudaCesta(cesta);
   	assertEqual(<COM_ENC>, cliente.estadoEnc);
   	cliente.encomendaPronta();
   	assertEqual(<PRONTA>, cliente.estadoEnc);
@@ -38,7 +36,7 @@ operations
   public testAll() == (
     IO`println("\t Testing Cliente class");
     testConstructor();
-    testAssociaMudaRemoveCesta();
+    testMudaRemoveCesta();
     testUseCaseCesta();
   );
 

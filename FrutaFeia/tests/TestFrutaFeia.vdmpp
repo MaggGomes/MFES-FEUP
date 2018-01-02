@@ -39,9 +39,60 @@ public testGeraCestaPequena() == (
 	
 );
 
+public testeGereTodasEncomendas() == (
+	dcl frutaFeia : FrutaFeia := new FrutaFeia();
+	
+	dcl agricultor: Agricultor := new Agricultor("Pedro", "Mirandela"); 
+	dcl agricultor2: Agricultor := new Agricultor("Manuel", "Porto");
+	
+
+	dcl pera: Produto := new Produto("Pera", "Mate", 2);
+	dcl manga: Produto := new Produto("Manga", "Rosa", 3);
+	dcl ananas: Produto := new Produto("Ananas", "Preto", 4);
+	dcl maca: Produto := new Produto("Maca", "Golden", 5);
+	dcl maracuja: Produto := new Produto("Maracuja", "Bambuin", 6);
+  dcl alface: Produto := new Produto("Alface", "Alfacinha", 7);
+  dcl pimento: Produto := new Produto("Pimento", "Verde", 8);
+  dcl laranja: Produto := new Produto("Laranja", "Algarve", 8);
+  
+  dcl centro: CentroDistribuicao := new CentroDistribuicao("Porto");
+  dcl cliente: Cliente := new Cliente("Fernando", <HOMEM>);
+	
+	IO`println("\t\t Gere todas as encomendas:" );
+		
+		
+	agricultor.adicionaProduto(pera);
+	agricultor.adicionaProduto(manga);
+	agricultor.adicionaProduto(ananas);
+	
+	agricultor2.adicionaProduto(maca);
+	agricultor2.adicionaProduto(maracuja);
+	agricultor2.adicionaProduto(alface);
+	agricultor2.adicionaProduto(pimento);
+	agricultor2.adicionaProduto(laranja);
+		
+	frutaFeia.adicionaAgricultor(agricultor);
+	frutaFeia.adicionaAgricultor(agricultor2);
+	
+	frutaFeia.adicionaCentro(centro);
+	frutaFeia.adicionaCliente(cliente, "Porto");
+	
+	cliente.mudaCesta(new Cesta());
+	
+	IO`println(centro.clientes);
+
+	frutaFeia.geraCestaTodosClientes();
+	
+	IO`println("\t\t Cliente Encomenda:" );
+	IO`println(cliente.encomenda);
+	IO`println(card centro.clientes);
+	
+);
+
 
 public testAll() == (
-	 testGeraCestaPequena();
+	 --testGeraCestaPequena();
+	 testeGereTodasEncomendas();
 );
 
 end TestFrutaFeia

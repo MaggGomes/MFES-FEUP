@@ -136,9 +136,24 @@ operations
 	 	);
 	 	return cesta;
 	); 
-	-- TODO peso minimo em cada produto? numero minimo de produtos
-	--TODO update total peso
-	--TODO update total produtos 
+	
+	
+	public geraCestaTodosClientes: () ==> ()
+	geraCestaTodosClientes() == 
+		for all centro in set centros
+		do (
+			for all cliente in set centro.clientes
+			do (
+				IO`println(cliente);
+				if cliente.estadoEnc = <COM_ENC> 
+				 then if (cliente.encomenda.tamanho = <PEQUENA>) 
+				 				then cliente.mudaCesta(geraCestaPequena()) --Todo check requirements
+				 			else
+				 				if(cliente.encomenda.tamanho = <GRANDE>)
+				 					then cliente.mudaCesta(geraCestaGrande()) -- todo check requirements
+				 -- todo manage not  finished requirements 
+			 );			 
+	  );
 end FrutaFeia
 
 

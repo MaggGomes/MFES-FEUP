@@ -2,7 +2,7 @@ class Cliente
 
 types 
 	public Genero = <HOMEM> | <MULHER>;
-	public EncomendaStatus = <SEM_ENC> | <COM_ENC> | <ENTREGUE> | <CANCELADA> | <PRONTA>
+	public EncomendaStatus = <SEM_ENC> | <COM_ENC> | <ENTREGUE> | <CANCELADA> | <PRONTA> | <POR_CONCLUIR>
 	
 instance variables
   public encomenda:Cesta;
@@ -16,15 +16,6 @@ operations
   pre len n > 0 and gen <> undefined
   post nome = n and genero = gen and estadoEnc = <SEM_ENC>;
   
-  public  associaCesta : Cesta ==> ()
-  associaCesta(cesta) ==
-    (	
-    	encomenda := cesta; 
-    	estadoEnc := <COM_ENC>;
-    )
-  pre cesta <> undefined
-  post encomenda = cesta;
-
   public  removeCesta : ()  ==> ()
   removeCesta() == estadoEnc := <CANCELADA>
   post estadoEnc = <CANCELADA>;
@@ -44,5 +35,23 @@ operations
 	levantaCesta() == estadoEnc := <ENTREGUE>
 	pre estadoEnc = <PRONTA> 
 	post estadoEnc = <ENTREGUE>;
-		
+	
+	
+	public verificaParametros: () ==> ()
+	verificaParametros () ==
+		if(encomenda.tamanho = <PEQUENA>)
+			then (
+				if(card encomenda.produtos = 7 and encomenda.peso >= 3)
+				then	estadoEnc := <PRONTA>
+				else  estadoEnc := <POR_CONCLUIR>
+			)
+			else if(encomenda.tamanho = <GRANDE>)
+			then (
+				if(card encomenda.produtos = 8 and encomenda.peso >= 6)
+					then estadoEnc := <PRONTA>
+					else estadoEnc := <POR_CONCLUIR>
+			)
+	pre estadoEnc = <COM_ENC>
+	post estadoEnc = <PRONTA> or estadoEnc = <POR_CONCLUIR>;
+	
 end Cliente
