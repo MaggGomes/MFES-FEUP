@@ -37,8 +37,8 @@ operations
 	post estadoEnc = <ENTREGUE>;
 	
 	
-	public verificaParametros: () ==> ()
-	verificaParametros () ==
+	public verificaCestaParametros: () ==> ()
+	verificaCestaParametros () ==
 		if(encomenda.tamanho = <PEQUENA>)
 			then (
 				if(card encomenda.produtos = 7 and encomenda.peso >= 3)

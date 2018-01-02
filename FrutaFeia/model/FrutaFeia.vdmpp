@@ -137,6 +137,59 @@ operations
 	 	return cesta;
 	); 
 	
+	public preencheCesta: Cesta ==> ()
+	preencheCesta(cesta) == 
+	(
+	 dcl produtos : set of Produto := getTodosProdutos();
+	 dcl totalNaCesta : nat := card cesta.produtos;
+	 dcl pesoAretirar : real := 0.3;
+	 dcl minimo: real := 0;
+	 dcl runs: nat := 0;
+	 dcl totalProdutos: nat := 0;
+	 
+	 if(cesta.tamanho = <PEQUENA>)
+	 		then (
+	 					totalProdutos := 7;
+	 					minimo := 3 - cesta.peso;
+	 				)
+	 else 
+	 	if(cesta.tamanho = <GRANDE>)
+	 		then ( totalProdutos := 8;
+	 					 minimo := 6 - cesta.peso;
+	 				 );
+	 	 	
+	 	while(minimo > 0 and runs < 3)
+	 do
+	 	(
+	 	 for all produto in set produtos
+	 		do 
+	 			if(produto.peso >= pesoAretirar)
+	 				then 
+	 				(	
+	 				if(cesta.produtoNaCesta(produto.nome) = false and totalNaCesta < totalProdutos)
+	 					then
+	 					 (	produto.removePeso(pesoAretirar);
+	 					 		cesta.adicionaProduto(new Produto(produto.nome, produto.origem, pesoAretirar));
+	 					 		totalNaCesta := totalNaCesta + 1;
+	 					 		minimo := minimo - pesoAretirar;
+	 					 )
+	 					else 
+	 					(
+	 						if(totalNaCesta = totalProdutos  and minimo <= 0)
+	 					  	then return
+	 					  	else 
+	 					  	( 
+	 					  		produto.removePeso(pesoAretirar);
+	 					  		if(cesta.adicionaPesoProduto(produto.nome, pesoAretirar))
+	 					  		 then minimo := minimo - pesoAretirar
+	 					  		 else produto.adicionaPeso(pesoAretirar);
+	 					  	);
+	 					);
+	 				);
+	 		pesoAretirar := pesoAretirar / (runs + 1);
+	 		runs := runs + 1;
+	 	);
+	);
 	
 	public geraCestaTodosClientes: () ==> ()
 	geraCestaTodosClientes() == 
@@ -147,11 +200,17 @@ operations
 				IO`println(cliente);
 				if cliente.estadoEnc = <COM_ENC> 
 				 then if (cliente.encomenda.tamanho = <PEQUENA>) 
-				 				then cliente.mudaCesta(geraCestaPequena()) --Todo check requirements
+				 				then (	cliente.mudaCesta(geraCestaPequena());
+				 								cliente.verificaCestaParametros();	
+				 							)
 				 			else
 				 				if(cliente.encomenda.tamanho = <GRANDE>)
-				 					then cliente.mudaCesta(geraCestaGrande()) -- todo check requirements
-				 -- todo manage not  finished requirements 
+				 					then( cliente.mudaCesta(geraCestaGrande());
+				 								cliente.verificaCestaParametros()
+				 							)
+				else ( if cliente.estadoEnc = <POR_CONCLUIR> 
+								then preencheCesta(cliente.encomenda)
+				);
 			 );			 
 	  );
 end FrutaFeia

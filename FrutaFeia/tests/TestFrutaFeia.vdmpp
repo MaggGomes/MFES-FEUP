@@ -79,13 +79,15 @@ public testeGereTodasEncomendas() == (
 	
 	cliente.mudaCesta(new Cesta());
 	
-	IO`println(centro.clientes);
 
 	frutaFeia.geraCestaTodosClientes();
 	
 	IO`println("\t\t Cliente Encomenda:" );
 	IO`println(cliente.encomenda);
 	IO`println(card centro.clientes);
+	IO`println(centro.clientes);
+	
+	
 	
 );
 
