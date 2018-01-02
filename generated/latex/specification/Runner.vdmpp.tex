@@ -1,0 +1,19 @@
+\begin{vdmpp}[breaklines=true]
+class Runner
+  operations
+(*@
+\label{main:3}
+@*)
+    public static main() == (
+      IO`println("Running tests...");
+      --new TestAgricultor().testAll();
+      --new TestCentroDistribuicao().testAll();
+      --new TestCesta().testAll();
+      --new TestCliente().testAll();
+      --new TestProduto().testAll();
+      new TestFrutaFeia().testAll();
+      IO`println("Tests completed!");
+    );
+    
+end Runner
+\end{vdmpp}

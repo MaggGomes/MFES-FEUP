@@ -1,0 +1,22 @@
+\begin{vdmpp}[breaklines=true]
+class CentroDistribuicao
+instance variables
+ public clientes : set of Cliente;
+  public localizacao:seq of (char);
+ 
+operations
+  public  CentroDistribuicao : seq of (char) ==> CentroDistribuicao
+  CentroDistribuicao(local) == (clientes := {}; localizacao := local; return self;)
+(*@
+\label{CentroDistribuicao:9}
+@*)
+  pre len local > 0
+  post localizacao = local and clientes = {};
+ 
+ 
+(*@
+\label{adicionaEncomenda:13}
+@*)
+ 
+end CentroDistribuicao
+\end{vdmpp}

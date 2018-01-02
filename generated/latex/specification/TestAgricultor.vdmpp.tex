@@ -1,0 +1,41 @@
+\begin{vdmpp}[breaklines=true]
+class TestAgricultor is subclass of SuiteTestCase
+instance variables
+ 
+operations
+(*@
+\label{testConstructor:5}
+@*)
+  public testConstructor() == (
+   dcl agricultor: Agricultor := new Agricultor("Pedro", "Mirandela");
+    IO`println("\t\t Testing Constructor");
+    assertEqual("Pedro", agricultor.nome);
+    assertEqual("Mirandela", agricultor.localizacao);
+  );
+  
+(*@
+\label{testAdicionaAndRemovePesoProduto:12}
+@*)
+ public testAdicionaAndRemovePesoProduto() == (
+  dcl agricultor: Agricultor := new Agricultor("Pedro", "Mirandela");
+   dcl produto: Produto := new Produto("Maca", "Golden", 5);
+  IO`println("\t\t Testing AdicionaAndRemovePesoProduto");
+  agricultor.adicionaProduto(produto);
+  assertEqual(5, produto.peso);  
+  assertTrue(agricultor.adicionaPesoProduto(produto.nome, 5));
+  assertEqual(10, produto.peso);  
+  assertTrue(agricultor.removePesoProduto(produto.nome, 5));
+  assertEqual(5, produto.peso);  
+  );
+   
+(*@
+\label{testAll:24}
+@*)
+  public testAll() == (
+    IO`println("\t Testing Agricultor class");
+    testConstructor();
+    testAdicionaAndRemovePesoProduto();
+  );
+
+end TestAgricultor
+\end{vdmpp}

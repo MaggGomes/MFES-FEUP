@@ -6,8 +6,8 @@ class Runner
       new TestCentroDistribuicao().testAll();
       new TestCesta().testAll();
       new TestCliente().testAll();
-      new TestEncomenda().testAll();
       new TestProduto().testAll();
+      new TestFrutaFeia().testAll();
       IO`println("Tests completed!");
     );
     

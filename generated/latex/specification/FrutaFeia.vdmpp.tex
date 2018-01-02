@@ -1,0 +1,139 @@
+\begin{vdmpp}[breaklines=true]
+class FrutaFeia
+
+instance variables
+ centros : set of CentroDistribuicao;
+ agricultores: set of Agricultor;
+ 
+operations 
+ public FrutaFeia: () ==> FrutaFeia
+(*@
+\label{FrutaFeia:9}
+@*)
+ FrutaFeia() == (centros := {}; agricultores := {})
+ post centros = {} and agricultores = {};
+
+ --public adicionaCliente: Cliente ==> () --REDO
+(*@
+\label{adicionaCliente:13}
+@*)
+ --adicionaCliente( cliente ) == 
+ --  clientes := clientes union {cliente}
+ --pre cliente <> undefined and cliente not in set clientes
+ --post card clientes~ + 1 = card clientes;  
+ 
+ --public removeCliente: Cliente ==> ()  --REDO
+(*@
+\label{removeCliente:19}
+@*)
+ --removeCliente(cliente) == 
+ --  clientes := clientes \ {cliente}
+ --pre cliente <> undefined and cliente in set clientes
+ --post card clientes~ - 1 = card clientes; 
+ 
+ public adicionaCentro: CentroDistribuicao  ==> ()
+(*@
+\label{adicionaCentro:25}
+@*)
+ adicionaCentro(centro) ==
+   centros := centros union {centro}
+ pre centro <> undefined and centro not in set centros
+ post card centros = card centros~ +1 ;
+ 
+ public removeCentro: CentroDistribuicao  ==> ()
+(*@
+\label{removeCentro:31}
+@*)
+ removeCentro(centro) ==
+   centros := centros \ {centro}
+ pre centro <> undefined and centro in set centros
+ post card centros = card centros~ - 1 ;
+ 
+ public adicionaAgricultor: Agricultor ==> ()
+(*@
+\label{adicionaAgricultor:37}
+@*)
+ adicionaAgricultor(agricultor) ==
+   agricultores := agricultores union {agricultor}
+ pre agricultor <> undefined and agricultor not in set agricultores
+ post card agricultores = card agricultores~ +1 ;
+ 
+ public removeAgricultor: Agricultor  ==> ()
+(*@
+\label{removeAgricultor:43}
+@*)
+ removeAgricultor(agricultor) ==
+   agricultores := agricultores \ {agricultor}
+ pre agricultor <> undefined and agricultor in set agricultores
+ post card agricultores = card agricultores~ - 1 ;
+
+
+(*@
+\label{geraCestas:49}
+@*)
+ public geraCestas: () ==> () 
+ geraCestas() ==
+ return;
+  
+(*@
+\label{getTodosClientes:53}
+@*)
+ public getTodosClientes: () ==> set of Cliente
+ getTodosClientes() == 
+ (
+  dcl  clientes: set of Cliente := {};
+  for all centro in set centros 
+   do 
+    clientes := clientes union centro.clientes;
+  return clientes;
+ )
+ pre centros <> undefined;
+ 
+ 
+(*@
+\label{getTodosProdutos:65}
+@*)
+ public getTodosProdutos: () ==> set of Produto
+ getTodosProdutos () ==
+ (
+  dcl produtos: set of Produto := {};
+  
+  for all agricultor in set agricultores
+   do
+    produtos := produtos union rng agricultor.stock;
+  return produtos;
+ )
+ pre agricultores <> undefined;
+ 
+(*@
+\label{geraCestaPequena:77}
+@*)
+ public geraCestaPequena: () ==> Cesta
+ geraCestaPequena () ==
+ (
+  dcl cesta : Cesta := new Cesta();
+  dcl produtos : set of Produto := getTodosProdutos();
+  dcl totalNaCesta : nat := 0;
+  dcl pesoAretirar : real := 0.5;
+  for all produto in set produtos
+   do 
+    if(cesta.produtoNaCesta(produto.nome) = false and produto.peso >= 0.5)
+     then 
+      (
+        produto.removePeso(pesoAretirar);
+        cesta.adicionaProduto(new Produto(produto.nome, produto.origem, pesoAretirar));
+        totalNaCesta := totalNaCesta + 1;
+        if(totalNaCesta = 7)
+         then return cesta;
+      );
+   return cesta;
+ ); -- TODO peso minimo em cada produto? numero minimo de produtos
+
+ --TODO update total peso
+ --TODO update total produtos 
+end FrutaFeia
+
+
+
+
+\end{vdmpp}

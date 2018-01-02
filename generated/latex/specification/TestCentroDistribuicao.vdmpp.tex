@@ -1,0 +1,31 @@
+\begin{vdmpp}[breaklines=true]
+class TestCentroDistribuicao is subclass of SuiteTestCase
+
+operations
+(*@
+\label{testConstructor:4}
+@*)
+  public testConstructor() == (
+    dcl centro: CentroDistribuicao := new CentroDistribuicao("Porto");
+    IO`println("\t\t Testing Constructor");
+    assertEqual("Porto", centro.localizacao);
+  );
+ 
+(*@
+\label{testManageCenter:10}
+@*)
+ public testManageCenter()  == (
+ --  dcl centro: CentroDistribuicao := new CentroDistribuicao("Porto");
+ --  dcl produto: Produto := new Produto("Maca" ,"Golden", 5);
+ --  dcl produto2: Produto := new Produto("Maracuja","Rose", 1);
+   
+   IO`println("\t\t TODO");  
+);
+ 
+  public testAll() == (
+    IO`println("\t Testing CentroDistribuicao class");
+    testConstructor();
+    testManageCenter();
+  );
+end TestCentroDistribuicao
+\end{vdmpp}
