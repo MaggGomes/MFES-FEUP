@@ -20,8 +20,8 @@ operations
 
   public removeProduto : NomeProduto ==> ()
   	removeProduto(nomeProduto) == stock := {nomeProduto} <-: stock
-  	pre len nomeProduto > 0 and nomeProduto in set dom stock
-  	post nomeProduto not in set dom stock;
+  pre len nomeProduto > 0 and nomeProduto in set dom stock
+  post nomeProduto not in set dom stock;
   	
   public  adicionaPesoProduto : NomeProduto * real ==> bool
   adicionaPesoProduto(nomeProduto, peso) == 
@@ -31,7 +31,7 @@ operations
   		return false
   	)
   pre len nomeProduto > 0 and peso > 0 and nomeProduto in set dom stock;
-	
+  
   public  removePesoProduto : NomeProduto * real ==> bool
   removePesoProduto(nomeProduto, peso) ==
     (

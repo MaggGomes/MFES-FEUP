@@ -13,15 +13,17 @@ instance variables
 operations
   public  Cliente : seq1 of (char) * Genero ==> Cliente
   Cliente(n, gen) == (nome:= n; genero:= gen; estadoEnc := <SEM_ENC>; encomenda:= new Cesta(); return self;)
-  	post nome = n and genero = gen and estadoEnc = <SEM_ENC>;
+  pre len n > 0 and gen <> undefined
+  post nome = n and genero = gen and estadoEnc = <SEM_ENC>;
   
   public  associaCesta : Cesta ==> ()
   associaCesta(cesta) ==
     (	
     	encomenda := cesta; 
     	estadoEnc := <COM_ENC>;
-    )	
-    post encomenda = cesta;
+    )
+  pre cesta <> undefined
+  post encomenda = cesta;
 
   public  removeCesta : ()  ==> ()
   removeCesta() == estadoEnc := <CANCELADA>
@@ -30,7 +32,8 @@ operations
   public  mudaCesta : Cesta ==> ()
   mudaCesta(cesta) ==
     (encomenda := cesta; estadoEnc := <COM_ENC>)
-    post encomenda = cesta and encomenda <> encomenda~ and estadoEnc = <COM_ENC>;
+  pre cesta <> undefined
+  post encomenda = cesta and encomenda <> encomenda~ and estadoEnc = <COM_ENC>;
 
 	public encomendaPronta: () ==> () 
 	encomendaPronta() == estadoEnc := <PRONTA>
