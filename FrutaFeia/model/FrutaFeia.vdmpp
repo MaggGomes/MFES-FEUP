@@ -9,13 +9,16 @@ operations
 	FrutaFeia() == (centros := {}; agricultores := {})
 	post centros = {} and agricultores = {};
 
+	--Adiciona cliente ao centro respectivo
 	public adicionaCliente: Cliente * CentroDistribuicao`Local ==> ()
 	adicionaCliente( cliente, centroLocal ) == 
 	for all centro in set centros 
 	do
 		 if ( centro.localizacao = centroLocal)
-		 	then  centro.adicionaCliente(cliente);  
+		 	then  centro.adicionaCliente(cliente)
+	pre exists centro in set centros & cliente not in set centro.clientes;  
 	
+	-- Remove cliente do seu centro respectivo
 	public removeCliente:  Cliente * CentroDistribuicao`Local ==> ()  
 	removeCliente(cliente, centroLocal) == 
 		for all centro in set centros 
@@ -23,35 +26,35 @@ operations
 		 if ( centro.localizacao = centroLocal)
 		 	then  centro.removeCliente(cliente);  
 	
+	-- adiciona um centro de Distribuicao do registo
 	public adicionaCentro: CentroDistribuicao  ==> ()
 	adicionaCentro(centro) ==
 			centros := centros union {centro}
 	pre centro <> undefined and centro not in set centros
 	post card centros = card centros~ +1 ;
 	
+	-- remove um Centro de Distribuiçao do registo
 	public removeCentro: CentroDistribuicao  ==> ()
 	removeCentro(centro) ==
 			centros := centros \ {centro}
 	pre centro <> undefined and centro in set centros
 	post card centros = card centros~ - 1 ;
 	
+	-- adiciona um agricultor do registo
 	public adicionaAgricultor: Agricultor ==> ()
 	adicionaAgricultor(agricultor) ==
 			agricultores := agricultores union {agricultor}
 	pre agricultor <> undefined and agricultor not in set agricultores
 	post card agricultores = card agricultores~ +1 ;
 	
+	 -- retira um agricultor registo 
 	public removeAgricultor: Agricultor  ==> ()
 	removeAgricultor(agricultor) ==
-			agricultores := agricultores \ {agricultor}
+			agricultores := agricultores \ {agricultor} 
 	pre agricultor <> undefined and agricultor in set agricultores
-	post card agricultores = card agricultores~ - 1 ;
-
-
-	public geraCestas: () ==> () 
-	geraCestas() ==
-	return;
-		
+	post card agricultores = card agricultores~ - 1 and agricultor not in set agricultores;
+	
+	-- Retorna todos os clientes distribuidos pelos diferentes centros
 	public getTodosClientes: () ==> set of Cliente
 	getTodosClientes() == 
 	(
@@ -64,6 +67,7 @@ operations
 	pre centros <> undefined;
 	
 	
+	-- Retorna todos os produtos de todos os agricultores ( os produtos com o mesmo nome de diferentes agricultores sao indepedentes)
 	public getTodosProdutos: () ==> set of Produto
 	getTodosProdutos () ==
 	(
@@ -76,6 +80,7 @@ operations
 	)
 	pre agricultores <> undefined;
 	
+	--Gera uma cesta grande
 	public geraCestaGrande: () ==> Cesta
 	geraCestaGrande() == 
 		(
@@ -83,6 +88,7 @@ operations
 			return cesta;
 		);
 	
+	--Gera uma cesta pequena 
 	public geraCestaPequena: () ==> Cesta
 	geraCestaPequena() == 
 		( 
@@ -90,6 +96,7 @@ operations
 			return cesta
 		);
 	
+	--Cria uma cesta com determinados parametros
 	public geraCesta: real * real * real * Cesta`Tamanho==> Cesta
 	geraCesta(pesoMinimo, pesoMinimoProduto, totalProdutos, tipoCesta) ==
 	(
@@ -102,7 +109,7 @@ operations
 	 
 	 cesta.alterarTamanho(tipoCesta);
 	 
-	 
+	 --Adiciona produtos à cesta
 	 while(minimo > 0 and runs < 3)
 	 do
 	 	(
@@ -111,7 +118,7 @@ operations
 	 			if(produto.peso >= pesoAretirar)
 	 				then 
 	 				(	
-	 				if(cesta.produtoNaCesta(produto.nome) = false and totalNaCesta < totalProdutos)
+	 				if(cesta.produtoNaCesta(produto.nome) = false and totalNaCesta < totalProdutos) --Se o produto nao esta na cesta e o numero minimo de produtos nao foi alcançado
 	 					then
 	 					 (	produto.removePeso(pesoAretirar);
 	 					 		cesta.adicionaProduto(new Produto(produto.nome, produto.origem, pesoAretirar));
@@ -120,11 +127,11 @@ operations
 	 					 )
 	 					else 
 	 					(
-	 						if(totalNaCesta = totalProdutos  and minimo <= 0)
+	 						if(totalNaCesta = totalProdutos  and minimo <= 0) -- Se a cesta esta completa
 	 					  	then return cesta
 	 					  	else 
-	 					  	( 
-	 					  		produto.removePeso(pesoAretirar);
+	 					  	( --Adiciona mais X peso a um produto numa cesta
+	 					  		produto.removePeso(pesoAretirar); 
 	 					  		if(cesta.adicionaPesoProduto(produto.nome, pesoAretirar))
 	 					  		 then minimo := minimo - pesoAretirar
 	 					  		 else produto.adicionaPeso(pesoAretirar);
@@ -137,7 +144,7 @@ operations
 	 	return cesta;
 	); 
 	
-	public preencheCesta: Cesta ==> ()
+	public preencheCesta: Cesta ==> () -- procura produtos e tenta responder as necessidades da cesta se houver stock
 	preencheCesta(cesta) == 
 	(
 	 dcl produtos : set of Produto := getTodosProdutos();
@@ -147,6 +154,7 @@ operations
 	 dcl runs: nat := 0;
 	 dcl totalProdutos: nat := 0;
 	 
+	 --- setup com os requesitos das cestas
 	 if(cesta.tamanho = <PEQUENA>)
 	 		then (
 	 					totalProdutos := 7;
@@ -158,6 +166,7 @@ operations
 	 					 minimo := 6 - cesta.peso;
 	 				 );
 	 	 	
+	 --Adicionar produtos à cesta
 	 	while(minimo > 0 and runs < 3)
 	 do
 	 	(
@@ -166,19 +175,21 @@ operations
 	 			if(produto.peso >= pesoAretirar)
 	 				then 
 	 				(	
-	 				if(cesta.produtoNaCesta(produto.nome) = false and totalNaCesta < totalProdutos)
+	 				if(cesta.produtoNaCesta(produto.nome) = false and totalNaCesta < totalProdutos) -- Se nao existir na cesta e a cesta nao tem o numero de produtos minimo
 	 					then
-	 					 (	produto.removePeso(pesoAretirar);
+	 					 (	
+	 					 		-- adicionar produto à cesta
+	 					 		produto.removePeso(pesoAretirar);
 	 					 		cesta.adicionaProduto(new Produto(produto.nome, produto.origem, pesoAretirar));
 	 					 		totalNaCesta := totalNaCesta + 1;
-	 					 		minimo := minimo - pesoAretirar;
+	 					 		minimo := minimo - pesoAretirar; 
 	 					 )
 	 					else 
 	 					(
-	 						if(totalNaCesta = totalProdutos  and minimo <= 0)
+	 						if(totalNaCesta = totalProdutos  and minimo <= 0) -- Se a encomenda ja esta completa
 	 					  	then return
 	 					  	else 
-	 					  	( 
+	 					  	( -- tenta adicionar X peso de um produto que ja se encontra na cesta
 	 					  		produto.removePeso(pesoAretirar);
 	 					  		if(cesta.adicionaPesoProduto(produto.nome, pesoAretirar))
 	 					  		 then minimo := minimo - pesoAretirar
@@ -186,30 +197,33 @@ operations
 	 					  	);
 	 					);
 	 				);
-	 		pesoAretirar := pesoAretirar / (runs + 1);
+	 		pesoAretirar := pesoAretirar / (runs + 1); -- tenta adicionar quantidades mais pequenas 
 	 		runs := runs + 1;
 	 	);
 	);
 	
 	public geraCestaTodosClientes: () ==> ()
 	geraCestaTodosClientes() == 
-		for all centro in set centros
+		for all centro in set centros  
 		do (
-			for all cliente in set centro.clientes
+			for all cliente in set centro.clientes -- todos os clientes em todos os centros
 			do (
 				IO`println(cliente);
-				if cliente.estadoEnc = <COM_ENC> 
+				if cliente.estadoEnc = <COM_ENC> -- tenta corresponder a uma encomenda feita pelo cliente
 				 then if (cliente.encomenda.tamanho = <PEQUENA>) 
 				 				then (	cliente.mudaCesta(geraCestaPequena());
-				 								cliente.verificaCestaParametros();	
+				 								cliente.verificaCestaParametros();	-- avalia se os requesitos da encomenda estao cumpridoss 
 				 							)
 				 			else
 				 				if(cliente.encomenda.tamanho = <GRANDE>)
 				 					then( cliente.mudaCesta(geraCestaGrande());
-				 								cliente.verificaCestaParametros()
+				 								cliente.verificaCestaParametros()  
 				 							)
-				else ( if cliente.estadoEnc = <POR_CONCLUIR> 
-								then preencheCesta(cliente.encomenda)
+				else ( if cliente.estadoEnc = <POR_CONCLUIR>  -- tenta completar uma encomenda pendente
+								then (
+											preencheCesta(cliente.encomenda);
+											cliente.verificaCestaParametros() 
+										  )
 				);
 			 );			 
 	  );
