@@ -16,7 +16,8 @@ operations
 	do
 		 if ( centro.localizacao = centroLocal)
 		 	then  centro.adicionaCliente(cliente)
-	pre exists centro in set centros & cliente not in set centro.clientes;  
+	pre forall centro in set centros & cliente not in set centro.clientes
+	post exists1 centro in set centros & cliente in set centro.clientes;  
 	
 	-- Remove cliente do seu centro respectivo
 	public removeCliente:  Cliente * CentroDistribuicao`Local ==> ()  
@@ -24,7 +25,9 @@ operations
 		for all centro in set centros 
 	do
 		 if ( centro.localizacao = centroLocal)
-		 	then  centro.removeCliente(cliente);  
+		 	then  centro.removeCliente(cliente)
+	pre exists1 centro in set centros & cliente in set centro.clientes
+	post forall  centro in set centros & cliente not in set centro.clientes;  
 	
 	-- adiciona um centro de Distribuicao do registo
 	public adicionaCentro: CentroDistribuicao  ==> ()
