@@ -9,17 +9,19 @@ operations
 	FrutaFeia() == (centros := {}; agricultores := {})
 	post centros = {} and agricultores = {};
 
-	--public adicionaCliente: Cliente ==> () --REDO
-	--adicionaCliente( cliente ) == 
-	--	 clientes := clientes union {cliente}
-	--pre cliente <> undefined and cliente not in set clientes
-	--post card clientes~ + 1 = card clientes;  
+	public adicionaCliente: Cliente * CentroDistribuicao`Local ==> ()
+	adicionaCliente( cliente, centroLocal ) == 
+	for all centro in set centros 
+	do
+		 if ( centro.localizacao = centroLocal)
+		 	then  centro.adicionaCliente(cliente);  
 	
-	--public removeCliente: Cliente ==> ()  --REDO
-	--removeCliente(cliente) == 
-	--	 clientes := clientes \ {cliente}
-	--pre cliente <> undefined and cliente in set clientes
-	--post card clientes~ - 1 = card clientes; 
+	public removeCliente:  Cliente * CentroDistribuicao`Local ==> ()  
+	removeCliente(cliente, centroLocal) == 
+		for all centro in set centros 
+	do
+		 if ( centro.localizacao = centroLocal)
+		 	then  centro.removeCliente(cliente);  
 	
 	public adicionaCentro: CentroDistribuicao  ==> ()
 	adicionaCentro(centro) ==
@@ -133,8 +135,8 @@ operations
 	 		runs := runs + 1;
 	 	);
 	 	return cesta;
-	); -- TODO peso minimo em cada produto? numero minimo de produtos
-	
+	); 
+	-- TODO peso minimo em cada produto? numero minimo de produtos
 	--TODO update total peso
 	--TODO update total produtos 
 end FrutaFeia
