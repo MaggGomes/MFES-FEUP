@@ -62,15 +62,16 @@ public testGeraCestaPequena() == (
 	cesta := frutaFeia.geraCestaGrande();
 	assertEqual(<GRANDE>, cesta.tamanho);
 	frutaFeia.preencheCesta(cesta);
-	assertTrue(cesta.peso > 6);
+	assertTrue(cesta.peso >= 6);
+	assertEqual(card cesta.produtos , 8);
 );
 
 public testeGereTodasEncomendas() == (
 	dcl frutaFeia : FrutaFeia := new FrutaFeia();	
 	dcl agricultor: Agricultor := new Agricultor("Pedro", "Mirandela"); 
 	dcl agricultor2: Agricultor := new Agricultor("Manuel", "Porto");
-	dcl pera: Produto := new Produto("Pera", "Mate", 2);
-	dcl manga: Produto := new Produto("Manga", "Rosa", 3);
+	dcl pera: Produto := new Produto("Pera", "Mate", 0.8);
+	dcl manga: Produto := new Produto("Manga", "Rosa", 0.8);
 	dcl ananas: Produto := new Produto("Ananas", "Preto", 4);
 	dcl maca: Produto := new Produto("Maca", "Golden", 5);
 	dcl maracuja: Produto := new Produto("Maracuja", "Bambuin", 6);
@@ -107,12 +108,26 @@ public testeGereTodasEncomendas() == (
 	cesta.alterarTamanho(<GRANDE>);
 	cliente1.mudaCesta(cesta);
 	cliente2.mudaCesta(cesta1);
-	cliente2.estadoEnc := <POR_CONCLUIR>;
 	frutaFeia.geraCestaTodosClientes();	
-	IO`println("\t\t Cliente Encomenda:" );
-	IO`println(cliente.encomenda);
-	IO`println(card centro.clientes);
-	IO`println(centro.clientes);	
+		
+	IO`println("\t\t Cliente Status:" );	
+	IO`println(cliente);		
+	IO`println(cliente1);		
+	IO`println(cliente2);		
+	
+	
+	pera.adicionaPeso(4);
+	manga.adicionaPeso(4);
+  frutaFeia.geraCestaTodosClientes();	
+  IO`println("\t\t Cliente Status depois de reabastecer e distribuir:" );
+  IO`println(cliente);		
+	IO`println(cliente1);		
+	IO`println(cliente2);	
+	
+	assertEqual(<PRONTA>, cliente.estadoEnc);
+	assertEqual(<PRONTA>, cliente1.estadoEnc);
+	assertEqual(<PRONTA>, cliente2.estadoEnc);
+	
 );
 
 public testAll() == (

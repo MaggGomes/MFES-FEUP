@@ -87,7 +87,7 @@ operations
 	public geraCestaGrande: () ==> Cesta
 	geraCestaGrande() == 
 		(
-			dcl cesta : Cesta := geraCesta(6, 0.8, 8, <GRANDE> );
+			dcl cesta : Cesta := geraCesta(6, 0.75, 8, <GRANDE> );
 			return cesta;
 		);
 	
@@ -95,7 +95,7 @@ operations
 	public geraCestaPequena: () ==> Cesta
 	geraCestaPequena() == 
 		( 
-			dcl cesta : Cesta := geraCesta(3, 0.4, 7, <PEQUENA>);
+			dcl cesta : Cesta := geraCesta(3, 0.430, 7, <PEQUENA>);
 			return cesta
 		);
 	
@@ -134,7 +134,7 @@ operations
 	 					  	then return cesta
 	 					  	else 
 	 					  	( --Adiciona mais X peso a um produto numa cesta
-	 					  		if(cesta.produtoNaCestaPeso(produto.nome) < 1.5) -- limite de +- 50% que um produto pode ocupar
+	 					  		if(cesta.produtoNaCestaPeso(produto.nome) + pesoAretirar < 0.8) -- limite de +- 50% que um produto pode ocupar
 	 					  		then
 	 					  			(	produto.removePeso(pesoAretirar); 
 	 					  				if(cesta.adicionaPesoProduto(produto.nome, pesoAretirar))
@@ -196,7 +196,7 @@ operations
 	 					  	then return
 	 					  	else 
 	 					  	( -- tenta adicionar X peso de um produto que ja se encontra na cesta
-	 					  		if(cesta.produtoNaCestaPeso(produto.nome) < 1.5) 
+	 					  		if(cesta.produtoNaCestaPeso(produto.nome) + pesoAretirar < 0.8) 
 	 					  		then (
 	 					  			produto.removePeso(pesoAretirar);
 	 					  			if(cesta.adicionaPesoProduto(produto.nome, pesoAretirar))
@@ -219,19 +219,21 @@ operations
 			do (
 				IO`println(cliente);
 				if cliente.estadoEnc = <COM_ENC> -- tenta corresponder a uma encomenda feita pelo cliente
-				 then if (cliente.encomenda.tamanho = <PEQUENA>) 
-				 				then (	cliente.mudaCesta(geraCestaPequena());
-				 								cliente.verificaCestaParametros();	-- avalia se os requesitos da encomenda estao cumpridoss 
+				 then (
+				 				if (cliente.encomenda.tamanho = <PEQUENA>) 
+				 					then (	cliente.mudaCesta(geraCestaPequena());
+				 									cliente.verificaCestaParametros();	-- avalia se os requesitos da encomenda estao cumpridoss 
 				 							)
 				 			else
 				 				if(cliente.encomenda.tamanho = <GRANDE>)
 				 					then( cliente.mudaCesta(geraCestaGrande());
 				 								cliente.verificaCestaParametros()  
 				 							)
+				 			)				
 				else ( if cliente.estadoEnc = <POR_CONCLUIR>  -- tenta completar uma encomenda pendente
 								then (
 											preencheCesta(cliente.encomenda);
-											cliente.verificaCestaParametros() 
+											cliente.verificaCestaParametros();
 										  )
 				);
 			 );			 

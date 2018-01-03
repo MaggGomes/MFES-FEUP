@@ -20,7 +20,7 @@ operations
   --Adiciona peso ao produto
   public  adicionaPeso : Peso ==> ()
   adicionaPeso(p) == peso := peso + p
-  pre peso > 0
+  pre p > 0
   post peso = peso~ + p;
   
 	--Remove peso do produto
