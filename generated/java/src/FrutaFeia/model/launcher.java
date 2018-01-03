@@ -341,6 +341,77 @@ public class launcher {
 		}
 	}
 
+	public static void viewProdutosAgricultor(Scanner scan){
+		System.out.println(frutaFeia.centros);
+		String input = scan.next();
+		displayManageCentrosMenu(scan);
+	}
+
+	public static void addProdutoAgricultor(Scanner scan){
+		CentroDistribuicao centro;
+
+		System.out.println("Lccalização: ");
+		String local = scan.next();
+
+		centro = new CentroDistribuicao(local);
+
+		frutaFeia.adicionaCentro(centro);
+
+		System.out.println("Centro "+local+" criado com sucesso!");
+
+		String input = scan.next();
+		displayManageCentrosMenu(scan);
+	}
+
+	// TODO - Terminar
+	public static void  removeProdutoAgricultor(Scanner scan){
+		CentroDistribuicao centro;
+
+		System.out.println("local: ");
+		String local = scan.next();
+
+		centro = new CentroDistribuicao(local);
+
+		frutaFeia.removeCentro(centro);
+
+		System.out.println("Centro "+local+" removido com sucesso!");
+
+		String input = scan.next();
+		displayManageClientsMenu(scan);
+	}
+
+	public static void addPesoProdutoAgricultor(Scanner scan){
+		CentroDistribuicao centro;
+
+		System.out.println("Lccalização: ");
+		String local = scan.next();
+
+		centro = new CentroDistribuicao(local);
+
+		frutaFeia.adicionaCentro(centro);
+
+		System.out.println("Centro "+local+" criado com sucesso!");
+
+		String input = scan.next();
+		displayManageCentrosMenu(scan);
+	}
+
+	public static void removePesoProdutoAgricultor(Scanner scan){
+		CentroDistribuicao centro;
+
+		System.out.println("Lccalização: ");
+		String local = scan.next();
+
+		centro = new CentroDistribuicao(local);
+
+		frutaFeia.adicionaCentro(centro);
+
+		System.out.println("Centro "+local+" criado com sucesso!");
+
+		String input = scan.next();
+		displayManageCentrosMenu(scan);
+	}
+
 	/**
 	 * Displays the Agricultor menu
 	 */
@@ -349,18 +420,21 @@ public class launcher {
 		System.out.println("		>> 1 - Ver produtos ");
 		System.out.println("		>> 2 - Adicionar produto");
 		System.out.println("		>> 3 - Remover produto");
-		System.out.println("		>> 3 - Voltar");
-		System.out.println("		>> 4 - Sair");
+		System.out.println("		>> 4 - Adicionar peso produto");
+		System.out.println("		>> 5 - Remover peso produto");
+		System.out.println("		>> 6 - Voltar");
+		System.out.println("		>> 7 - Sair");
 		System.out.println();
 
 		int input = 0;
 		menuDone = false;
 
 		while (!menuDone){
-			input = getUserInput(scan, 1, 4);
+			input = getUserInput(scan, 1, 7);
 			switch(input){
 				case 1:
 					menuDone = true;
+					viewProdutosAgricultor(scan);
 					break;
 				case 2:
 					menuDone = true;
@@ -368,9 +442,21 @@ public class launcher {
 					break;
 				case 3:
 					menuDone = true;
-					displayAgricultorMenu(scan);
+					addProdutoAgricultor(scan);
 					break;
 				case 4:
+					menuDone = true;
+					removeProdutoAgricultor(scan);
+					break;
+				case 5:
+					menuDone = true;
+					addPesoProdutoAgricultor(scan);
+					break;
+				case 6:
+					menuDone = true;
+					removePesoProdutoAgricultor(scan);
+					break;
+				case 7:
 					menuDone = true;
 					System.out.println("A sair de Fruta Feia..");
 					scan.close();
