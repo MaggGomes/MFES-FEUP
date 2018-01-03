@@ -29,6 +29,7 @@ operations
 		assertEqual(10, produto.peso);  
 		assertTrue(cesta.removePesoProduto(produto.nome, 5));
 		assertEqual(5, produto.peso); 	
+		assertFalse(cesta.removePesoProduto("Morango", 5));
   );
   
   public testAlterarTamanho() == (

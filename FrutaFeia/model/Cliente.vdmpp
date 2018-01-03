@@ -59,7 +59,7 @@ operations
 					then estadoEnc := <PRONTA>
 					else estadoEnc := <POR_CONCLUIR>
 			)
-	pre estadoEnc = <COM_ENC>
+	pre estadoEnc = <COM_ENC> or estadoEnc = <POR_CONCLUIR>
 	post estadoEnc = <PRONTA> or estadoEnc = <POR_CONCLUIR>; -- se a encomenda esta completa passa para pronta se imcompleta para <POR_CONCLUIR>
 	
 end Cliente

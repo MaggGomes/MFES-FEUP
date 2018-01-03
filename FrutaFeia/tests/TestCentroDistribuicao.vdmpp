@@ -8,11 +8,14 @@ operations
   );
 	
 	public testManageCenter()  == (
-	--	 dcl centro: CentroDistribuicao := new CentroDistribuicao("Porto");
-	--	 dcl produto: Produto := new Produto("Maca" ,"Golden", 5);
-	--	 dcl produto2: Produto := new Produto("Maracuja","Rose", 1);
-		 
-		 IO`println("\t\t TODO");	 
+		dcl centro: CentroDistribuicao := new CentroDistribuicao("Porto");
+		dcl cliente: Cliente := new Cliente("Fernando", <HOMEM>);
+		IO`println("\t Testing ManageCenter");		
+		assertEqual(0, card centro.clientes);
+		centro.adicionaCliente(cliente);
+		assertEqual(1, card centro.clientes);
+		centro.removeCliente(cliente);
+		assertEqual(0, card centro.clientes);
 );
 	
   public testAll() == (
