@@ -1,0 +1,60 @@
+\begin{vdmpp}[breaklines=true]
+class CentroDistribuicao
+
+types 
+ public Local = seq of (char);
+
+instance variables
+ public clientes : set of Cliente;
+  public localizacao:seq of (char);
+ 
+operations
+  
+(*@
+\label{CentroDistribuicao:12}
+@*)
+  public  CentroDistribuicao : Local ==> CentroDistribuicao
+  CentroDistribuicao(local) == (clientes := {}; localizacao := local; return self;)
+  pre len local > 0
+  post localizacao = local and clientes = {};
+ 
+(*@
+\label{adicionaCliente:17}
+@*)
+ --Adiciona um cliente ao centro
+ public adicionaCliente: Cliente ==> () 
+ adicionaCliente( cliente ) == 
+   clientes := clientes union {cliente}
+ pre cliente <> undefined and cliente not in set clientes
+ post card clientes~ + 1 = card clientes and cliente in set clientes;  
+(*@
+\label{removeCliente:23}
+@*)
+ 
+ 
+ --Remove um cliente do centro
+ public removeCliente: Cliente ==> () 
+ removeCliente(cliente) == 
+   clientes := clientes \ {cliente}
+ pre cliente <> undefined and cliente in set clientes
+ post card clientes~ - 1 = card clientes and cliente not in set clientes; 
+ 
+end CentroDistribuicao
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[CentroDistribuicao:12]{CentroDistribuicao} & 12&100.0\% & 81 \\
+\hline
+\hyperref[adicionaCliente:17]{adicionaCliente} & 17&100.0\% & 51 \\
+\hline
+\hyperref[removeCliente:23]{removeCliente} & 23&100.0\% & 29 \\
+\hline
+\hline
+CentroDistribuicao.vdmpp & & 100.0\% & 161 \\
+\hline
+\end{longtable}
+

@@ -1,0 +1,325 @@
+\begin{vdmpp}[breaklines=true]
+class FrutaFeia
+
+instance variables
+ public centros : set of CentroDistribuicao;
+ public agricultores: set of Agricultor;
+ 
+operations 
+(*@
+\label{FrutaFeia:8}
+@*)
+ public FrutaFeia: () ==> FrutaFeia
+ FrutaFeia() == (centros := {}; agricultores := {})
+ post centros = {} and agricultores = {};
+
+(*@
+\label{adicionaCliente:12}
+@*)
+ --Adiciona cliente ao centro respectivo
+ public adicionaCliente: Cliente * CentroDistribuicao`Local ==> ()
+ adicionaCliente( cliente, centroLocal ) == 
+ for all centro in set centros 
+ do
+   if ( centro.localizacao = centroLocal)
+    then  centro.adicionaCliente(cliente)
+(*@
+\label{removeCliente:19}
+@*)
+ pre forall centro in set centros & cliente not in set centro.clientes
+ post exists1 centro in set centros & cliente in set centro.clientes;  
+ 
+ -- Remove cliente do seu centro respectivo
+ public removeCliente:  Cliente * CentroDistribuicao`Local ==> ()  
+ removeCliente(cliente, centroLocal) == 
+  for all centro in set centros 
+(*@
+\label{adicionaCentro:26}
+@*)
+ do
+   if ( centro.localizacao = centroLocal)
+    then  centro.removeCliente(cliente)
+ pre exists1 centro in set centros & cliente in set centro.clientes
+ post forall  centro in set centros & cliente not in set centro.clientes;  
+ 
+(*@
+\label{removeCentro:32}
+@*)
+ -- adiciona um centro de Distribuicao do registo
+ public adicionaCentro: CentroDistribuicao  ==> ()
+ adicionaCentro(centro) ==
+   centros := centros union {centro}
+ pre centro <> undefined and centro not in set centros
+ post card centros = card centros~ +1 ;
+(*@
+\label{adicionaAgricultor:38}
+@*)
+ 
+ -- remove um Centro de Distribuiçao do registo
+ public removeCentro: CentroDistribuicao  ==> ()
+ removeCentro(centro) ==
+   centros := centros \ {centro}
+ pre centro <> undefined and centro in set centros
+(*@
+\label{removeAgricultor:44}
+@*)
+ post card centros = card centros~ - 1 ;
+ 
+ -- adiciona um agricultor do registo
+ public adicionaAgricultor: Agricultor ==> ()
+ adicionaAgricultor(agricultor) ==
+   agricultores := agricultores union {agricultor}
+ pre agricultor <> undefined and agricultor not in set agricultores
+(*@
+\label{geraCestas:51}
+@*)
+ post card agricultores = card agricultores~ +1 ;
+ 
+  -- retira um agricultor registo 
+ public removeAgricultor: Agricultor  ==> ()
+(*@
+\label{getTodosClientes:55}
+@*)
+ removeAgricultor(agricultor) ==
+   agricultores := agricultores \ {agricultor} 
+ pre agricultor <> undefined and agricultor in set agricultores
+ post card agricultores = card agricultores~ - 1 and agricultor not in set agricultores;
+ 
+ -- Retorna todos os clientes distribuidos pelos diferentes centros
+ public getTodosClientes: () ==> set of Cliente
+ getTodosClientes() == 
+ (
+  dcl  clientes: set of Cliente := {};
+  for all centro in set centros 
+   do 
+(*@
+\label{getTodosProdutos:67}
+@*)
+    clientes := clientes union centro.clientes;
+  return clientes;
+ )
+ pre centros <> undefined;
+ 
+ 
+ -- Retorna todos os produtos de todos os agricultores ( os produtos com o mesmo nome de diferentes agricultores sao indepedentes)
+ public getTodosProdutos: () ==> set of Produto
+ getTodosProdutos () ==
+ (
+  dcl produtos: set of Produto := {};
+  
+(*@
+\label{geraCestaGrande:79}
+@*)
+  for all agricultor in set agricultores
+   do
+    produtos := produtos union rng agricultor.stock;
+  return produtos;
+ )
+ pre agricultores <> undefined;
+ 
+(*@
+\label{geraCestaPequena:86}
+@*)
+ --Gera uma cesta grande
+ public geraCestaGrande: () ==> Cesta
+ geraCestaGrande() == 
+  (
+   dcl cesta : Cesta := geraCesta(6, 0.8, 8, <GRANDE> );
+   return cesta;
+  );
+(*@
+\label{geraCesta:93}
+@*)
+ 
+ --Gera uma cesta pequena 
+ public geraCestaPequena: () ==> Cesta
+ geraCestaPequena() == 
+  ( 
+   dcl cesta : Cesta := geraCesta(3, 0.4, 7, <PEQUENA>);
+   return cesta
+  );
+ 
+ --Cria uma cesta com determinados parametros
+ public geraCesta: real * real * real * Cesta`Tamanho==> Cesta
+ geraCesta(pesoMinimo, pesoMinimoProduto, totalProdutos, tipoCesta) ==
+ (
+  dcl cesta : Cesta := new Cesta();
+  dcl produtos : set of Produto := getTodosProdutos();
+  dcl totalNaCesta : nat := 0;
+  dcl pesoAretirar : real := pesoMinimoProduto;
+  dcl minimo: real := pesoMinimo;
+  dcl runs: nat := 0;
+  
+  cesta.alterarTamanho(tipoCesta);
+  
+  --Adiciona produtos à cesta
+  while(minimo > 0 and runs < 3)
+  do
+   (
+    for all produto in set produtos
+    do 
+     if(produto.peso >= pesoAretirar)
+      then 
+      ( 
+      if(cesta.produtoNaCesta(produto.nome) = false and totalNaCesta < totalProdutos) --Se o produto nao esta na cesta e o numero minimo de produtos nao foi alcançado
+       then
+        ( produto.removePeso(pesoAretirar);
+          cesta.adicionaProduto(new Produto(produto.nome, produto.origem, pesoAretirar));
+          totalNaCesta := totalNaCesta + 1;
+          minimo := minimo - pesoAretirar;
+        )
+       else 
+       (
+        if(totalNaCesta = totalProdutos  and minimo <= 0) -- Se a cesta esta completa
+          then return cesta
+          else 
+          ( --Adiciona mais X peso a um produto numa cesta
+           produto.removePeso(pesoAretirar); 
+           if(cesta.adicionaPesoProduto(produto.nome, pesoAretirar))
+            then minimo := minimo - pesoAretirar
+(*@
+\label{preencheCesta:140}
+@*)
+            else produto.adicionaPeso(pesoAretirar);
+          );
+       );
+      );
+    pesoAretirar := pesoAretirar / (runs + 1);
+    runs := runs + 1;
+   );
+   return cesta;
+ ); 
+ 
+ public preencheCesta: Cesta ==> () -- procura produtos e tenta responder as necessidades da cesta se houver stock
+ preencheCesta(cesta) == 
+ (
+  dcl produtos : set of Produto := getTodosProdutos();
+  dcl totalNaCesta : nat := card cesta.produtos;
+  dcl pesoAretirar : real := 0.3;
+  dcl minimo: real := 0;
+  dcl runs: nat := 0;
+  dcl totalProdutos: nat := 0;
+  
+  --- setup com os requesitos das cestas
+  if(cesta.tamanho = <PEQUENA>)
+    then (
+       totalProdutos := 7;
+       minimo := 3 - cesta.peso;
+      )
+  else 
+   if(cesta.tamanho = <GRANDE>)
+    then ( totalProdutos := 8;
+        minimo := 6 - cesta.peso;
+       );
+     
+  --Adicionar produtos à cesta
+   while(minimo > 0 and runs < (*@\vdmnotcovered{3}@*))
+  do
+   (*@\vdmnotcovered{(}@*)
+    (*@\vdmnotcovered{for}@*) all produto in set (*@\vdmnotcovered{produtos}@*)
+    do 
+     if((*@\vdmnotcovered{produto}@*).peso >= (*@\vdmnotcovered{pesoAretirar}@*))
+      then 
+      (*@\vdmnotcovered{(}@*) 
+      if(cesta.produtoNaCesta(produto.nome) = false and totalNaCesta < (*@\vdmnotcovered{totalProdutos}@*)) -- Se nao existir na cesta e a cesta nao tem o numero de produtos minimo
+       then
+        (*@\vdmnotcovered{(}@*) 
+          -- adicionar produto à cesta
+          produto.removePeso((*@\vdmnotcovered{pesoAretirar}@*));
+          cesta.adicionaProduto(new Produto(produto.nome, produto.origem, (*@\vdmnotcovered{pesoAretirar}@*)));
+          totalNaCesta := totalNaCesta + (*@\vdmnotcovered{1}@*);
+          minimo := minimo (*@\vdmnotcovered{-}@*) (*@\vdmnotcovered{pesoAretirar}@*); 
+        )
+       else 
+       (*@\vdmnotcovered{(}@*)
+        if((*@\vdmnotcovered{totalNaCesta}@*) (*@\vdmnotcovered{=}@*) (*@\vdmnotcovered{totalProdutos}@*)  and (*@\vdmnotcovered{minimo}@*) <= (*@\vdmnotcovered{0}@*)) -- Se a encomenda ja esta completa
+          then (*@\vdmnotcovered{return}@*)
+(*@
+\label{geraCestaTodosClientes:194}
+@*)
+          else 
+          (*@\vdmnotcovered{(}@*) -- tenta adicionar X peso de um produto que ja se encontra na cesta
+           (*@\vdmnotcovered{produto}@*).removePeso((*@\vdmnotcovered{pesoAretirar}@*));
+           (*@\vdmnotcovered{if}@*)((*@\vdmnotcovered{cesta}@*).(*@\vdmnotcovered{adicionaPesoProduto}@*)((*@\vdmnotcovered{produto}@*).(*@\vdmnotcovered{nome}@*), (*@\vdmnotcovered{pesoAretirar}@*)))
+            then (*@\vdmnotcovered{minimo}@*) := (*@\vdmnotcovered{minimo}@*) (*@\vdmnotcovered{-}@*) (*@\vdmnotcovered{pesoAretirar}@*)
+            else (*@\vdmnotcovered{produto}@*).adicionaPeso((*@\vdmnotcovered{pesoAretirar}@*));
+          );
+       );
+      );
+    pesoAretirar := (*@\vdmnotcovered{pesoAretirar}@*) / (runs + (*@\vdmnotcovered{1}@*)); -- tenta adicionar quantidades mais pequenas 
+    runs := runs + (*@\vdmnotcovered{1}@*);
+   );
+ );
+ 
+ public geraCestaTodosClientes: () ==> ()
+ geraCestaTodosClientes() == 
+  for all centro in set centros  
+  do (
+   for all cliente in set centro.clientes -- todos os clientes em todos os centros
+   do (
+    IO`println(cliente);
+    if cliente.estadoEnc = <COM_ENC> -- tenta corresponder a uma encomenda feita pelo cliente
+     then if (cliente.encomenda.tamanho = <PEQUENA>) 
+         then ( cliente.mudaCesta(geraCestaPequena());
+             cliente.verificaCestaParametros(); -- avalia se os requesitos da encomenda estao cumpridoss 
+            )
+        else
+         if(cliente.encomenda.tamanho = <GRANDE>)
+          then( cliente.mudaCesta(geraCestaGrande());
+             cliente.verificaCestaParametros()  
+            )
+    else ( (*@\vdmnotcovered{if}@*) (*@\vdmnotcovered{cliente}@*).(*@\vdmnotcovered{estadoEnc}@*) (*@\vdmnotcovered{=}@*) (*@\vdmnotcovered{<POR\_CONCLUIR>}@*)  -- tenta completar uma encomenda pendente
+        then (*@\vdmnotcovered{(}@*)
+           preencheCesta(cliente.(*@\vdmnotcovered{encomenda}@*));
+           (*@\vdmnotcovered{cliente}@*).verificaCestaParametros() 
+            )
+    );
+    );    
+   );
+end FrutaFeia
+
+
+
+
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[FrutaFeia:8]{FrutaFeia} & 8&100.0\% & 38 \\
+\hline
+\hyperref[adicionaAgricultor:38]{adicionaAgricultor} & 38&100.0\% & 62 \\
+\hline
+\hyperref[adicionaCentro:26]{adicionaCentro} & 26&100.0\% & 25 \\
+\hline
+\hyperref[adicionaCliente:12]{adicionaCliente} & 12&100.0\% & 27 \\
+\hline
+\hyperref[geraCesta:93]{geraCesta} & 93&100.0\% & 68 \\
+\hline
+\hyperref[geraCestaGrande:79]{geraCestaGrande} & 79&100.0\% & 7 \\
+\hline
+\hyperref[geraCestaPequena:86]{geraCestaPequena} & 86&100.0\% & 27 \\
+\hline
+\hyperref[geraCestaTodosClientes:194]{geraCestaTodosClientes} & 194&75.5\% & 18 \\
+\hline
+\hyperref[geraCestas:51]{geraCestas} & 51&100.0\% & 62 \\
+\hline
+\hyperref[getTodosClientes:55]{getTodosClientes} & 55&100.0\% & 18 \\
+\hline
+\hyperref[getTodosProdutos:67]{getTodosProdutos} & 67&100.0\% & 42 \\
+\hline
+\hyperref[preencheCesta:140]{preencheCesta} & 140&34.1\% & 0 \\
+\hline
+\hyperref[removeAgricultor:44]{removeAgricultor} & 44&100.0\% & 8 \\
+\hline
+\hyperref[removeCentro:32]{removeCentro} & 32&100.0\% & 7 \\
+\hline
+\hyperref[removeCliente:19]{removeCliente} & 19&100.0\% & 6 \\
+\hline
+\hline
+FrutaFeia.vdmpp & & 79.8\% & 415 \\
+\hline
+\end{longtable}
+

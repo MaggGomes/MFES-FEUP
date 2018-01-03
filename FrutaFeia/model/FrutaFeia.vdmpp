@@ -1,8 +1,8 @@
 class FrutaFeia
 
 instance variables
-	centros : set of CentroDistribuicao;
-	agricultores: set of Agricultor;
+	public centros : set of CentroDistribuicao;
+	public agricultores: set of Agricultor;
 	
 operations 
 	public FrutaFeia: () ==> FrutaFeia

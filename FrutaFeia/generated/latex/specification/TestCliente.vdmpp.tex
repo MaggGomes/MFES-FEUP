@@ -1,0 +1,112 @@
+\begin{vdmpp}[breaklines=true]
+class TestCliente is subclass of SuiteTestCase
+
+operations
+(*@
+\label{testConstructor:4}
+@*)
+  public (*@\vdmnotcovered{testConstructor}@*)() == (  
+   dcl cliente: Cliente := new Cliente("Fernando", <HOMEM>);
+    IO`println("\t\t Testing Constructor");
+    assertEqual("Fernando", cliente.nome);
+    assertEqual(<HOMEM>, cliente.genero);
+    assertEqual(<SEM_ENC>, cliente.estadoEnc);
+  );
+  
+(*@
+\label{testMudaRemoveCesta:12}
+@*)
+  public (*@\vdmnotcovered{testMudaRemoveCesta}@*)() == (
+   dcl cliente: Cliente := new Cliente("Fernando", <HOMEM>);
+   dcl cestaA: Cesta := new Cesta();
+   IO`println("\t\t Testing AssociaCesta");
+   assertEqual(<SEM_ENC>, cliente.estadoEnc);
+   cliente.mudaCesta(cestaA);
+   assertEqual(<COM_ENC>, cliente.estadoEnc);
+   cliente.removeCesta();
+   assertEqual(<CANCELADA>, cliente.estadoEnc);
+  );
+  
+(*@
+\label{testUseCaseCesta:23}
+@*)
+(*@
+\label{testVerificaEstadoEncomenda:23}
+@*)
+  public (*@\vdmnotcovered{testVerificaEstadoEncomenda}@*)() == (
+   dcl cliente: Cliente := new Cliente("Fernando", <HOMEM>);
+   dcl cesta: Cesta := new Cesta();
+   dcl cesta1: Cesta := new Cesta();
+   dcl produto1: Produto := new Produto("Maca1", "Golden", 5);
+   dcl produto2: Produto := new Produto("Maca2", "Golden", 5);
+   dcl produto3: Produto := new Produto("Maca3", "Golden", 5);
+   dcl produto4: Produto := new Produto("Maca4", "Golden", 5);
+   dcl produto5: Produto := new Produto("Maca5", "Golden", 5);
+   dcl produto6: Produto := new Produto("Maca6", "Golden", 5);
+   dcl produto7: Produto := new Produto("Maca7", "Golden", 5);
+   dcl produto8: Produto := new Produto("Maca8", "Golden", 5);
+   cesta1.alterarTamanho(<GRANDE>);
+(*@
+\label{testAll:36}
+@*)
+   IO`println("\t\t Testing AssociaCesta");
+   assertEqual(<SEM_ENC>, cliente.estadoEnc);
+   cliente.mudaCesta(cesta);
+   cliente.verificaCestaParametros();
+   cliente.mudaCesta(cesta1); 
+   cliente.verificaCestaParametros();
+   cliente.encomenda.adicionaProduto(produto1);
+   cliente.encomenda.adicionaProduto(produto2);
+   cliente.encomenda.adicionaProduto(produto3);
+   cliente.encomenda.adicionaProduto(produto4);
+   cliente.encomenda.adicionaProduto(produto5);
+   cliente.encomenda.adicionaProduto(produto6);
+   cliente.encomenda.adicionaProduto(produto7);
+   cliente.encomenda.adicionaProduto(produto8);
+   cliente.verificaCestaParametros();
+  );
+    
+  public (*@\vdmnotcovered{testUseCaseCesta}@*)() == (
+   dcl cliente: Cliente := new Cliente("Fernando", <HOMEM>);
+   dcl cesta: Cesta := new Cesta();
+   IO`println("\t\t Testing AssociaCesta");
+   assertEqual(<SEM_ENC>, cliente.estadoEnc);
+   cliente.mudaCesta(cesta);
+   assertEqual(<COM_ENC>, cliente.estadoEnc);   
+   cliente.encomendaPronta();
+   assertEqual(<PRONTA>, cliente.estadoEnc);
+   cliente.levantaCesta();
+   assertEqual(<ENTREGUE>, cliente.estadoEnc);   
+  );
+
+  public (*@\vdmnotcovered{testAll}@*)() == (
+    IO`println("\t Testing Cliente class");
+    testConstructor();
+    testMudaRemoveCesta();
+    testVerificaEstadoEncomenda();
+    testUseCaseCesta();
+  );
+
+end TestCliente
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[testAll:36]{testAll} & 36&87.5\% & 12 \\
+\hline
+\hyperref[testConstructor:4]{testConstructor} & 4&95.0\% & 26 \\
+\hline
+\hyperref[testMudaRemoveCesta:12]{testMudaRemoveCesta} & 12&96.0\% & 26 \\
+\hline
+\hyperref[testUseCaseCesta:23]{testUseCaseCesta} & 23&96.6\% & 12 \\
+\hline
+\hyperref[testVerificaEstadoEncomenda:23]{testVerificaEstadoEncomenda} & 23&98.7\% & 12 \\
+\hline
+\hline
+TestCliente.vdmpp & & 96.9\% & 88 \\
+\hline
+\end{longtable}
+

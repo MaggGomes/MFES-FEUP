@@ -1,0 +1,60 @@
+\begin{vdmpp}[breaklines=true]
+class Produto
+
+types
+ public NomeProduto = seq of char;
+ public Origem = seq of char;
+ public Peso = real;
+instance variables
+  public nome: NomeProduto;
+  public origem:seq of (char);
+  public peso: Peso;
+  
+  inv peso >= 0;
+
+operations
+(*@
+\label{Produto:15}
+@*)
+  public  Produto : NomeProduto * Origem * Peso ==> Produto
+  Produto(n, o, p) == (nome := n; origem := o; peso := p;return self;)
+  pre len n > 0 and len o > 0 and p >= 0
+  post nome = n and origem = o and peso = p;
+
+(*@
+\label{adicionaPeso:20}
+@*)
+  public  adicionaPeso : Peso ==> ()
+  adicionaPeso(p) == peso := peso + p
+  pre peso > 0
+  post peso = peso~ + p;
+  
+
+(*@
+\label{removePeso:26}
+@*)
+  public  removePeso : Peso ==> ()
+  removePeso(p) == peso := peso - p
+  pre p > 0 and peso - p >= 0
+  post peso = peso~ - p;
+
+
+end Produto
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Produto:15]{Produto} & 15&100.0\% & 736 \\
+\hline
+\hyperref[adicionaPeso:20]{adicionaPeso} & 20&100.0\% & 144 \\
+\hline
+\hyperref[removePeso:26]{removePeso} & 26&100.0\% & 405 \\
+\hline
+\hline
+Produto.vdmpp & & 100.0\% & 1285 \\
+\hline
+\end{longtable}
+

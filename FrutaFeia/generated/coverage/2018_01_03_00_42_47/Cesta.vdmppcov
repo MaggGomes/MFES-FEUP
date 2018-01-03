@@ -1,0 +1,82 @@
+class Cesta
+
+types
+	public Tamanho = <PEQUENA> | <GRANDE>
+
+instance variables
+	public produtos:set of Produto;
+  public peso: real;
+	public tamanho: Tamanho;
+	
+operations
+  public  Cesta : () ==> Cesta
+  Cesta() == (peso := 0; produtos := {}; tamanho:= <PEQUENA>; return self;)
+  post peso = 0 and produtos = {} and tamanho = <PEQUENA>;
+  
+  
+  --adiciona um produto ao agricultor
+  public  adicionaProduto : Produto ==> ()
+  adicionaProduto(produto) == 
+  (
+  	produtos := produtos union {produto};
+   	peso := peso + produto.peso
+  )
+  pre produto <> undefined and produto not in set produtos 
+  post peso = produto.peso + peso~ and (card produtos = card produtos~ + 1) and produto in set produtos;  
+  
+	
+	--remove um produto da cesta
+  public  removeProduto : Produto ==> ()
+  removeProduto(produto) ==
+  ( 
+  	produtos := produtos \ {produto};
+  	peso := peso - produto.peso
+  )
+  pre produto <> undefined and produto in set produtos and peso - produto.peso >= 0
+  post peso = peso~ - produto.peso and (card produtos + 1  = card produtos~ ) and produto not in set produtos; 
+	
+	
+	-- adiciona um determinado peso a um produto
+  public  adicionaPesoProduto : Produto`NomeProduto * Produto`Peso ==> bool
+  adicionaPesoProduto(nomeProduto, p) ==
+	(	for all elem in set produtos
+	 	do 
+			if nomeProduto = elem.nome
+				then (elem.adicionaPeso(p); peso:= peso + p; return true;);
+	return false;)
+	pre len nomeProduto > 0 and p >= 0 
+	post (exists1 produto in set produtos & produto.nome = nomeProduto and RESULT = true) or --  produto exite retorna true ou nao existe e retorna false
+		   (forall produto in set produtos & produto.nome <> nomeProduto and RESULT = false);
+	
+	--remove um determinado peso de um produto 
+	public  removePesoProduto : Produto`NomeProduto * Produto`Peso ==> bool
+  removePesoProduto(nomeProduto, p) == 
+  (	for all elem in set produtos
+  		do
+  			if nomeProduto = elem.nome
+  				then (elem.removePeso(p); return true;);
+  return false)
+  pre len nomeProduto > 0 and p >= 0 and peso - p >= 0
+  post (exists1 produto in set produtos & produto.nome = nomeProduto and RESULT = true) or --  produto exite retorna true ou nao existe e retorna false
+  		 (forall produto in set produtos & produto.nome <> nomeProduto and RESULT = false);
+  
+  -- altera o tamanho da cesta  para que existem em Cesta`Tamanho
+  public alterarTamanho: Tamanho ==> ()
+  alterarTamanho(tam)  == 
+  		tamanho := tam
+  pre tam <> undefined
+  post tamanho = tam; 
+  
+  --Verifica se o produto com um certo nome esta no set
+  public produtoNaCesta : Produto`NomeProduto ==> bool
+  produtoNaCesta (prodNome) == 
+  	(for all produto in set produtos
+  		do 
+  			if prodNome = produto.nome
+  					then return true;
+  		return false
+  	)
+  	pre produtos <> undefined
+  	post ((exists1 produto in set produtos & produto.nome = prodNome)  and   RESULT = true) or  --  produto exite retorna true ou nao existe e retorna false
+  			 ((forall produto in set produtos & produto.nome <> prodNome) and RESULT=false);	
+end Cesta

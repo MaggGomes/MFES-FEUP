@@ -1,0 +1,60 @@
+class TestCliente is subclass of SuiteTestCase
+
+operations
+  public testConstructor() == (  
+  	dcl cliente: Cliente := new Cliente("Fernando", <HOMEM>);
+    IO`println("\t\t Testing Constructor");
+    assertEqual("Fernando", cliente.nome);
+    assertEqual(<HOMEM>, cliente.genero);
+    assertEqual(<SEM_ENC>, cliente.estadoEnc);
+  );
+  
+  public testMudaRemoveCesta() == (
+  	dcl cliente: Cliente := new Cliente("Fernando", <HOMEM>);
+  	dcl cestaA: Cesta := new Cesta();
+  	IO`println("\t\t Testing AssociaCesta");
+  	assertEqual(<SEM_ENC>, cliente.estadoEnc);
+  	cliente.mudaCesta(cestaA);
+  	assertEqual(<COM_ENC>, cliente.estadoEnc);
+  	cliente.removeCesta();
+  	assertEqual(<CANCELADA>, cliente.estadoEnc);
+  );
+  
+  public testVerificaEstadoEncomenda() == (
+  	dcl cliente: Cliente := new Cliente("Fernando", <HOMEM>);
+  	dcl cesta: Cesta := new Cesta();
+  	dcl cesta1: Cesta := new Cesta();
+  	dcl produto: Produto := new Produto("Maca", "Golden", 5);
+  	cesta1.alterarTamanho(<GRANDE>);
+  	IO`println("\t\t Testing AssociaCesta");
+  	assertEqual(<SEM_ENC>, cliente.estadoEnc);
+  	cliente.mudaCesta(cesta);
+  	cliente.verificaCestaParametros();
+  	cliente.mudaCesta(cesta1); 
+  	cliente.verificaCestaParametros();
+  	produto.adicionaPeso(7);
+  	cliente.encomenda.adicionaProduto(produto);
+  );
+    
+  public testUseCaseCesta() == (
+  	dcl cliente: Cliente := new Cliente("Fernando", <HOMEM>);
+  	dcl cesta: Cesta := new Cesta();
+  	IO`println("\t\t Testing AssociaCesta");
+  	assertEqual(<SEM_ENC>, cliente.estadoEnc);
+  	cliente.mudaCesta(cesta);
+  	assertEqual(<COM_ENC>, cliente.estadoEnc);  	
+  	cliente.encomendaPronta();
+  	assertEqual(<PRONTA>, cliente.estadoEnc);
+  	cliente.levantaCesta();
+  	assertEqual(<ENTREGUE>, cliente.estadoEnc);  	
+  );
+
+  public testAll() == (
+    IO`println("\t Testing Cliente class");
+    testConstructor();
+    testMudaRemoveCesta();
+    testVerificaEstadoEncomenda();
+    testUseCaseCesta();
+  );
+
+end TestCliente

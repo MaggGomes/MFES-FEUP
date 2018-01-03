@@ -1,0 +1,54 @@
+\begin{vdmpp}[breaklines=true]
+class TestCentroDistribuicao is subclass of SuiteTestCase
+
+operations
+(*@
+\label{testConstructor:4}
+@*)
+  public (*@\vdmnotcovered{testConstructor}@*)() == (
+    dcl centro: CentroDistribuicao := new CentroDistribuicao("Porto");
+    IO`println("\t\t Testing Constructor");
+    assertEqual("Porto", centro.localizacao);
+  );
+ 
+(*@
+\label{testManageCenter:10}
+@*)
+ public (*@\vdmnotcovered{testManageCenter}@*)()  == (
+  dcl centro: CentroDistribuicao := new CentroDistribuicao("Porto");
+  dcl cliente: Cliente := new Cliente("Fernando", <HOMEM>);
+  IO`println("\t Testing ManageCenter");  
+  assertEqual(0, card centro.clientes);
+  centro.adicionaCliente(cliente);
+  assertEqual(1, card centro.clientes);
+  centro.removeCliente(cliente);
+(*@
+\label{testAll:18}
+@*)
+  assertEqual(0, card centro.clientes);
+);
+ 
+  public (*@\vdmnotcovered{testAll}@*)() == (
+    IO`println("\t Testing CentroDistribuicao class");
+    testConstructor();
+    testManageCenter();
+  );
+end TestCentroDistribuicao
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[testAll:18]{testAll} & 18&83.3\% & 24 \\
+\hline
+\hyperref[testConstructor:4]{testConstructor} & 4&90.9\% & 28 \\
+\hline
+\hyperref[testManageCenter:10]{testManageCenter} & 10&96.6\% & 0 \\
+\hline
+\hline
+TestCentroDistribuicao.vdmpp & & 93.6\% & 52 \\
+\hline
+\end{longtable}
+

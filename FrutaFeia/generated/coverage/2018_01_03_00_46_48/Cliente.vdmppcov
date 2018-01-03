@@ -1,0 +1,65 @@
+class Cliente
+
+types 
+	public Genero = <HOMEM> | <MULHER>;
+	public EncomendaStatus = <SEM_ENC> | <COM_ENC> | <ENTREGUE> | <CANCELADA> | <PRONTA> | <POR_CONCLUIR>
+	
+instance variables
+  public encomenda:Cesta;
+  public estadoEnc: EncomendaStatus;
+  public nome:seq1 of (char);
+  public genero: Genero;
+
+operations
+  public  Cliente : seq1 of (char) * Genero ==> Cliente
+  Cliente(n, gen) == (nome:= n; genero:= gen; estadoEnc := <SEM_ENC>; encomenda:= new Cesta(); return self;)
+  pre len n > 0 and gen <> undefined
+  post nome = n and genero = gen and estadoEnc = <SEM_ENC>;
+  
+  
+  --mete o estado atual da encomenda para cancelada
+  public  removeCesta : ()  ==> ()
+  removeCesta() == estadoEnc := <CANCELADA>
+  pre encomenda <> undefined
+  post estadoEnc = <CANCELADA>;
+	
+	--associa uma nova cesta ao cliente
+  public  mudaCesta : Cesta ==> ()
+  mudaCesta(cesta) ==
+    (encomenda := cesta; estadoEnc := <COM_ENC>)
+  pre cesta <> undefined
+  post encomenda = cesta and encomenda <> encomenda~ and estadoEnc = <COM_ENC>;
+
+	
+	--altera  o estado da encomenda do cliente para pronto
+	public encomendaPronta: () ==> () 
+	encomendaPronta() == estadoEnc := <PRONTA>
+	pre estadoEnc = <COM_ENC>
+	post estadoEnc = <PRONTA>;
+ 
+  --cliente levanta a cesta 
+	public levantaCesta: () ==> () 
+	levantaCesta() == estadoEnc := <ENTREGUE>
+	pre estadoEnc = <PRONTA> 
+	post estadoEnc = <ENTREGUE>;
+	
+	
+	-- verifica se os requesitos da encomenda sao correspondidos
+	public verificaCestaParametros: () ==> ()
+	verificaCestaParametros () ==
+		if(encomenda.tamanho = <PEQUENA>)
+			then (
+				if(card encomenda.produtos = 7 and encomenda.peso >= 3) --check requesitos encomenda pequena
+				then	estadoEnc := <PRONTA>
+				else  estadoEnc := <POR_CONCLUIR>
+			)
+			else if(encomenda.tamanho = <GRANDE>)
+			then (
+				if(card encomenda.produtos = 8 and encomenda.peso >= 6) --check requesitos encomenda grande
+					then estadoEnc := <PRONTA>
+					else estadoEnc := <POR_CONCLUIR>
+			)
+	pre estadoEnc = <COM_ENC> or estadoEnc = <POR_CONCLUIR>
+	post estadoEnc = <PRONTA> or estadoEnc = <POR_CONCLUIR>; -- se a encomenda esta completa passa para pronta se imcompleta para <POR_CONCLUIR>
+	
+end Cliente

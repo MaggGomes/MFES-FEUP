@@ -1,0 +1,54 @@
+\begin{vdmpp}[breaklines=true]
+-- Main class of Tests
+class SuiteTestCase
+
+operations
+(*@
+\label{assertTrue:5}
+@*)
+  protected assertTrue: bool ==> ()
+  assertTrue(arg) ==
+    return
+  pre arg;
+  
+(*@
+\label{assertEqual:10}
+@*)
+(*@
+\label{assertFalse:10}
+@*)
+  protected assertFalse: bool ==> ()
+  assertFalse(arg) ==
+    return
+  pre arg = false;
+ 
+  protected assertEqual: ? * ? ==> ()
+  assertEqual(expected, actual) ==
+    if expected <> actual then (
+      IO`print("Actual value (");
+      IO`print(actual);
+      IO`print(") different from expected (");
+      IO`print(expected);
+      IO`println(")\n")
+    )
+  post expected = actual
+
+end SuiteTestCase
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[assertEqual:10]{assertEqual} & 10&100.0\% & 2 \\
+\hline
+\hyperref[assertFalse:10]{assertFalse} & 10&100.0\% & 47 \\
+\hline
+\hyperref[assertTrue:5]{assertTrue} & 5&100.0\% & 123 \\
+\hline
+\hline
+SuiteTestCase.vdmpp & & 100.0\% & 172 \\
+\hline
+\end{longtable}
+

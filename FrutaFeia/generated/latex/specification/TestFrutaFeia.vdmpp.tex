@@ -1,0 +1,157 @@
+\begin{vdmpp}[breaklines=true]
+class TestFrutaFeia is subclass of SuiteTestCase
+
+operations 
+
+(*@
+\label{testGeraCestaPequena:5}
+@*)
+(*@
+\label{testAdicionaRemove:5}
+@*)
+public (*@\vdmnotcovered{testAdicionaRemove}@*)() == (
+ dcl frutaFeia : FrutaFeia := new FrutaFeia(); 
+ dcl agricultor: Agricultor := new Agricultor("Pedro", "Mirandela");
+ dcl cliente: Cliente := new Cliente("Fernando", <HOMEM>);
+ dcl centro: CentroDistribuicao := new CentroDistribuicao("Porto");
+ IO`println("\t Testing AdicionaRemove");
+ assertEqual(0, card frutaFeia.agricultores);  
+ frutaFeia.adicionaAgricultor(agricultor);
+ assertEqual(1, card frutaFeia.agricultores);
+ frutaFeia.removeAgricultor(agricultor);
+ assertEqual(0, card frutaFeia.agricultores);
+ assertEqual(0, card frutaFeia.centros);
+ frutaFeia.adicionaCentro(centro);
+ assertEqual(1, card frutaFeia.centros);
+ assertEqual(0, card frutaFeia.getTodosClientes());
+ frutaFeia.adicionaCliente(cliente, "Porto");
+ assertEqual(1, card frutaFeia.getTodosClientes());
+ frutaFeia.removeCliente(cliente, "Porto");
+ assertEqual(0, card frutaFeia.getTodosClientes());
+ frutaFeia.removeCentro(centro);
+ assertEqual(0, card frutaFeia.centros);
+);
+
+public (*@\vdmnotcovered{testGeraCestaPequena}@*)() == (
+ dcl frutaFeia : FrutaFeia := new FrutaFeia(); 
+ dcl agricultor: Agricultor := new Agricultor("Pedro", "Mirandela"); 
+ dcl agricultor2: Agricultor := new Agricultor("Manuel", "Porto"); 
+ dcl pera: Produto := new Produto("Pera", "Mate", 2);
+ dcl manga: Produto := new Produto("Manga", "Rosa", 3);
+ dcl ananas: Produto := new Produto("Ananas", "Preto", 4);
+ dcl maca: Produto := new Produto("Maca", "Golden", 5);
+ dcl maracuja: Produto := new Produto("Maracuja", "Bambuin", 6);
+  dcl alface: Produto := new Produto("Alface", "Alfacinha", 7);
+  dcl pimento: Produto := new Produto("Pimento", "Verde", 8);
+  dcl laranja: Produto := new Produto("Laranja", "Algarve", 8);
+ dcl cesta: Cesta;
+ IO`println("\t Testing GeraCestaPequena"); 
+(*@
+\label{testeGereTodasEncomendas:42}
+@*)
+ 
+ agricultor.adicionaProduto(pera);
+ agricultor.adicionaProduto(manga);
+ agricultor.adicionaProduto(ananas);
+ 
+ agricultor2.adicionaProduto(maca);
+ agricultor2.adicionaProduto(maracuja);
+ agricultor2.adicionaProduto(alface);
+ agricultor2.adicionaProduto(pimento);
+ agricultor2.adicionaProduto(laranja);
+ 
+ frutaFeia.adicionaAgricultor(agricultor);
+ frutaFeia.adicionaAgricultor(agricultor2);
+ 
+ IO`println("\t\t Cesta:" );
+ cesta := frutaFeia.geraCestaPequena();
+ frutaFeia.preencheCesta(cesta);
+ assertTrue(cesta.peso > 3);
+ IO`println(cesta); 
+ assertEqual(7, card cesta.produtos);
+ cesta := frutaFeia.geraCestaGrande();
+ assertEqual(<GRANDE>, cesta.tamanho);
+ frutaFeia.preencheCesta(cesta);
+ assertTrue(cesta.peso > 6);
+);
+
+public (*@\vdmnotcovered{testeGereTodasEncomendas}@*)() == (
+ dcl frutaFeia : FrutaFeia := new FrutaFeia(); 
+ dcl agricultor: Agricultor := new Agricultor("Pedro", "Mirandela"); 
+ dcl agricultor2: Agricultor := new Agricultor("Manuel", "Porto");
+ dcl pera: Produto := new Produto("Pera", "Mate", 2);
+ dcl manga: Produto := new Produto("Manga", "Rosa", 3);
+ dcl ananas: Produto := new Produto("Ananas", "Preto", 4);
+ dcl maca: Produto := new Produto("Maca", "Golden", 5);
+ dcl maracuja: Produto := new Produto("Maracuja", "Bambuin", 6);
+  dcl alface: Produto := new Produto("Alface", "Alfacinha", 7);
+  dcl pimento: Produto := new Produto("Pimento", "Verde", 8);
+  dcl laranja: Produto := new Produto("Laranja", "Algarve", 8);  
+  dcl centro: CentroDistribuicao := new CentroDistribuicao("Porto");
+  dcl cliente: Cliente := new Cliente("Fernando", <HOMEM>);
+  dcl cliente1: Cliente := new Cliente("Alfredo", <HOMEM>);
+  dcl cliente2: Cliente := new Cliente("Joana", <MULHER>);
+  dcl cesta: Cesta := new Cesta(); 
+  dcl cesta1: Cesta := new Cesta(); 
+ IO`println("\t Testing GereTodasEncomendas:" );  
+  
+ agricultor.adicionaProduto(pera);
+ agricultor.adicionaProduto(manga);
+ agricultor.adicionaProduto(ananas);
+ 
+ agricultor2.adicionaProduto(maca);
+ agricultor2.adicionaProduto(maracuja);
+ agricultor2.adicionaProduto(alface);
+(*@
+\label{testAll:95}
+@*)
+ agricultor2.adicionaProduto(pimento);
+ agricultor2.adicionaProduto(laranja);
+  
+ frutaFeia.adicionaAgricultor(agricultor);
+ frutaFeia.adicionaAgricultor(agricultor2);
+ 
+ frutaFeia.adicionaCentro(centro);
+ frutaFeia.adicionaCliente(cliente, "Porto");
+ frutaFeia.adicionaCliente(cliente1, "Porto");
+ frutaFeia.adicionaCliente(cliente2, "Porto");
+ 
+ cliente.mudaCesta(new Cesta());
+ cesta.alterarTamanho(<GRANDE>);
+ cliente1.mudaCesta(cesta);
+ cliente2.mudaCesta(cesta1);
+ cliente2.estadoEnc := <POR_CONCLUIR>;
+ frutaFeia.geraCestaTodosClientes(); 
+ IO`println("\t\t Cliente Encomenda:" );
+ IO`println(cliente.encomenda);
+ IO`println(card centro.clientes);
+ IO`println(centro.clientes); 
+);
+
+public (*@\vdmnotcovered{testAll}@*)() == (
+ testAdicionaRemove();
+ testGeraCestaPequena();
+ testeGereTodasEncomendas();
+);
+
+end TestFrutaFeia
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[testAdicionaRemove:5]{testAdicionaRemove} & 5&98.6\% & 8 \\
+\hline
+\hyperref[testAll:95]{testAll} & 95&80.0\% & 1 \\
+\hline
+\hyperref[testGeraCestaPequena:5]{testGeraCestaPequena} & 5&99.0\% & 6 \\
+\hline
+\hyperref[testeGereTodasEncomendas:42]{testeGereTodasEncomendas} & 42&99.2\% & 3 \\
+\hline
+\hline
+TestFrutaFeia.vdmpp & & 98.7\% & 18 \\
+\hline
+\end{longtable}
+

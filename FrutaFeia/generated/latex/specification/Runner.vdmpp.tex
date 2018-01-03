@@ -1,0 +1,32 @@
+\begin{vdmpp}[breaklines=true]
+class Runner
+  operations
+(*@
+\label{main:3}
+@*)
+    public static (*@\vdmnotcovered{main}@*)() == (
+      IO`println("Running tests...");
+      new TestAgricultor().testAll();
+      new TestCentroDistribuicao().testAll();
+      new TestCesta().testAll();
+      new TestCliente().testAll();
+      new TestProduto().testAll();
+      new TestFrutaFeia().testAll();
+      IO`println("Tests completed!");
+    );
+    
+end Runner
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[main:3]{main} & 3&91.6\% & 21 \\
+\hline
+\hline
+Runner.vdmpp & & 91.6\% & 21 \\
+\hline
+\end{longtable}
+

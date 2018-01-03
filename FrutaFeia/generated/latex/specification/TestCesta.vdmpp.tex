@@ -1,0 +1,89 @@
+\begin{vdmpp}[breaklines=true]
+class TestCesta is subclass of SuiteTestCase
+
+operations
+(*@
+\label{testConstructor:4}
+@*)
+  public (*@\vdmnotcovered{testConstructor}@*)() == (
+   dcl cesta: Cesta := new Cesta();
+    IO`println("\t\t Testing Constructor");
+    assertEqual(<PEQUENA>, cesta.tamanho);
+    assertEqual(0, cesta.peso);
+  );
+  
+(*@
+\label{testAdicionaAndRemoveProduto:11}
+@*)
+  public (*@\vdmnotcovered{testAdicionaAndRemoveProduto}@*)() == (
+   dcl cesta: Cesta := new Cesta();
+   dcl produto: Produto := new Produto("Maca", "Golden", 5);
+   IO`println("\t\t Testing AdicionaAndRemoveProduto");
+   assertEqual(0, card cesta.produtos); 
+   cesta.adicionaProduto(produto);
+   assertEqual(1, card cesta.produtos);  
+   cesta.removeProduto(produto);
+   assertEqual(0, card cesta.produtos);  
+  );
+  
+(*@
+\label{testAdicionaAndRemovePesoProduto:22}
+@*)
+  public (*@\vdmnotcovered{testAdicionaAndRemovePesoProduto}@*)() == (
+   dcl cesta: Cesta := new Cesta();
+   dcl produto: Produto := new Produto("Maca", "Golden", 5);
+  IO`println("\t\t Testing AdicionaAndRemovePesoProduto");
+  cesta.adicionaProduto(produto);
+  assertEqual(5, produto.peso);  
+  assertTrue(cesta.adicionaPesoProduto(produto.nome, 5));
+  assertEqual(10, produto.peso);  
+  assertTrue(cesta.removePesoProduto(produto.nome, 5));
+  assertEqual(5, produto.peso);  
+  assertFalse(cesta.removePesoProduto("Morango", 5));
+  );
+(*@
+\label{testAlterarTamanho:34}
+@*)
+  
+  public (*@\vdmnotcovered{testAlterarTamanho}@*)() == (
+   dcl cesta: Cesta := new Cesta();
+  IO`println("\t\t Testing AdicionaAndRemovePesoProduto");
+  assertEqual(<PEQUENA>, cesta.tamanho);
+  cesta.alterarTamanho(<GRANDE>);
+  assertEqual(<GRANDE>, cesta.tamanho);
+  );
+(*@
+\label{testAll:42}
+@*)
+
+  public (*@\vdmnotcovered{testAll}@*)() == (
+    IO`println("\t Testing Cesta class");
+    testConstructor();
+    testAdicionaAndRemoveProduto();
+    testAdicionaAndRemovePesoProduto();
+    testAlterarTamanho();
+  );
+
+end TestCesta
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[testAdicionaAndRemovePesoProduto:22]{testAdicionaAndRemovePesoProduto} & 22&97.6\% & 26 \\
+\hline
+\hyperref[testAdicionaAndRemoveProduto:11]{testAdicionaAndRemoveProduto} & 11&96.6\% & 26 \\
+\hline
+\hyperref[testAll:42]{testAll} & 42&87.5\% & 24 \\
+\hline
+\hyperref[testAlterarTamanho:34]{testAlterarTamanho} & 34&93.7\% & 24 \\
+\hline
+\hyperref[testConstructor:4]{testConstructor} & 4&92.8\% & 52 \\
+\hline
+\hline
+TestCesta.vdmpp & & 95.4\% & 152 \\
+\hline
+\end{longtable}
+

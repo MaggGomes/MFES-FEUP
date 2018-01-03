@@ -1,0 +1,29 @@
+class CentroDistribuicao
+
+types 
+	public Local = seq of (char);
+
+instance variables
+	public clientes : set of Cliente;
+  public localizacao:seq of (char);
+ 
+operations
+  
+  public  CentroDistribuicao : Local ==> CentroDistribuicao
+  CentroDistribuicao(local) == (clientes := {}; localizacao := local; return self;)
+  pre len local > 0
+  post localizacao = local and clientes = {};
+	
+	public adicionaCliente: Cliente ==> () 
+	adicionaCliente( cliente ) == 
+		 clientes := clientes union {cliente}
+	pre cliente <> undefined and cliente not in set clientes
+	post card clientes~ + 1 = card clientes;  
+	
+	public removeCliente: Cliente ==> () 
+	removeCliente(cliente) == 
+		 clientes := clientes \ {cliente}
+	pre cliente <> undefined and cliente in set clientes
+	post card clientes~ - 1 = card clientes; 
+	
+end CentroDistribuicao

@@ -1,0 +1,90 @@
+\begin{vdmpp}[breaklines=true]
+class Agricultor
+instance variables
+  public stock: map NomeProduto to Produto := { |-> };
+  public nome:seq of (char);
+  public localizacao:seq of (char);
+
+types 
+ public NomeProduto = Produto`NomeProduto;
+
+operations
+(*@
+\label{Agricultor:11}
+@*)
+  public  Agricultor : seq of (char) * seq of (char) ==> Agricultor
+   Agricultor(n, l) == ( nome := n; localizacao := l; stock := {|->}; return self)
+  pre len n > 0 and len l > 0
+  post nome = n and localizacao = l and stock = {|->};
+ 
+(*@
+\label{adicionaProduto:16}
+@*)
+ --adiciona um produto ao agricultor
+  public  adicionaProduto : Produto ==> ()
+   adicionaProduto(produto) == stock := stock munion {produto.nome |-> produto}
+  pre produto <> undefined and produto.nome not in set dom stock
+  post  stock = stock~ munion {produto.nome |-> produto};
+(*@
+\label{removeProduto:21}
+@*)
+
+ --remove um produto do agricultor
+  public removeProduto : NomeProduto ==> ()
+   removeProduto(nomeProduto) == stock := {nomeProduto} <-: stock
+  pre len nomeProduto > 0 and nomeProduto in set dom stock
+(*@
+\label{adicionaPesoProduto:26}
+@*)
+  post nomeProduto not in set dom stock;
+  
+  --adicona peso a um produto no agricultor se existir 
+  public  adicionaPesoProduto : NomeProduto * real ==> bool
+  adicionaPesoProduto(nomeProduto, peso) == 
+   (
+    if ( nomeProduto in set dom stock ) 
+     then  ( stock(nomeProduto).adicionaPeso(peso); return true;);
+    return false
+(*@
+\label{removePesoProduto:35}
+@*)
+   )
+  pre len nomeProduto > 0 and peso > 0
+  post (nomeProduto in set dom stock and RESULT=true ) or (nomeProduto not in set dom stock and RESULT = false);
+  
+  
+  -- remove peso de um produto se existir 
+  public  removePesoProduto : NomeProduto * real ==> bool
+  removePesoProduto(nomeProduto, peso) ==
+    (
+    if ( nomeProduto in set dom stock ) 
+     then  ( stock(nomeProduto).removePeso(peso); return true;);
+    return false
+   )
+  pre len nomeProduto > 0 and peso > 0
+  post (nomeProduto in set dom stock and RESULT=true ) or (nomeProduto not in set dom stock and RESULT = false);
+
+
+end Agricultor
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Agricultor:11]{Agricultor} & 11&100.0\% & 134 \\
+\hline
+\hyperref[adicionaPesoProduto:26]{adicionaPesoProduto} & 26&100.0\% & 36 \\
+\hline
+\hyperref[adicionaProduto:16]{adicionaProduto} & 16&100.0\% & 241 \\
+\hline
+\hyperref[removePesoProduto:35]{removePesoProduto} & 35&100.0\% & 35 \\
+\hline
+\hyperref[removeProduto:21]{removeProduto} & 21&100.0\% & 11 \\
+\hline
+\hline
+Agricultor.vdmpp & & 100.0\% & 457 \\
+\hline
+\end{longtable}
+

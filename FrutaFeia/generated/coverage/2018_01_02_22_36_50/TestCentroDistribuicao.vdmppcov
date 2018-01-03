@@ -1,0 +1,23 @@
+class TestCentroDistribuicao is subclass of SuiteTestCase
+
+operations
+  public testConstructor() == (
+    dcl centro: CentroDistribuicao := new CentroDistribuicao("Porto");
+    IO`println("\t\t Testing Constructor");
+    assertEqual("Porto", centro.localizacao);
+  );
+	
+	public testManageCenter()  == (
+	--	 dcl centro: CentroDistribuicao := new CentroDistribuicao("Porto");
+	--	 dcl produto: Produto := new Produto("Maca" ,"Golden", 5);
+	--	 dcl produto2: Produto := new Produto("Maracuja","Rose", 1);
+		 
+		 IO`println("\t\t TODO");	 
+);
+	
+  public testAll() == (
+    IO`println("\t Testing CentroDistribuicao class");
+    testConstructor();
+    testManageCenter();
+  );
+end TestCentroDistribuicao

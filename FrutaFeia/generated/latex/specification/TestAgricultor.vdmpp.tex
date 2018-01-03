@@ -1,0 +1,62 @@
+\begin{vdmpp}[breaklines=true]
+class TestAgricultor is subclass of SuiteTestCase
+ 
+operations
+  public (*@\vdmnotcovered{testConstructor}@*)() == (
+(*@
+\label{testConstructor:5}
+@*)
+   dcl agricultor: Agricultor := new Agricultor("Pedro", "Mirandela");
+    IO`println("\t\t Testing Constructor");
+    assertEqual("Pedro", agricultor.nome);
+    assertEqual("Mirandela", agricultor.localizacao);
+  );
+  
+ public (*@\vdmnotcovered{testAdicionaAndRemovePesoProduto}@*)() == (
+(*@
+\label{testAdicionaAndRemovePesoProduto:12}
+@*)
+  dcl agricultor: Agricultor := new Agricultor("Pedro", "Mirandela");
+   dcl produto: Produto := new Produto("Maca", "Golden", 5);
+  IO`println("\t\t Testing AdicionaAndRemovePesoProduto");
+  agricultor.adicionaProduto(produto);
+  assertEqual(5, produto.peso);  
+  assertFalse(agricultor.adicionaPesoProduto("Banana", 5));
+  assertTrue(agricultor.adicionaPesoProduto(produto.nome, 5));
+  assertEqual(10, produto.peso);  
+  assertFalse(agricultor.removePesoProduto("Banana", 5));
+  assertTrue(agricultor.removePesoProduto(produto.nome, 5));
+  assertEqual(5, produto.peso);
+  assertEqual(1, card dom agricultor.stock);
+(*@
+\label{testAll:24}
+@*)
+  agricultor.removeProduto("Maca"); 
+  assertEqual(0, card dom agricultor.stock);
+  );
+   
+  public (*@\vdmnotcovered{testAll}@*)() == (
+    IO`println("\t Testing Agricultor class");
+    testConstructor();
+    testAdicionaAndRemovePesoProduto();
+  );
+
+end TestAgricultor
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[testAdicionaAndRemovePesoProduto:12]{testAdicionaAndRemovePesoProduto} & 12&98.4\% & 13 \\
+\hline
+\hyperref[testAll:24]{testAll} & 24&83.3\% & 11 \\
+\hline
+\hyperref[testConstructor:5]{testConstructor} & 5&93.7\% & 12 \\
+\hline
+\hline
+TestAgricultor.vdmpp & & 96.4\% & 36 \\
+\hline
+\end{longtable}
+

@@ -1,0 +1,110 @@
+class TestFrutaFeia is subclass of SuiteTestCase
+
+operations 
+
+public testAdicionaRemove() == (
+	dcl frutaFeia : FrutaFeia := new FrutaFeia();	
+	dcl agricultor: Agricultor := new Agricultor("Pedro", "Mirandela");
+	dcl cliente: Cliente := new Cliente("Fernando", <HOMEM>);
+	dcl centro: CentroDistribuicao := new CentroDistribuicao("Porto");
+	IO`println("\t Testing AdicionaRemove");
+	assertEqual(0, card frutaFeia.agricultores);	 
+	frutaFeia.adicionaAgricultor(agricultor);
+	assertEqual(1, card frutaFeia.agricultores);
+	frutaFeia.removeAgricultor(agricultor);
+	assertEqual(0, card frutaFeia.agricultores);
+	assertEqual(0, card frutaFeia.centros);
+	frutaFeia.adicionaCentro(centro);
+	assertEqual(1, card frutaFeia.centros);
+	assertEqual(0, card frutaFeia.getTodosClientes());
+	frutaFeia.adicionaCliente(cliente, "Porto");
+	assertEqual(1, card frutaFeia.getTodosClientes());
+	frutaFeia.removeCliente(cliente, "Porto");
+	assertEqual(0, card frutaFeia.getTodosClientes());
+	frutaFeia.removeCentro(centro);
+	assertEqual(0, card frutaFeia.centros);
+);
+
+public testGeraCestaPequena() == (
+	dcl frutaFeia : FrutaFeia := new FrutaFeia();	
+	dcl agricultor: Agricultor := new Agricultor("Pedro", "Mirandela"); 
+	dcl agricultor2: Agricultor := new Agricultor("Manuel", "Porto");	
+	dcl pera: Produto := new Produto("Pera", "Mate", 2);
+	dcl manga: Produto := new Produto("Manga", "Rosa", 3);
+	dcl ananas: Produto := new Produto("Ananas", "Preto", 4);
+	dcl maca: Produto := new Produto("Maca", "Golden", 5);
+	dcl maracuja: Produto := new Produto("Maracuja", "Bambuin", 6);
+  dcl alface: Produto := new Produto("Alface", "Alfacinha", 7);
+  dcl pimento: Produto := new Produto("Pimento", "Verde", 8);
+  dcl laranja: Produto := new Produto("Laranja", "Algarve", 8);
+	dcl cesta: Cesta;
+	IO`println("\t Testing GeraCestaPequena");	
+	
+	agricultor.adicionaProduto(pera);
+	agricultor.adicionaProduto(manga);
+	agricultor.adicionaProduto(ananas);
+	
+	agricultor2.adicionaProduto(maca);
+	agricultor2.adicionaProduto(maracuja);
+	agricultor2.adicionaProduto(alface);
+	agricultor2.adicionaProduto(pimento);
+	agricultor2.adicionaProduto(laranja);
+	
+	frutaFeia.adicionaAgricultor(agricultor);
+	frutaFeia.adicionaAgricultor(agricultor2);
+	
+	IO`println("\t\t Cesta:" );
+	cesta := frutaFeia.geraCestaPequena();
+	IO`println(cesta);	
+	assertEqual(7, card cesta.produtos);
+	cesta := frutaFeia.geraCestaGrande();
+	assertEqual(<GRANDE>, cesta.tamanho);	
+);
+
+public testeGereTodasEncomendas() == (
+	dcl frutaFeia : FrutaFeia := new FrutaFeia();	
+	dcl agricultor: Agricultor := new Agricultor("Pedro", "Mirandela"); 
+	dcl agricultor2: Agricultor := new Agricultor("Manuel", "Porto");
+	dcl pera: Produto := new Produto("Pera", "Mate", 2);
+	dcl manga: Produto := new Produto("Manga", "Rosa", 3);
+	dcl ananas: Produto := new Produto("Ananas", "Preto", 4);
+	dcl maca: Produto := new Produto("Maca", "Golden", 5);
+	dcl maracuja: Produto := new Produto("Maracuja", "Bambuin", 6);
+  dcl alface: Produto := new Produto("Alface", "Alfacinha", 7);
+  dcl pimento: Produto := new Produto("Pimento", "Verde", 8);
+  dcl laranja: Produto := new Produto("Laranja", "Algarve", 8);  
+  dcl centro: CentroDistribuicao := new CentroDistribuicao("Porto");
+  dcl cliente: Cliente := new Cliente("Fernando", <HOMEM>);	
+	IO`println("\t Testing GereTodasEncomendas:" );		
+		
+	agricultor.adicionaProduto(pera);
+	agricultor.adicionaProduto(manga);
+	agricultor.adicionaProduto(ananas);
+	
+	agricultor2.adicionaProduto(maca);
+	agricultor2.adicionaProduto(maracuja);
+	agricultor2.adicionaProduto(alface);
+	agricultor2.adicionaProduto(pimento);
+	agricultor2.adicionaProduto(laranja);
+		
+	frutaFeia.adicionaAgricultor(agricultor);
+	frutaFeia.adicionaAgricultor(agricultor2);
+	
+	frutaFeia.adicionaCentro(centro);
+	frutaFeia.adicionaCliente(cliente, "Porto");
+	
+	cliente.mudaCesta(new Cesta());	
+	frutaFeia.geraCestaTodosClientes();	
+	IO`println("\t\t Cliente Encomenda:" );
+	IO`println(cliente.encomenda);
+	IO`println(card centro.clientes);
+	IO`println(centro.clientes);	
+);
+
+public testAll() == (
+	testAdicionaRemove();
+	testGeraCestaPequena();
+	testeGereTodasEncomendas();
+);
+
+end TestFrutaFeia
