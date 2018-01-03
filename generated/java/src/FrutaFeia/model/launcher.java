@@ -20,13 +20,15 @@ public class launcher {
 		String name = scan.next();
 		System.out.println("Género(H/M): ");
 		String genre = scan.next();
+		System.out.println("Localização: ");
+		String local = scan.next();
 
 		if(genre.equals("H"))
 			cliente = new Cliente(name, Quotes.HOMEMQuote.getInstance());
 		else
 			cliente = new Cliente(name, Quotes.MULHERQuote.getInstance());
 
-		frutaFeia.adicionaCliente(cliente, "Porto");
+		frutaFeia.adicionaCliente(cliente, local);
 
 		System.out.println("Cliente "+name+" criado com sucesso!");
 
@@ -93,7 +95,7 @@ public class launcher {
 
 	public static void displayManageAgricultoresMenu(Scanner scan){
 		System.out.println("\n		<< Menu Admin >>\n");
-		System.out.println("		>> 1 - Gerir Clientes");
+		System.out.println("		>> 1 - Ver agricultores");
 		System.out.println("		>> 2 - Gerir Agricultores");
 		System.out.println("		>> 3 - Gerir Centros");
 		System.out.println("		>> 4 - Voltar");
@@ -128,6 +130,45 @@ public class launcher {
 		}
 	}
 
+	public static void  viewCentros(Scanner scan){
+		System.out.println(frutaFeia.centros);
+		String input = scan.next();
+		displayManageCentrosMenu(scan);
+	}
+
+	public static void addCentro(Scanner scan){
+		CentroDistribuicao centro;
+
+		System.out.println("Lccalização: ");
+		String local = scan.next();
+
+		centro = new CentroDistribuicao(local);
+
+		frutaFeia.adicionaCentro(centro);
+
+		System.out.println("Centro "+local+" criado com sucesso!");
+
+		String input = scan.next();
+		displayManageCentrosMenu(scan);
+	}
+
+	// TODO - Terminar
+	public static void  removeCentro(Scanner scan){
+		CentroDistribuicao centro;
+
+		System.out.println("local: ");
+		String local = scan.next();
+
+		centro = new CentroDistribuicao(local);
+
+		frutaFeia.removeCentro(centro);
+
+		System.out.println("Centro "+local+" removido com sucesso!");
+
+		String input = scan.next();
+		displayManageClientsMenu(scan);
+	}
+
 	public static void displayManageCentrosMenu(Scanner scan){
 		System.out.println("\n		<< Menu Admin >>\n");
 		System.out.println("		>> 1 - Ver Centros");
@@ -145,12 +186,15 @@ public class launcher {
 			switch(input){
 				case 1:
 					menuDone = true;
+					viewCentros(scan);
 					break;
 				case 2:
 					menuDone = true;
+					addCentro(scan);
 					break;
 				case 3:
 					menuDone = true;
+					removeCentro(scan);
 					break;
 				case 4:
 					menuDone = true;
@@ -165,6 +209,7 @@ public class launcher {
 		}
 	}
 
+	// TODO - TERMINAR
 	public static void createCestas(Scanner scan){
 
 	}
