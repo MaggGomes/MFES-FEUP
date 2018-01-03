@@ -48,15 +48,15 @@ public class Cliente {
   public void verificaCestaParametros() {
 
     if (Utils.equals(encomenda.tamanho, FrutaFeia.quotes.PEQUENAQuote.getInstance())) {
-      Boolean andResult_40 = false;
+      Boolean andResult_39 = false;
 
       if (Utils.equals(encomenda.produtos.size(), 7L)) {
         if (encomenda.peso.doubleValue() >= 3L) {
-          andResult_40 = true;
+          andResult_39 = true;
         }
       }
 
-      if (andResult_40) {
+      if (andResult_39) {
         estadoEnc = FrutaFeia.quotes.PRONTAQuote.getInstance();
       } else {
         estadoEnc = FrutaFeia.quotes.POR_CONCLUIRQuote.getInstance();
@@ -64,15 +64,15 @@ public class Cliente {
 
     } else {
       if (Utils.equals(encomenda.tamanho, FrutaFeia.quotes.GRANDEQuote.getInstance())) {
-        Boolean andResult_41 = false;
+        Boolean andResult_40 = false;
 
         if (Utils.equals(encomenda.produtos.size(), 8L)) {
           if (encomenda.peso.doubleValue() >= 6L) {
-            andResult_41 = true;
+            andResult_40 = true;
           }
         }
 
-        if (andResult_41) {
+        if (andResult_40) {
           estadoEnc = FrutaFeia.quotes.PRONTAQuote.getInstance();
         } else {
           estadoEnc = FrutaFeia.quotes.POR_CONCLUIRQuote.getInstance();
