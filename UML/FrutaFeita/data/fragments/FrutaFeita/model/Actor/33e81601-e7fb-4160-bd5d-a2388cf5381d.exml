@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Operador plataforma Fruta Feia" version="3">
+  <DEPS>
+    <ID name="Operador plataforma Fruta Feia" mc="Actor" uid="33e81601-e7fb-4160-bd5d-a2388cf5381d"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Operador plataforma Fruta Feia" mc="Actor" uid="33e81601-e7fb-4160-bd5d-a2388cf5381d"/>
+    <PID name="frutafeita" mc="Package" uid="097f872c-936b-4a0b-b765-80c8bd339202"/>
+    <ATTRIBUTES>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Operador plataforma Fruta Feia]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES></DEPENDENCIES>
+  </OBJECT>
+</EXT>
