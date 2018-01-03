@@ -25,9 +25,15 @@ public class CentroDistribuicao {
     clientes = SetUtil.union(Utils.copy(clientes), SetUtil.set(cliente));
   }
 
-  public void removeCliente(final Cliente cliente) {
+  public void removeCliente(final String clienteNome) {
 
-    clientes = SetUtil.diff(Utils.copy(clientes), SetUtil.set(cliente));
+    for (Iterator iterator_19 = clientes.iterator(); iterator_19.hasNext(); ) {
+      Cliente cliente = (Cliente) iterator_19.next();
+      if (Utils.equals(cliente.nome, clienteNome)) {
+        clientes = SetUtil.diff(Utils.copy(clientes), SetUtil.set(cliente));
+        return;
+      }
+    }
   }
 
   public CentroDistribuicao() {}

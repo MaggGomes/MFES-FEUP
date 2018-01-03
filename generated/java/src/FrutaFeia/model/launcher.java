@@ -53,6 +53,49 @@ public class launcher {
 		displayManageClientsMenu(scan);
 	}
 
+	public static void  viewAgricultores(Scanner scan){
+		System.out.println(frutaFeia.agricultores);
+		String input = scan.next();
+		displayManageAgricultoresMenu(scan);
+	}
+
+	public static void addAgricultor(Scanner scan){
+		Agricultor agricultor;
+
+		System.out.println("Nome: ");
+		String name = scan.next();
+		System.out.println("Localização: ");
+		String local = scan.next();
+
+		agricultor = new Agricultor(name, local);
+
+		frutaFeia.adicionaAgricultor(agricultor);
+
+		System.out.println("Agricultor "+name+" criado com sucesso!");
+
+		String input = scan.next();
+		displayManageAgricultoresMenu(scan);
+	}
+
+	// TODO - Terminar
+	public static void  removeAgricultor(Scanner scan){
+		Agricultor agricultor;
+
+		System.out.println("Nome: ");
+		String name = scan.next();
+		System.out.println("Localização: ");
+		String local = scan.next();
+
+		agricultor = new Agricultor(name, local);
+
+		frutaFeia.removeAgricultor(agricultor);
+
+		System.out.println("Agricultor "+name+" removido com sucesso!");
+
+		String input = scan.next();
+		displayManageAgricultoresMenu(scan);
+	}
+
 	public static void displayManageClientsMenu(Scanner scan){
 		System.out.println("\n		<< Menu Admin >>\n");
 		System.out.println("		>> 1 - Ver Clientes");
@@ -95,9 +138,9 @@ public class launcher {
 
 	public static void displayManageAgricultoresMenu(Scanner scan){
 		System.out.println("\n		<< Menu Admin >>\n");
-		System.out.println("		>> 1 - Ver agricultores");
-		System.out.println("		>> 2 - Gerir Agricultores");
-		System.out.println("		>> 3 - Gerir Centros");
+		System.out.println("		>> 1 - Ver Agricultores");
+		System.out.println("		>> 2 - Adicionar Agricultor");
+		System.out.println("		>> 3 - Remover Agricultor");
 		System.out.println("		>> 4 - Voltar");
 		System.out.println("		>> 5 - Sair");
 		System.out.println();
@@ -110,12 +153,15 @@ public class launcher {
 			switch(input){
 				case 1:
 					menuDone = true;
+					viewAgricultores(scan);
 					break;
 				case 2:
 					menuDone = true;
+					addAgricultor(scan);
 					break;
 				case 3:
 					menuDone = true;
+					removeAgricultor(scan);
 					break;
 				case 4:
 					menuDone = true;
@@ -303,6 +349,7 @@ public class launcher {
 		System.out.println("		>> 1 - Ver produtos ");
 		System.out.println("		>> 2 - Adicionar produto");
 		System.out.println("		>> 3 - Remover produto");
+		System.out.println("		>> 3 - Voltar");
 		System.out.println("		>> 4 - Sair");
 		System.out.println();
 

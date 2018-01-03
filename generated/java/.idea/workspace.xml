@@ -26,14 +26,20 @@
       <file leaf-file-name="launcher.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/FrutaFeia/model/launcher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1051">
-              <caret line="97" column="59" lean-forward="false" selection-start-line="97" selection-start-column="59" selection-end-line="97" selection-end-column="59" />
+            <state relative-caret-position="2941">
+              <caret line="490" column="5" lean-forward="true" selection-start-line="490" selection-start-column="5" selection-end-line="490" selection-end-column="5" />
               <folding>
                 <element signature="method#viewClients#0;class#launcher#0" expanded="false" />
                 <element signature="method#addClient#0;class#launcher#0" expanded="false" />
+                <element signature="method#removeClient#0;class#launcher#0" expanded="false" />
+                <element signature="method#viewAgricultores#0;class#launcher#0" expanded="false" />
+                <element signature="method#addAgricultor#0;class#launcher#0" expanded="false" />
+                <element signature="method#removeAgricultor#0;class#launcher#0" expanded="false" />
                 <element signature="method#displayManageClientsMenu#0;class#launcher#0" expanded="false" />
+                <element signature="method#displayManageAgricultoresMenu#0;class#launcher#0" expanded="false" />
                 <element signature="method#viewCentros#0;class#launcher#0" expanded="false" />
                 <element signature="method#addCentro#0;class#launcher#0" expanded="false" />
+                <element signature="method#removeCentro#0;class#launcher#0" expanded="false" />
                 <element signature="method#displayManageCentrosMenu#0;class#launcher#0" expanded="false" />
                 <element signature="method#displayAdminMenu#0;class#launcher#0" expanded="false" />
                 <element signature="method#displayMainMenu#0;class#launcher#0" expanded="false" />
@@ -57,7 +63,7 @@
       <file leaf-file-name="FrutaFeia.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/FrutaFeia/model/FrutaFeia.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
+            <state relative-caret-position="221">
               <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
               <folding />
             </state>
@@ -769,12 +775,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1514949724929</updated>
-      <workItem from="1514949726602" duration="23230000" />
+      <workItem from="1514949726602" duration="24321000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23230000" />
+    <option name="totallyTimeSpent" value="24321000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -823,7 +829,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/FrutaFeia/model/launcher.java</url>
-          <line>382</line>
+          <line>429</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
@@ -927,28 +933,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FrutaFeia/model/Agricultor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="24" lean-forward="true" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-          <folding>
-            <element signature="e#66#90#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Quotes/MULHERQuote.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FrutaFeia/model/Cliente.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -971,22 +959,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FrutaFeia/model/FrutaFeia.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="221">
           <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/FrutaFeia/model/Cliente.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FrutaFeia/model/Agricultor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="24" lean-forward="true" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+          <folding>
+            <element signature="e#66#90#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/FrutaFeia/model/launcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1051">
-          <caret line="97" column="59" lean-forward="false" selection-start-line="97" selection-start-column="59" selection-end-line="97" selection-end-column="59" />
+        <state relative-caret-position="2941">
+          <caret line="490" column="5" lean-forward="true" selection-start-line="490" selection-start-column="5" selection-end-line="490" selection-end-column="5" />
           <folding>
             <element signature="method#viewClients#0;class#launcher#0" expanded="false" />
             <element signature="method#addClient#0;class#launcher#0" expanded="false" />
+            <element signature="method#removeClient#0;class#launcher#0" expanded="false" />
+            <element signature="method#viewAgricultores#0;class#launcher#0" expanded="false" />
+            <element signature="method#addAgricultor#0;class#launcher#0" expanded="false" />
+            <element signature="method#removeAgricultor#0;class#launcher#0" expanded="false" />
             <element signature="method#displayManageClientsMenu#0;class#launcher#0" expanded="false" />
+            <element signature="method#displayManageAgricultoresMenu#0;class#launcher#0" expanded="false" />
             <element signature="method#viewCentros#0;class#launcher#0" expanded="false" />
             <element signature="method#addCentro#0;class#launcher#0" expanded="false" />
+            <element signature="method#removeCentro#0;class#launcher#0" expanded="false" />
             <element signature="method#displayManageCentrosMenu#0;class#launcher#0" expanded="false" />
             <element signature="method#displayAdminMenu#0;class#launcher#0" expanded="false" />
             <element signature="method#displayMainMenu#0;class#launcher#0" expanded="false" />
