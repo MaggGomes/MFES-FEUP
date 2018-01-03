@@ -1,11 +1,8 @@
 class Agricultor
 instance variables
-  public stock: map NomeProduto to Produto := { |-> };
+  public stock: map Produto`NomeProduto to Produto := { |-> };
   public nome:seq of (char);
   public localizacao:seq of (char);
-
-types	
-	public NomeProduto = Produto`NomeProduto;
 
 operations
   public  Agricultor : seq of (char) * seq of (char) ==> Agricultor
@@ -20,13 +17,13 @@ operations
   post  stock = stock~ munion {produto.nome |-> produto};
 
 	--remove um produto do agricultor
-  public removeProduto : NomeProduto ==> ()
+  public removeProduto : Produto`NomeProduto ==> ()
   	removeProduto(nomeProduto) == stock := {nomeProduto} <-: stock
   pre len nomeProduto > 0 and nomeProduto in set dom stock
   post nomeProduto not in set dom stock;
   
   --adicona peso a um produto no agricultor se existir 
-  public  adicionaPesoProduto : NomeProduto * real ==> bool
+  public  adicionaPesoProduto : Produto`NomeProduto * real ==> bool
   adicionaPesoProduto(nomeProduto, peso) == 
   	(
   		if ( nomeProduto in set dom stock ) 
@@ -38,7 +35,7 @@ operations
   
   
   -- remove peso de um produto se existir 
-  public  removePesoProduto : NomeProduto * real ==> bool
+  public  removePesoProduto : Produto`NomeProduto * real ==> bool
   removePesoProduto(nomeProduto, peso) ==
     (
   		if ( nomeProduto in set dom stock ) 
