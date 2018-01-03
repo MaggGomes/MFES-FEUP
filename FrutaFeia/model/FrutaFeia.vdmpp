@@ -4,6 +4,11 @@ instance variables
 	public centros : set of CentroDistribuicao;
 	public agricultores: set of Agricultor;
 	
+	inv forall centro in set centros & exists1 cent in set centros & centro.localizacao = cent.localizacao;
+	inv forall agricultor in set agricultores & exists1 agro in set agricultores & agro.nome = agricultor.nome;
+	inv forall centro in set centros & forall cli in set centro.clientes & exists1 cliente in set centro.clientes & cli.nome = cliente.nome;
+			
+	
 operations 
 	public FrutaFeia: () ==> FrutaFeia
 	FrutaFeia() == (centros := {}; agricultores := {})
@@ -16,7 +21,7 @@ operations
 	do
 		 if ( centro.localizacao = centroLocal)
 		 	then  centro.adicionaCliente(cliente)
-	pre forall centro in set centros & cliente not in set centro.clientes
+	pre forall centro in set centros & (forall cli in set centro.clientes & cli.nome <> cliente.nome)
 	post exists1 centro in set centros & cliente in set centro.clientes;  
 	
 	-- Remove cliente do seu centro respectivo
@@ -26,15 +31,15 @@ operations
 	do
 		 if ( centro.localizacao = centroLocal)
 		 	then  centro.removeCliente(clienteNome)
-	pre exists1 centro in set centros & (exists cliente in set centro.clientes & cliente.nome = clienteNome)
+	pre exists1 centro in set centros & (exists1 cliente in set centro.clientes & cliente.nome = clienteNome)
 	post forall  centro in set centros & (forall cliente in set centro.clientes & cliente.nome <> clienteNome);  
 	
 	-- adiciona um centro de Distribuicao do registo
 	public adicionaCentro: CentroDistribuicao  ==> ()
 	adicionaCentro(centro) ==
 			centros := centros union {centro}
-	pre centro <> undefined and centro not in set centros
-	post card centros = card centros~ +1 ;
+	pre centros <> undefined and forall cent in set centros & centro.localizacao <> cent.localizacao
+	post card centros = card centros~ +1 and exists1 cent in set centros &  centro.localizacao= cent.localizacao;
 	
 	-- remove um Centro de Distribuiçao do registo
 	public removeCentro: CentroDistribuicao`Local  ==> ()
