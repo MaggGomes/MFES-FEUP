@@ -14,7 +14,7 @@ operations
 		assertEqual(0, card centro.clientes);
 		centro.adicionaCliente(cliente);
 		assertEqual(1, card centro.clientes);
-		centro.removeCliente(cliente);
+		centro.removeCliente(cliente.nome);
 		assertEqual(0, card centro.clientes);
 );
 	

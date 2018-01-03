@@ -20,14 +20,14 @@ operations
 	post exists1 centro in set centros & cliente in set centro.clientes;  
 	
 	-- Remove cliente do seu centro respectivo
-	public removeCliente:  Cliente * CentroDistribuicao`Local ==> ()  
-	removeCliente(cliente, centroLocal) == 
+	public removeCliente:  Cliente`Nome * CentroDistribuicao`Local ==> ()  
+	removeCliente(clienteNome, centroLocal) == 
 		for all centro in set centros 
 	do
 		 if ( centro.localizacao = centroLocal)
-		 	then  centro.removeCliente(cliente)
-	pre exists1 centro in set centros & cliente in set centro.clientes
-	post forall  centro in set centros & cliente not in set centro.clientes;  
+		 	then  centro.removeCliente(clienteNome)
+	pre exists1 centro in set centros & (exists cliente in set centro.clientes & cliente.nome = clienteNome)
+	post forall  centro in set centros & (forall cliente in set centro.clientes & cliente.nome <> clienteNome);  
 	
 	-- adiciona um centro de Distribuicao do registo
 	public adicionaCentro: CentroDistribuicao  ==> ()
@@ -37,11 +37,14 @@ operations
 	post card centros = card centros~ +1 ;
 	
 	-- remove um Centro de Distribuiçao do registo
-	public removeCentro: CentroDistribuicao  ==> ()
-	removeCentro(centro) ==
-			centros := centros \ {centro}
-	pre centro <> undefined and centro in set centros
-	post card centros = card centros~ - 1 ;
+	public removeCentro: CentroDistribuicao`Local  ==> ()
+	removeCentro(centroLocal) ==
+		for all centro in set centros
+		do
+			if(centroLocal = centro.localizacao)
+				then (centros := centros \ {centro}; return)
+	pre centros <> undefined and exists1 centro in set centros & centro.localizacao = centroLocal
+	post card centros = card centros~ - 1  and forall centro in set centros & centro.localizacao <> centroLocal;
 	
 	-- adiciona um agricultor do registo
 	public adicionaAgricultor: Agricultor ==> ()
@@ -51,11 +54,14 @@ operations
 	post card agricultores = card agricultores~ +1 ;
 	
 	 -- retira um agricultor registo 
-	public removeAgricultor: Agricultor  ==> ()
-	removeAgricultor(agricultor) ==
-			agricultores := agricultores \ {agricultor} 
-	pre agricultor <> undefined and agricultor in set agricultores
-	post card agricultores = card agricultores~ - 1 and agricultor not in set agricultores;
+	public removeAgricultor: Agricultor`Nome  ==> ()
+	removeAgricultor(agricultorNome) ==
+	for all agricultor in set agricultores
+		do 
+			if( agricultor.nome = agricultorNome)
+			then(agricultores := agricultores \ {agricultor}; return;) 
+	pre agricultores <> undefined and exists1 agricultor in set agricultores & agricultor.nome = agricultorNome
+	post card agricultores = card agricultores~ - 1 and forall agricultor in set agricultores & agricultor.nome <> agricultorNome ;
 	
 	-- Retorna todos os clientes distribuidos pelos diferentes centros
 	public getTodosClientes: () ==> set of Cliente

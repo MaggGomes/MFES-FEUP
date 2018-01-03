@@ -1,11 +1,15 @@
 class Agricultor
+
+types 
+	public Nome = seq of (char);
+	
 instance variables
   public stock: map Produto`NomeProduto to Produto := { |-> };
-  public nome:seq of (char);
+  public nome:Nome;
   public localizacao:seq of (char);
 
 operations
-  public  Agricultor : seq of (char) * seq of (char) ==> Agricultor
+  public  Agricultor : Nome * seq of (char) ==> Agricultor
   	Agricultor(n, l) == ( nome := n; localizacao := l; stock := {|->}; return self)
   pre len n > 0 and len l > 0
  	post nome = n and localizacao = l and stock = {|->};

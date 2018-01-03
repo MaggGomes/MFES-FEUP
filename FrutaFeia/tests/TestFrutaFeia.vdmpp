@@ -11,7 +11,7 @@ public testAdicionaRemove() == (
 	assertEqual(0, card frutaFeia.agricultores);	 
 	frutaFeia.adicionaAgricultor(agricultor);
 	assertEqual(1, card frutaFeia.agricultores);
-	frutaFeia.removeAgricultor(agricultor);
+	frutaFeia.removeAgricultor(agricultor.nome);
 	assertEqual(0, card frutaFeia.agricultores);
 	assertEqual(0, card frutaFeia.centros);
 	frutaFeia.adicionaCentro(centro);
@@ -19,9 +19,9 @@ public testAdicionaRemove() == (
 	assertEqual(0, card frutaFeia.getTodosClientes());
 	frutaFeia.adicionaCliente(cliente, "Porto");
 	assertEqual(1, card frutaFeia.getTodosClientes());
-	frutaFeia.removeCliente(cliente, "Porto");
+	frutaFeia.removeCliente(cliente.nome, "Porto");
 	assertEqual(0, card frutaFeia.getTodosClientes());
-	frutaFeia.removeCentro(centro);
+	frutaFeia.removeCentro(centro.localizacao);
 	assertEqual(0, card frutaFeia.centros);
 );
 

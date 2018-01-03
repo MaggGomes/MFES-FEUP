@@ -2,16 +2,16 @@ class Cliente
 
 types 
 	public Genero = <HOMEM> | <MULHER>;
-	public EncomendaStatus = <SEM_ENC> | <COM_ENC> | <ENTREGUE> | <CANCELADA> | <PRONTA> | <POR_CONCLUIR>
-	
+	public EncomendaStatus = <SEM_ENC> | <COM_ENC> | <ENTREGUE> | <CANCELADA> | <PRONTA> | <POR_CONCLUIR>;
+	public Nome = seq1 of (char);
 instance variables
   public encomenda:Cesta;
   public estadoEnc: EncomendaStatus;
-  public nome:seq1 of (char);
+  public nome:Nome;
   public genero: Genero;
 
 operations
-  public  Cliente : seq1 of (char) * Genero ==> Cliente
+  public  Cliente : Nome * Genero ==> Cliente
   Cliente(n, gen) == (nome:= n; genero:= gen; estadoEnc := <SEM_ENC>; encomenda:= new Cesta(); return self;)
   pre len n > 0 and gen <> undefined
   post nome = n and genero = gen and estadoEnc = <SEM_ENC>;
