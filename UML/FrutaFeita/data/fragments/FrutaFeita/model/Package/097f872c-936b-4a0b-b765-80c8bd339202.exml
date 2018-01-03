@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="frutafeita" version="3">
+  <DEPS>
+    <ID name="frutafeita" mc="Package" uid="097f872c-936b-4a0b-b765-80c8bd339202"/>
+    <COMPID name="Acrescenta produto" mc="UseCase" uid="997f9904-168b-41de-a8a8-3e948967d7ed"/>
+    <COMPID name="Adiciona clientes" mc="UseCase" uid="7a6d5c8f-a1c3-4a0b-82c6-e01587457728"/>
+    <COMPID name="Adiciona quantidade de produto" mc="UseCase" uid="89337498-f5a1-4368-9a78-29693efcb929"/>
+    <COMPID name="Adquire cesta" mc="UseCase" uid="68770a23-9b10-4079-afa0-fc9884a698a8"/>
+    <COMPID name="Agricultor" mc="Actor" uid="109e51a0-e42f-4f33-aa80-413bfccbf33f"/>
+    <COMPID name="Cliente" mc="Actor" uid="de35d84e-30c8-432b-af4b-bbf7e3624d95"/>
+    <COMPID name="Cria pedido" mc="UseCase" uid="a0dbfd34-a76f-48b3-8dcf-aa4ad2434893"/>
+    <COMPID name="Encomenda sem stock" mc="UseCase" uid="e4dbb46d-af82-4c51-821f-10bdd86037d4"/>
+    <COMPID name="Envia cesta para centro de distribuição" mc="UseCase" uid="63b95cf4-290f-496e-9b8b-34daff839e12"/>
+    <COMPID name="Gera cesta para cada cliente" mc="UseCase" uid="ab6f55d8-3c15-4959-8535-f32326b800c2"/>
+    <COMPID name="Gere agricultores" mc="UseCase" uid="7a9177a2-e208-460b-acf8-3c19bff31d25"/>
+    <COMPID name="Gere centros de distribuição" mc="UseCase" uid="7807248a-28d5-4e79-9201-b60d872a82a2"/>
+    <COMPID name="Gere clientes" mc="UseCase" uid="0edb0870-9538-4525-a002-e84c6cf341f8"/>
+    <COMPID name="Gere plataforma" mc="UseCase" uid="53a76373-6749-458b-8820-d591c87caa72"/>
+    <COMPID name="Insere produto" mc="UseCase" uid="add389a3-df11-46a6-ad73-5ba37e25e023"/>
+    <COMPID name="Levanta cesta" mc="UseCase" uid="73f09377-6834-4859-bc21-40033c965549"/>
+    <COMPID name="Operador logístico" mc="Actor" uid="0786629b-40a2-4251-9f29-91812f7bc6d2"/>
+    <COMPID name="Operador plataforma Fruta Feia" mc="Actor" uid="33e81601-e7fb-4160-bd5d-a2388cf5381d"/>
+    <COMPID name="Processa encomendas" mc="UseCase" uid="e406723f-ec15-4fac-8f10-f5799752a618"/>
+    <COMPID name="Seleciona cesta" mc="UseCase" uid="f55e58f7-60fb-4719-a828-53e896bbe4b7"/>
+    <COMPID name="frutafeita Use Case diagram" mc="UseCaseDiagram" uid="b4a6d026-abb0-4da7-942e-86200ae803f4"/>
+    <COMPID name="overview diagram" mc="ClassDiagram" uid="469f1ce2-dd82-427d-88f1-9d10724e1ac8"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="frutafeita" mc="Package" uid="097f872c-936b-4a0b-b765-80c8bd339202"/>
+    <PID name="FrutaFeita" mc="Project" uid="2e0c804a-504e-4169-883a-f93d75996bd9"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[frutafeita]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="Cliente" mc="Actor" uid="de35d84e-30c8-432b-af4b-bbf7e3624d95"/>
+        <COMPID name="Adquire cesta" mc="UseCase" uid="68770a23-9b10-4079-afa0-fc9884a698a8"/>
+        <COMPID name="Cria pedido" mc="UseCase" uid="a0dbfd34-a76f-48b3-8dcf-aa4ad2434893"/>
+        <COMPID name="Seleciona cesta" mc="UseCase" uid="f55e58f7-60fb-4719-a828-53e896bbe4b7"/>
+        <COMPID name="Levanta cesta" mc="UseCase" uid="73f09377-6834-4859-bc21-40033c965549"/>
+        <COMPID name="Agricultor" mc="Actor" uid="109e51a0-e42f-4f33-aa80-413bfccbf33f"/>
+        <COMPID name="Acrescenta produto" mc="UseCase" uid="997f9904-168b-41de-a8a8-3e948967d7ed"/>
+        <COMPID name="Operador logístico" mc="Actor" uid="0786629b-40a2-4251-9f29-91812f7bc6d2"/>
+        <COMPID name="Insere produto" mc="UseCase" uid="add389a3-df11-46a6-ad73-5ba37e25e023"/>
+        <COMPID name="Adiciona quantidade de produto" mc="UseCase" uid="89337498-f5a1-4368-9a78-29693efcb929"/>
+        <COMPID name="Processa encomendas" mc="UseCase" uid="e406723f-ec15-4fac-8f10-f5799752a618"/>
+        <COMPID name="Adiciona clientes" mc="UseCase" uid="7a6d5c8f-a1c3-4a0b-82c6-e01587457728"/>
+        <COMPID name="Gera cesta para cada cliente" mc="UseCase" uid="ab6f55d8-3c15-4959-8535-f32326b800c2"/>
+        <COMPID name="Envia cesta para centro de distribuição" mc="UseCase" uid="63b95cf4-290f-496e-9b8b-34daff839e12"/>
+        <COMPID name="Encomenda sem stock" mc="UseCase" uid="e4dbb46d-af82-4c51-821f-10bdd86037d4"/>
+        <COMPID name="Operador plataforma Fruta Feia" mc="Actor" uid="33e81601-e7fb-4160-bd5d-a2388cf5381d"/>
+        <COMPID name="Gere plataforma" mc="UseCase" uid="53a76373-6749-458b-8820-d591c87caa72"/>
+        <COMPID name="Gere clientes" mc="UseCase" uid="0edb0870-9538-4525-a002-e84c6cf341f8"/>
+        <COMPID name="Gere agricultores" mc="UseCase" uid="7a9177a2-e208-460b-acf8-3c19bff31d25"/>
+        <COMPID name="Gere centros de distribuição" mc="UseCase" uid="7807248a-28d5-4e79-9201-b60d872a82a2"/>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="overview diagram" mc="ClassDiagram" uid="469f1ce2-dd82-427d-88f1-9d10724e1ac8"/>
+        <COMPID name="frutafeita Use Case diagram" mc="UseCaseDiagram" uid="b4a6d026-abb0-4da7-942e-86200ae803f4"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

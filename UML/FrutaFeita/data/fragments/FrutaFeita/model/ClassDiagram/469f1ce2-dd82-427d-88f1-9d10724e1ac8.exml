@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="overview diagram" version="3">
+  <DEPS>
+    <ID name="overview diagram" mc="ClassDiagram" uid="469f1ce2-dd82-427d-88f1-9d10724e1ac8"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="overview diagram" mc="ClassDiagram" uid="469f1ce2-dd82-427d-88f1-9d10724e1ac8"/>
+    <PID name="frutafeita" mc="Package" uid="097f872c-936b-4a0b-b765-80c8bd339202"/>
+    <ATTRIBUTES>
+      <ATT name="UiDataVersion">194</ATT>
+      <ATT name="UiData"><![CDATA[eJztU9tO4zAQ/RXL73WbUC1FCkXQoAqRpagFJJ7QNJ52DY5d2e4lf79Ok+7SokZBQuzLPtkezzlzOxNdbDJJVmis0OqcBqxDyUU/Gk1fMXVEcG+ixOULPKfazFmmOUqhGRcwN5Ax5MJpw6wDJ94YSsxQOVu+053TMJts33H5piSDV21e/gTt0H50b/QCjcuJgszHkpDrpYvBgf97ArnEKgm1lJK2+1F7B/gAnbhcIt0rIawrwRb+lqXaICuxDfIbgE2BI98Fu964Mc4aRrnzFBWS4MbF0xuf4/ZaXDjOYCndQZHtspy6wg1KcMh9Hgc9+1mYyKqw+MwlWFtNgnR/nM2CFMMW572w1Q1PeavXmwWtMx50TsMuBpD26rvt2dyt0muVwBTlQeCJM0LNaV/7Vq4ErknVjai99aotRku8UQOdLbQVzo/hCHUDqsEvIbnBgiERtmhhdRxFJEK92ebuV/PYwNqnk0COZl96J7Xbs9sXXuItkwWDX5g9wu/Zl8+h/onYBD+ignjIksvn6/HL1eXgdjgePd7FXyOMBmv3flR/RfNOAt3/EvhOCTyM7r969ke/fgPcFYUP]]></ATT>
+      <ATT name="PdeProperties"></ATT>
+      <ATT name="Name"><![CDATA[overview diagram]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES></DEPENDENCIES>
+  </OBJECT>
+</EXT>
