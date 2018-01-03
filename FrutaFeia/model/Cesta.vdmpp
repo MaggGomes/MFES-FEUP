@@ -79,4 +79,18 @@ operations
   	pre produtos <> undefined
   	post ((exists1 produto in set produtos & produto.nome = prodNome)  and   RESULT = true) or  --  produto exite retorna true ou nao existe e retorna false
   			 ((forall produto in set produtos & produto.nome <> prodNome) and RESULT=false);	
+  			 
+  ---Obtem o peso de um produto 
+  
+   public produtoNaCestaPeso : Produto`NomeProduto ==> real
+   produtoNaCestaPeso (prodNome) == 
+  	(for all produto in set produtos
+  		do 
+  			if prodNome = produto.nome
+  					then return produto.peso;
+  		return 99999;
+  	)
+  	pre produtos <> undefined 
+  	post RESULT >= 0;
+  
 end Cesta

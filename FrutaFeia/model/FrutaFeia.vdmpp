@@ -134,10 +134,13 @@ operations
 	 					  	then return cesta
 	 					  	else 
 	 					  	( --Adiciona mais X peso a um produto numa cesta
-	 					  		produto.removePeso(pesoAretirar); 
-	 					  		if(cesta.adicionaPesoProduto(produto.nome, pesoAretirar))
-	 					  		 then minimo := minimo - pesoAretirar
-	 					  		 else produto.adicionaPeso(pesoAretirar);
+	 					  		if(cesta.produtoNaCestaPeso(produto.nome) < 1.5) -- limite de +- 50% que um produto pode ocupar
+	 					  		then
+	 					  			(	produto.removePeso(pesoAretirar); 
+	 					  				if(cesta.adicionaPesoProduto(produto.nome, pesoAretirar))
+	 					  					then minimo := minimo - pesoAretirar
+	 					  				else produto.adicionaPeso(pesoAretirar)
+	 					  			);
 	 					  	);
 	 					);
 	 				);
@@ -193,10 +196,13 @@ operations
 	 					  	then return
 	 					  	else 
 	 					  	( -- tenta adicionar X peso de um produto que ja se encontra na cesta
-	 					  		produto.removePeso(pesoAretirar);
-	 					  		if(cesta.adicionaPesoProduto(produto.nome, pesoAretirar))
-	 					  		 then minimo := minimo - pesoAretirar
-	 					  		 else produto.adicionaPeso(pesoAretirar);
+	 					  		if(cesta.produtoNaCestaPeso(produto.nome) < 1.5) 
+	 					  		then (
+	 					  			produto.removePeso(pesoAretirar);
+	 					  			if(cesta.adicionaPesoProduto(produto.nome, pesoAretirar))
+	 					  		 		then minimo := minimo - pesoAretirar
+	 					  		 	else produto.adicionaPeso(pesoAretirar);
+									);
 	 					  	);
 	 					);
 	 				);

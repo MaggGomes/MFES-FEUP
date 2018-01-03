@@ -16,13 +16,14 @@ operations
   Produto(n, o, p) == (nome := n; origem := o; peso := p;return self;)
   pre len n > 0 and len o > 0 and p >= 0
   post nome = n and origem = o and peso = p;
-
+  
+  --Adiciona peso ao produto
   public  adicionaPeso : Peso ==> ()
   adicionaPeso(p) == peso := peso + p
   pre peso > 0
   post peso = peso~ + p;
   
-
+	--Remove peso do produto
   public  removePeso : Peso ==> ()
   removePeso(p) == peso := peso - p
   pre p > 0 and peso - p >= 0
