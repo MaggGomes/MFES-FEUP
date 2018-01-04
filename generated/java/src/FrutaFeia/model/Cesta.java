@@ -36,8 +36,8 @@ public class Cesta {
 
   public Boolean adicionaPesoProduto(final String nomeProduto, final Number p) {
 
-    for (Iterator iterator_11 = produtos.iterator(); iterator_11.hasNext(); ) {
-      Produto elem = (Produto) iterator_11.next();
+    for (Iterator iterator_23 = produtos.iterator(); iterator_23.hasNext(); ) {
+      Produto elem = (Produto) iterator_23.next();
       if (Utils.equals(nomeProduto, elem.nome)) {
         elem.adicionaPeso(p);
         peso = peso.doubleValue() + p.doubleValue();
@@ -49,8 +49,8 @@ public class Cesta {
 
   public Boolean removePesoProduto(final String nomeProduto, final Number p) {
 
-    for (Iterator iterator_12 = produtos.iterator(); iterator_12.hasNext(); ) {
-      Produto elem = (Produto) iterator_12.next();
+    for (Iterator iterator_24 = produtos.iterator(); iterator_24.hasNext(); ) {
+      Produto elem = (Produto) iterator_24.next();
       if (Utils.equals(nomeProduto, elem.nome)) {
         elem.removePeso(p);
         return true;
@@ -66,8 +66,8 @@ public class Cesta {
 
   public Boolean produtoNaCesta(final String prodNome) {
 
-    for (Iterator iterator_13 = produtos.iterator(); iterator_13.hasNext(); ) {
-      Produto produto = (Produto) iterator_13.next();
+    for (Iterator iterator_25 = produtos.iterator(); iterator_25.hasNext(); ) {
+      Produto produto = (Produto) iterator_25.next();
       if (Utils.equals(prodNome, produto.nome)) {
         return true;
       }
@@ -77,8 +77,8 @@ public class Cesta {
 
   public Number produtoNaCestaPeso(final String prodNome) {
 
-    for (Iterator iterator_14 = produtos.iterator(); iterator_14.hasNext(); ) {
-      Produto produto = (Produto) iterator_14.next();
+    for (Iterator iterator_26 = produtos.iterator(); iterator_26.hasNext(); ) {
+      Produto produto = (Produto) iterator_26.next();
       if (Utils.equals(prodNome, produto.nome)) {
         return produto.peso;
       }

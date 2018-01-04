@@ -6,7 +6,7 @@ types
 
 instance variables
  public clientes : set of Cliente;
-  public localizacao:seq of (char);
+  public localizacao: Local;
  
 operations
   
@@ -33,11 +33,16 @@ operations
  
  
  --Remove um cliente do centro
- public removeCliente: Cliente ==> () 
- removeCliente(cliente) == 
-   clientes := clientes \ {cliente}
- pre cliente <> undefined and cliente in set clientes
- post card clientes~ - 1 = card clientes and cliente not in set clientes; 
+ public removeCliente: Cliente`Nome ==> () 
+ removeCliente(clienteNome) == 
+ (
+  for all cliente in set clientes 
+   do
+    if(cliente.nome = clienteNome)
+     then ( clientes := clientes \ {cliente}; return;) 
+ ) 
+ pre exists1 cliente in set clientes & cliente.nome = clienteNome
+ post card clientes~ - 1 = card clientes and forall cliente in set clientes & (*@\vdmnotcovered{cliente}@*).(*@\vdmnotcovered{nome}@*) <> (*@\vdmnotcovered{clienteNome}@*); 
  
 end CentroDistribuicao
 \end{vdmpp}
@@ -47,14 +52,14 @@ end CentroDistribuicao
 Function or operation & Line & Coverage & Calls \\
 \hline
 \hline
-\hyperref[CentroDistribuicao:12]{CentroDistribuicao} & 12&100.0\% & 81 \\
+\hyperref[CentroDistribuicao:12]{CentroDistribuicao} & 12&100.0\% & 97 \\
 \hline
-\hyperref[adicionaCliente:17]{adicionaCliente} & 17&100.0\% & 51 \\
+\hyperref[adicionaCliente:17]{adicionaCliente} & 17&100.0\% & 71 \\
 \hline
-\hyperref[removeCliente:23]{removeCliente} & 23&100.0\% & 29 \\
+\hyperref[removeCliente:23]{removeCliente} & 23&88.5\% & 4 \\
 \hline
 \hline
-CentroDistribuicao.vdmpp & & 100.0\% & 161 \\
+CentroDistribuicao.vdmpp & & 94.7\% & 172 \\
 \hline
 \end{longtable}
 

@@ -1,0 +1,37 @@
+class CentroDistribuicao
+
+types 
+	public Local = seq of (char);
+
+instance variables
+	public clientes : set of Cliente;
+  public localizacao: Local;
+ 
+operations
+  
+  public  CentroDistribuicao : Local ==> CentroDistribuicao
+  CentroDistribuicao(local) == (clientes := {}; localizacao := local; return self;)
+  pre len local > 0
+  post localizacao = local and clientes = {};
+	
+	--Adiciona um cliente ao centro
+	public adicionaCliente: Cliente ==> () 
+	adicionaCliente( cliente ) == 
+		 clientes := clientes union {cliente}
+	pre cliente <> undefined and cliente not in set clientes
+	post card clientes~ + 1 = card clientes and cliente in set clientes;  
+	
+	
+	--Remove um cliente do centro
+	public removeCliente: Cliente`Nome ==> () 
+	removeCliente(clienteNome) == 
+	(
+		for all cliente in set clientes 
+			do
+				if(cliente.nome = clienteNome)
+					then ( clientes := clientes \ {cliente}; return;) 
+	)	
+	pre exists1 cliente in set clientes & cliente.nome = clienteNome
+	post card clientes~ - 1 = card clientes and forall cliente in set clientes & cliente.nome <> clienteNome; 
+	
+end CentroDistribuicao

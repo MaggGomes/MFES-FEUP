@@ -1,0 +1,26 @@
+class TestCentroDistribuicao is subclass of SuiteTestCase
+
+operations
+  public testConstructor() == (
+    dcl centro: CentroDistribuicao := new CentroDistribuicao("Porto");
+    IO`println("\t\t Testing Constructor");
+    assertEqual("Porto", centro.localizacao);
+  );
+	
+	public testManageCenter()  == (
+		dcl centro: CentroDistribuicao := new CentroDistribuicao("Porto");
+		dcl cliente: Cliente := new Cliente("Fernando", <HOMEM>);
+		IO`println("\t Testing ManageCenter");		
+		assertEqual(0, card centro.clientes);
+		centro.adicionaCliente(cliente);
+		assertEqual(1, card centro.clientes);
+		centro.removeCliente(cliente.nome);
+		assertEqual(0, card centro.clientes);
+);
+	
+  public testAll() == (
+    IO`println("\t Testing CentroDistribuicao class");
+    testConstructor();
+    testManageCenter();
+  );
+end TestCentroDistribuicao

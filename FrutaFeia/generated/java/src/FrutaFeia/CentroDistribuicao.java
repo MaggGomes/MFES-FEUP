@@ -27,8 +27,8 @@ public class CentroDistribuicao {
 
   public void removeCliente(final String clienteNome) {
 
-    for (Iterator iterator_19 = clientes.iterator(); iterator_19.hasNext(); ) {
-      Cliente cliente = (Cliente) iterator_19.next();
+    for (Iterator iterator_22 = clientes.iterator(); iterator_22.hasNext(); ) {
+      Cliente cliente = (Cliente) iterator_22.next();
       if (Utils.equals(cliente.nome, clienteNome)) {
         clientes = SetUtil.diff(Utils.copy(clientes), SetUtil.set(cliente));
         return;

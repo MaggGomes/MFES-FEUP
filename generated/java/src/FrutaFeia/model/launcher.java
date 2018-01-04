@@ -1,11 +1,15 @@
 package FrutaFeia.model;
 
+import Quotes.GRANDEQuote;
+
 import java.util.Scanner;
 
 public class launcher {
 	private static final String title = "        <<  Fruta Feia  >>";
 	private static boolean menuDone = false;
 	private static FrutaFeia frutaFeia;
+	private static Agricultor agricultorUser;
+	private static Cliente clienteUser;
 
 	public static void  viewClients(Scanner scan){
 		System.out.println(frutaFeia.getTodosClientes());
@@ -45,7 +49,7 @@ public class launcher {
 
 		cliente = new Cliente(name, Quotes.HOMEMQuote.getInstance());
 
-		frutaFeia.removeCliente(cliente, "Porto");
+		//frutaFeia.removeCliente(cliente, "Porto");
 
 		System.out.println("Cliente "+name+" removido com sucesso!");
 
@@ -77,18 +81,12 @@ public class launcher {
 		displayManageAgricultoresMenu(scan);
 	}
 
-	// TODO - Terminar
 	public static void  removeAgricultor(Scanner scan){
-		Agricultor agricultor;
 
 		System.out.println("Nome: ");
 		String name = scan.next();
-		System.out.println("Localização: ");
-		String local = scan.next();
 
-		agricultor = new Agricultor(name, local);
-
-		frutaFeia.removeAgricultor(agricultor);
+		frutaFeia.removeAgricultor(name);
 
 		System.out.println("Agricultor "+name+" removido com sucesso!");
 
@@ -97,7 +95,7 @@ public class launcher {
 	}
 
 	public static void displayManageClientsMenu(Scanner scan){
-		System.out.println("\n		<< Menu Admin >>\n");
+		System.out.println("\n		<< Menu Clientes >>\n");
 		System.out.println("		>> 1 - Ver Clientes");
 		System.out.println("		>> 2 - Adicionar Cliente");
 		System.out.println("		>> 3 - Remover Cliente");
@@ -125,7 +123,7 @@ public class launcher {
 					break;
 				case 4:
 					menuDone = true;
-					displayMainMenu(scan);
+					displayAdminMenu(scan);
 					break;
 				case 5:
 					menuDone = true;
@@ -137,7 +135,7 @@ public class launcher {
 	}
 
 	public static void displayManageAgricultoresMenu(Scanner scan){
-		System.out.println("\n		<< Menu Admin >>\n");
+		System.out.println("\n		<< Menu Agricultores >>\n");
 		System.out.println("		>> 1 - Ver Agricultores");
 		System.out.println("		>> 2 - Adicionar Agricultor");
 		System.out.println("		>> 3 - Remover Agricultor");
@@ -165,7 +163,7 @@ public class launcher {
 					break;
 				case 4:
 					menuDone = true;
-					displayMainMenu(scan);
+					displayAdminMenu(scan);
 					break;
 				case 5:
 					menuDone = true;
@@ -185,7 +183,7 @@ public class launcher {
 	public static void addCentro(Scanner scan){
 		CentroDistribuicao centro;
 
-		System.out.println("Lccalização: ");
+		System.out.println("Localização: ");
 		String local = scan.next();
 
 		centro = new CentroDistribuicao(local);
@@ -198,21 +196,16 @@ public class launcher {
 		displayManageCentrosMenu(scan);
 	}
 
-	// TODO - Terminar
 	public static void  removeCentro(Scanner scan){
-		CentroDistribuicao centro;
-
-		System.out.println("local: ");
+		System.out.println("Local: ");
 		String local = scan.next();
 
-		centro = new CentroDistribuicao(local);
-
-		frutaFeia.removeCentro(centro);
+		frutaFeia.removeCentro(local);
 
 		System.out.println("Centro "+local+" removido com sucesso!");
 
 		String input = scan.next();
-		displayManageClientsMenu(scan);
+		displayManageCentrosMenu(scan);
 	}
 
 	public static void displayManageCentrosMenu(Scanner scan){
@@ -244,7 +237,7 @@ public class launcher {
 					break;
 				case 4:
 					menuDone = true;
-					displayMainMenu(scan);
+					displayAdminMenu(scan);
 					break;
 				case 5:
 					menuDone = true;
@@ -255,9 +248,12 @@ public class launcher {
 		}
 	}
 
-	// TODO - TERMINAR
 	public static void createCestas(Scanner scan){
+		frutaFeia.geraCestaTodosClientes();
 
+		System.out.println("Cestas geradas com sucesso!");
+		String input = scan.next();
+		displayAdminMenu(scan);
 	}
 
 	/**
@@ -324,15 +320,22 @@ public class launcher {
 		menuDone = false;
 
 		while (!menuDone){
-			input = getUserInput(scan, 1, 4);
+			input = getUserInput(scan, 1, 5);
 			switch(input){
 				case 1:
+					menuDone = true;
 					break;
 				case 2:
+					menuDone = true;
 					break;
 				case 3:
+					menuDone = true;
 					break;
 				case 4:
+					menuDone = true;
+					menuLoginCliente(scan);
+					break;
+				case 5:
 					menuDone = true;
 					System.out.println("A sair de Fruta Feia..");
 					scan.close();
@@ -341,8 +344,8 @@ public class launcher {
 		}
 	}
 
-	public static void viewProdutosAgricultor(Scanner scan){
-		System.out.println(frutaFeia.centros);
+	public static void viewProdutosAgricultor(Scanner scan, Agricultor agricultor){
+		System.out.println(agricultor.stock);
 		String input = scan.next();
 		displayManageCentrosMenu(scan);
 	}
@@ -350,7 +353,7 @@ public class launcher {
 	public static void addProdutoAgricultor(Scanner scan){
 		CentroDistribuicao centro;
 
-		System.out.println("Lccalização: ");
+		System.out.println("Localização: ");
 		String local = scan.next();
 
 		centro = new CentroDistribuicao(local);
@@ -372,7 +375,7 @@ public class launcher {
 
 		centro = new CentroDistribuicao(local);
 
-		frutaFeia.removeCentro(centro);
+		//frutaFeia.removeCentro(centro);
 
 		System.out.println("Centro "+local+" removido com sucesso!");
 
@@ -383,7 +386,7 @@ public class launcher {
 	public static void addPesoProdutoAgricultor(Scanner scan){
 		CentroDistribuicao centro;
 
-		System.out.println("Lccalização: ");
+		System.out.println("Localização: ");
 		String local = scan.next();
 
 		centro = new CentroDistribuicao(local);
@@ -399,7 +402,7 @@ public class launcher {
 	public static void removePesoProdutoAgricultor(Scanner scan){
 		CentroDistribuicao centro;
 
-		System.out.println("Lccalização: ");
+		System.out.println("Localização: ");
 		String local = scan.next();
 
 		centro = new CentroDistribuicao(local);
@@ -434,29 +437,180 @@ public class launcher {
 			switch(input){
 				case 1:
 					menuDone = true;
-					viewProdutosAgricultor(scan);
+					viewProdutosAgricultor(scan, agricultorUser);
 					break;
 				case 2:
 					menuDone = true;
-					displayClientMenu(scan);
+					addProdutoAgricultor(scan);
 					break;
 				case 3:
 					menuDone = true;
-					addProdutoAgricultor(scan);
+					removeProdutoAgricultor(scan);
 					break;
 				case 4:
 					menuDone = true;
-					removeProdutoAgricultor(scan);
+					addPesoProdutoAgricultor(scan);
 					break;
 				case 5:
 					menuDone = true;
-					addPesoProdutoAgricultor(scan);
+					removePesoProdutoAgricultor(scan);
 					break;
 				case 6:
 					menuDone = true;
-					removePesoProdutoAgricultor(scan);
+					menuLoginAgricultor(scan);
 					break;
 				case 7:
+					menuDone = true;
+					System.out.println("A sair de Fruta Feia..");
+					scan.close();
+					System.exit(0);
+			}
+		}
+	}
+
+	public static void loginCliente(Scanner scan){
+		boolean found = false;
+
+		System.out.println("Nome: ");
+		String name = scan.next();
+
+		for (Object cliente: frutaFeia.getTodosClientes()){
+			if(((Cliente) cliente).nome.equals(name)){
+				clienteUser = (Cliente) cliente;
+				found = true;
+				break;
+			}
+		}
+
+		if(found)
+			displayClientMenu(scan);
+		else {
+			System.out.println("Utilizador não encontrado. Tente novamente!");
+			menuLoginCliente(scan);
+		}
+	}
+
+	public static void registerCliente(Scanner scan){
+		System.out.println("Nome: ");
+		String name = scan.next();
+		System.out.println("Género(H/M): ");
+		String genre = scan.next();
+		System.out.println("Localização: ");
+		String local = scan.next();
+
+		if(genre.equals("H"))
+			clienteUser = new Cliente(name, Quotes.HOMEMQuote.getInstance());
+		else
+			clienteUser = new Cliente(name, Quotes.MULHERQuote.getInstance());
+
+		frutaFeia.adicionaCliente(clienteUser, local);
+
+		System.out.println("Cliente "+name+" criado com sucesso!");
+
+		String input = scan.next();
+		displayClientMenu(scan);
+	}
+
+	public static void menuLoginCliente(Scanner scan){
+		System.out.println("\n		<< Menu Cliente>>\n");
+		System.out.println("		>> 1 - Entrar ");
+		System.out.println("		>> 2 - Registar");
+		System.out.println("		>> 3 - Voltar");
+		System.out.println("		>> 4 - Sair");
+		System.out.println();
+
+		int input = 0;
+		menuDone = false;
+
+		while (!menuDone){
+			input = getUserInput(scan, 1, 4);
+			switch(input){
+				case 1:
+					menuDone = true;
+					loginCliente(scan);
+					break;
+				case 2:
+					menuDone = true;
+					registerCliente(scan);
+					break;
+				case 3:
+					menuDone = true;
+					displayMainMenu(scan);
+					break;
+				case 4:
+					menuDone = true;
+					System.out.println("A sair de Fruta Feia..");
+					scan.close();
+					System.exit(0);
+			}
+		}
+	}
+
+	public static void loginAgricultor(Scanner scan){
+		boolean found = false;
+
+		System.out.println("Nome: ");
+		String name = scan.next();
+
+		for (Object agricultor: frutaFeia.agricultores){
+			if(((Agricultor) agricultor).nome.equals(name)){
+				agricultorUser = (Agricultor) agricultor;
+				found = true;
+				break;
+			}
+		}
+
+		if(found)
+			displayAgricultorMenu(scan);
+		else {
+			System.out.println("Utilizador não encontrado. Tente novamente!");
+			menuLoginAgricultor(scan);
+		}
+	}
+
+	public static void registerAgricultor(Scanner scan){
+		System.out.println("Nome: ");
+		String name = scan.next();
+		System.out.println("Localização: ");
+		String local = scan.next();
+
+		agricultorUser = new Agricultor(name, local);
+
+		frutaFeia.adicionaAgricultor(agricultorUser);
+
+		System.out.println("Agricultor "+name+" criado com sucesso!");
+
+		String input = scan.next();
+		displayAgricultorMenu(scan);
+	}
+
+	public static void menuLoginAgricultor(Scanner scan){
+		System.out.println("\n		<< Menu Agricultor >>\n");
+		System.out.println("		>> 1 - Entrar ");
+		System.out.println("		>> 2 - Registar");
+		System.out.println("		>> 3 - Voltar");
+		System.out.println("		>> 4 - Sair");
+		System.out.println();
+
+		int input = 0;
+		menuDone = false;
+
+		while (!menuDone){
+			input = getUserInput(scan, 1, 4);
+			switch(input){
+				case 1:
+					menuDone = true;
+					loginAgricultor(scan);
+					break;
+				case 2:
+					menuDone = true;
+					registerAgricultor(scan);
+					break;
+				case 3:
+					menuDone = true;
+					displayMainMenu(scan);
+					break;
+				case 4:
 					menuDone = true;
 					System.out.println("A sair de Fruta Feia..");
 					scan.close();
@@ -488,11 +642,11 @@ public class launcher {
 					break;
 				case 2:
 					menuDone = true;
-					displayClientMenu(scan);
+					menuLoginCliente(scan);
 					break;
 				case 3:
 					menuDone = true;
-					displayAgricultorMenu(scan);
+					menuLoginAgricultor(scan);
 					break;
 				case 4:
 					menuDone = true;
@@ -556,14 +710,42 @@ public class launcher {
 		frutaFeia.adicionaAgricultor(agricultor3);
 
 		// Produtos
-		Produto produto1 = new Produto("Maca", "Golden", 10);
-		Produto produto2 = new Produto("Pera", "Rocha", 10);
-		Produto produto3 = new Produto("Batata", "Nacional", 10);
-		Produto produto4 = new Produto("Couve", "Nacional", 10);
-		Produto produto5 = new Produto("Bróculo", "Nacional", 10);
-		Produto produto6 = new Produto("Nabo", "Nacional", 10);
-		Produto produto7 = new Produto("Laranga", "Nacional", 10);
-		Produto produto8 = new Produto("Espinafre", "Nacionl", 10);
+		Produto produto1 = new Produto("Maca", "Golden", 50);
+		Produto produto2 = new Produto("Pera", "Rocha", 50);
+		Produto produto3 = new Produto("Batata", "Nacional", 50);
+		Produto produto4 = new Produto("Couve", "Nacional", 50);
+		Produto produto5 = new Produto("Bróculo", "Nacional", 50);
+		Produto produto6 = new Produto("Nabo", "Nacional", 50);
+		Produto produto7 = new Produto("Laranga", "Nacional", 50);
+		Produto produto8 = new Produto("Espinafre", "Nacionl", 50);
+
+		Produto produto9 = new Produto("Maca", "Golden", 50);
+		Produto produto10 = new Produto("Pera", "Rocha", 50);
+		Produto produto11 = new Produto("Batata", "Nacional", 50);
+		Produto produto12 = new Produto("Couve", "Nacional", 50);
+		Produto produto13 = new Produto("Bróculo", "Nacional", 50);
+		Produto produto14 = new Produto("Nabo", "Nacional", 50);
+		Produto produto15 = new Produto("Laranga", "Nacional", 50);
+		Produto produto16 = new Produto("Espinafre", "Nacionl", 50);
+
+		agricultor1.adicionaProduto(produto1);
+		agricultor1.adicionaProduto(produto2);
+		agricultor1.adicionaProduto(produto3);
+		agricultor1.adicionaProduto(produto4);
+		agricultor1.adicionaProduto(produto5);
+		agricultor1.adicionaProduto(produto6);
+		agricultor1.adicionaProduto(produto7);
+		agricultor1.adicionaProduto(produto8);
+
+		agricultor2.adicionaProduto(produto9);
+		agricultor2.adicionaProduto(produto10);
+		agricultor2.adicionaProduto(produto11);
+		agricultor2.adicionaProduto(produto12);
+
+		agricultor3.adicionaProduto(produto13);
+		agricultor3.adicionaProduto(produto14);
+		agricultor3.adicionaProduto(produto15);
+		agricultor3.adicionaProduto(produto16);
 
 		// Clientes
 		Cliente cliente1 = new Cliente("Pedro", Quotes.HOMEMQuote.getInstance());
@@ -574,6 +756,15 @@ public class launcher {
 		frutaFeia.adicionaCliente(cliente2, "Porto");
 		frutaFeia.adicionaCliente(cliente3, "Porto");
 
+		// Cestas
+		Cesta cesta1 = new Cesta();
+		Cesta cesta2 = new Cesta();
+		Cesta cesta3 = new Cesta();
+		cesta3.alterarTamanho(Quotes.GRANDEQuote.getInstance());
+
+		cliente1.mudaCesta(cesta1);
+		cliente2.mudaCesta(cesta2);
+		cliente3.mudaCesta(cesta3);
 	}
 
 	public static void main (String[] args) {

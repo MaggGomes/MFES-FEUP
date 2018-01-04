@@ -40,10 +40,11 @@ operations
   assertTrue(cesta.removePesoProduto(produto.nome, 5));
   assertEqual(5, produto.peso);  
   assertFalse(cesta.removePesoProduto("Morango", 5));
-  );
+  assertFalse(cesta.adicionaPesoProduto("Banana", 4)); 
 (*@
 \label{testAlterarTamanho:34}
 @*)
+  );
   
   public (*@\vdmnotcovered{testAlterarTamanho}@*)() == (
    dcl cesta: Cesta := new Cesta();
@@ -51,10 +52,10 @@ operations
   assertEqual(<PEQUENA>, cesta.tamanho);
   cesta.alterarTamanho(<GRANDE>);
   assertEqual(<GRANDE>, cesta.tamanho);
-  );
 (*@
 \label{testAll:42}
 @*)
+  );
 
   public (*@\vdmnotcovered{testAll}@*)() == (
     IO`println("\t Testing Cesta class");
@@ -72,18 +73,18 @@ end TestCesta
 Function or operation & Line & Coverage & Calls \\
 \hline
 \hline
-\hyperref[testAdicionaAndRemovePesoProduto:22]{testAdicionaAndRemovePesoProduto} & 22&97.6\% & 26 \\
+\hyperref[testAdicionaAndRemovePesoProduto:22]{testAdicionaAndRemovePesoProduto} & 22&97.8\% & 6 \\
 \hline
-\hyperref[testAdicionaAndRemoveProduto:11]{testAdicionaAndRemoveProduto} & 11&96.6\% & 26 \\
+\hyperref[testAdicionaAndRemoveProduto:11]{testAdicionaAndRemoveProduto} & 11&96.6\% & 30 \\
 \hline
-\hyperref[testAll:42]{testAll} & 42&87.5\% & 24 \\
+\hyperref[testAll:42]{testAll} & 42&87.5\% & 2 \\
 \hline
-\hyperref[testAlterarTamanho:34]{testAlterarTamanho} & 34&93.7\% & 24 \\
+\hyperref[testAlterarTamanho:34]{testAlterarTamanho} & 34&93.7\% & 2 \\
 \hline
-\hyperref[testConstructor:4]{testConstructor} & 4&92.8\% & 52 \\
+\hyperref[testConstructor:4]{testConstructor} & 4&92.8\% & 60 \\
 \hline
 \hline
-TestCesta.vdmpp & & 95.4\% & 152 \\
+TestCesta.vdmpp & & 95.6\% & 100 \\
 \hline
 \end{longtable}
 

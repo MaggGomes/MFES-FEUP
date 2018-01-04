@@ -20,19 +20,20 @@ operations
   Produto(n, o, p) == (nome := n; origem := o; peso := p;return self;)
   pre len n > 0 and len o > 0 and p >= 0
   post nome = n and origem = o and peso = p;
-
+  
 (*@
 \label{adicionaPeso:20}
 @*)
+  --Adiciona peso ao produto
   public  adicionaPeso : Peso ==> ()
   adicionaPeso(p) == peso := peso + p
-  pre peso > 0
+  pre p > 0
   post peso = peso~ + p;
   
-
 (*@
 \label{removePeso:26}
 @*)
+ --Remove peso do produto
   public  removePeso : Peso ==> ()
   removePeso(p) == peso := peso - p
   pre p > 0 and peso - p >= 0
@@ -47,14 +48,14 @@ end Produto
 Function or operation & Line & Coverage & Calls \\
 \hline
 \hline
-\hyperref[Produto:15]{Produto} & 15&100.0\% & 736 \\
+\hyperref[Produto:15]{Produto} & 15&100.0\% & 986 \\
 \hline
-\hyperref[adicionaPeso:20]{adicionaPeso} & 20&100.0\% & 144 \\
+\hyperref[adicionaPeso:20]{adicionaPeso} & 20&100.0\% & 25 \\
 \hline
-\hyperref[removePeso:26]{removePeso} & 26&100.0\% & 405 \\
+\hyperref[removePeso:26]{removePeso} & 26&100.0\% & 125 \\
 \hline
 \hline
-Produto.vdmpp & & 100.0\% & 1285 \\
+Produto.vdmpp & & 100.0\% & 1136 \\
 \hline
 \end{longtable}
 

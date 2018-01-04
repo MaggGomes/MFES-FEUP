@@ -1,0 +1,256 @@
+class FrutaFeia
+
+instance variables
+	public centros : set of CentroDistribuicao;
+	public agricultores: set of Agricultor;
+	
+	inv forall centro in set centros & exists1 cent in set centros & centro.localizacao = cent.localizacao;
+	inv forall agricultor in set agricultores & exists1 agro in set agricultores & agro.nome = agricultor.nome;
+	inv forall centro in set centros & forall cli in set centro.clientes & exists1 cliente in set centro.clientes & cli.nome = cliente.nome;
+			
+	
+operations 
+	public FrutaFeia: () ==> FrutaFeia
+	FrutaFeia() == (centros := {}; agricultores := {})
+	post centros = {} and agricultores = {};
+
+	--Adiciona cliente ao centro respectivo
+	public adicionaCliente: Cliente * CentroDistribuicao`Local ==> ()
+	adicionaCliente( cliente, centroLocal ) == 
+	for all centro in set centros 
+	do
+		 if ( centro.localizacao = centroLocal)
+		 	then  centro.adicionaCliente(cliente)
+	pre forall centro in set centros & (forall cli in set centro.clientes & cli.nome <> cliente.nome)
+	post exists1 centro in set centros & cliente in set centro.clientes;  
+	
+	-- Remove cliente do seu centro respectivo
+	public removeCliente:  Cliente`Nome * CentroDistribuicao`Local ==> ()  
+	removeCliente(clienteNome, centroLocal) == 
+		for all centro in set centros 
+	do
+		 if ( centro.localizacao = centroLocal)
+		 	then  centro.removeCliente(clienteNome)
+	pre exists1 centro in set centros & (exists1 cliente in set centro.clientes & cliente.nome = clienteNome)
+	post forall  centro in set centros & (forall cliente in set centro.clientes & cliente.nome <> clienteNome);  
+	
+	-- adiciona um centro de Distribuicao do registo
+	public adicionaCentro: CentroDistribuicao  ==> ()
+	adicionaCentro(centro) ==
+			centros := centros union {centro}
+	pre centros <> undefined and forall cent in set centros & centro.localizacao <> cent.localizacao
+	post card centros = card centros~ +1 and exists1 cent in set centros &  centro.localizacao= cent.localizacao;
+	
+	-- remove um Centro de Distribuiçao do registo
+	public removeCentro: CentroDistribuicao`Local  ==> ()
+	removeCentro(centroLocal) ==
+		for all centro in set centros
+		do
+			if(centroLocal = centro.localizacao)
+				then (centros := centros \ {centro}; return)
+	pre centros <> undefined and exists1 centro in set centros & centro.localizacao = centroLocal
+	post card centros = card centros~ - 1  and forall centro in set centros & centro.localizacao <> centroLocal;
+	
+	-- adiciona um agricultor do registo
+	public adicionaAgricultor: Agricultor ==> ()
+	adicionaAgricultor(agricultor) ==
+			agricultores := agricultores union {agricultor}
+	pre agricultor <> undefined and agricultor not in set agricultores
+	post card agricultores = card agricultores~ +1 ;
+	
+	 -- retira um agricultor registo 
+	public removeAgricultor: Agricultor`Nome  ==> ()
+	removeAgricultor(agricultorNome) ==
+	for all agricultor in set agricultores
+		do 
+			if( agricultor.nome = agricultorNome)
+			then(agricultores := agricultores \ {agricultor}; return;) 
+	pre agricultores <> undefined and exists1 agricultor in set agricultores & agricultor.nome = agricultorNome
+	post card agricultores = card agricultores~ - 1 and forall agricultor in set agricultores & agricultor.nome <> agricultorNome ;
+	
+	-- Retorna todos os clientes distribuidos pelos diferentes centros
+	public getTodosClientes: () ==> set of Cliente
+	getTodosClientes() == 
+	(
+		dcl  clientes: set of Cliente := {};
+		for all centro in set centros 
+			do 
+				clientes := clientes union centro.clientes;
+		return clientes;
+	)
+	pre centros <> undefined;
+	
+	
+	-- Retorna todos os produtos de todos os agricultores ( os produtos com o mesmo nome de diferentes agricultores sao indepedentes)
+	public getTodosProdutos: () ==> set of Produto
+	getTodosProdutos () ==
+	(
+		dcl produtos: set of Produto := {};
+		
+		for all agricultor in set agricultores
+			do
+				produtos := produtos union rng agricultor.stock;
+		return produtos;
+	)
+	pre agricultores <> undefined;
+	
+	--Gera uma cesta grande
+	public geraCestaGrande: () ==> Cesta
+	geraCestaGrande() == 
+		(
+			dcl cesta : Cesta := geraCesta(6, 0.75, 8, <GRANDE> );
+			return cesta;
+		);
+	
+	--Gera uma cesta pequena 
+	public geraCestaPequena: () ==> Cesta
+	geraCestaPequena() == 
+		( 
+			dcl cesta : Cesta := geraCesta(3, 0.430, 7, <PEQUENA>);
+			return cesta
+		);
+	
+	--Cria uma cesta com determinados parametros
+	public geraCesta: real * real * real * Cesta`Tamanho==> Cesta
+	geraCesta(pesoMinimo, pesoMinimoProduto, totalProdutos, tipoCesta) ==
+	(
+	 dcl cesta : Cesta := new Cesta();
+	 dcl produtos : set of Produto := getTodosProdutos();
+	 dcl totalNaCesta : nat := 0;
+	 dcl pesoAretirar : real := pesoMinimoProduto;
+	 dcl minimo: real := pesoMinimo;
+	 dcl runs: nat := 0;
+	 
+	 cesta.alterarTamanho(tipoCesta);
+	 
+	 --Adiciona produtos à cesta
+	 while(minimo > 0 and runs < 3)
+	 do
+	 	(
+	 	 for all produto in set produtos
+	 		do 
+	 			if(produto.peso >= pesoAretirar)
+	 				then 
+	 				(	
+	 				if(cesta.produtoNaCesta(produto.nome) = false and totalNaCesta < totalProdutos) --Se o produto nao esta na cesta e o numero minimo de produtos nao foi alcançado
+	 					then
+	 					 (	produto.removePeso(pesoAretirar);
+	 					 		cesta.adicionaProduto(new Produto(produto.nome, produto.origem, pesoAretirar));
+	 					 		totalNaCesta := totalNaCesta + 1;
+	 					 		minimo := minimo - pesoAretirar;
+	 					 )
+	 					else 
+	 					(
+	 						if(totalNaCesta = totalProdutos  and minimo <= 0) -- Se a cesta esta completa
+	 					  	then return cesta
+	 					  	else 
+	 					  	( --Adiciona mais X peso a um produto numa cesta
+	 					  		if(cesta.produtoNaCestaPeso(produto.nome) + pesoAretirar < 0.8) -- limite de +- 50% que um produto pode ocupar
+	 					  		then
+	 					  			(	produto.removePeso(pesoAretirar); 
+	 					  				if(cesta.adicionaPesoProduto(produto.nome, pesoAretirar))
+	 					  					then minimo := minimo - pesoAretirar
+	 					  				else produto.adicionaPeso(pesoAretirar)
+	 					  			);
+	 					  	);
+	 					);
+	 				);
+	 		pesoAretirar := pesoAretirar / (runs + 1);
+	 		runs := runs + 1;
+	 	);
+	 	return cesta;
+	); 
+	
+	public preencheCesta: Cesta ==> () -- procura produtos e tenta responder as necessidades da cesta se houver stock
+	preencheCesta(cesta) == 
+	(
+	 dcl produtos : set of Produto := getTodosProdutos();
+	 dcl totalNaCesta : nat := card cesta.produtos;
+	 dcl pesoAretirar : real := 0.3;
+	 dcl minimo: real := 0;
+	 dcl runs: nat := 0;
+	 dcl totalProdutos: nat := 0;
+	 
+	 --- setup com os requesitos das cestas
+	 if(cesta.tamanho = <PEQUENA>)
+	 		then (
+	 					totalProdutos := 7;
+	 					minimo := 3 - cesta.peso;
+	 				)
+	 else 
+	 	if(cesta.tamanho = <GRANDE>)
+	 		then ( totalProdutos := 8;
+	 					 minimo := 6 - cesta.peso;
+	 				 );
+	 	 	
+	 --Adicionar produtos à cesta
+	 	while(minimo > 0 and runs < 3)
+	 do
+	 	(
+	 	 for all produto in set produtos
+	 		do 
+	 			if(produto.peso >= pesoAretirar)
+	 				then 
+	 				(	
+	 				if(cesta.produtoNaCesta(produto.nome) = false and totalNaCesta < totalProdutos) -- Se nao existir na cesta e a cesta nao tem o numero de produtos minimo
+	 					then
+	 					 (	
+	 					 		-- adicionar produto à cesta
+	 					 		produto.removePeso(pesoAretirar);
+	 					 		cesta.adicionaProduto(new Produto(produto.nome, produto.origem, pesoAretirar));
+	 					 		totalNaCesta := totalNaCesta + 1;
+	 					 		minimo := minimo - pesoAretirar; 
+	 					 )
+	 					else 
+	 					(
+	 						if(totalNaCesta = totalProdutos  and minimo <= 0) -- Se a encomenda ja esta completa
+	 					  	then return
+	 					  	else 
+	 					  	( -- tenta adicionar X peso de um produto que ja se encontra na cesta
+	 					  		if(cesta.produtoNaCestaPeso(produto.nome) + pesoAretirar < 0.8) 
+	 					  		then (
+	 					  			produto.removePeso(pesoAretirar);
+	 					  			if(cesta.adicionaPesoProduto(produto.nome, pesoAretirar))
+	 					  		 		then minimo := minimo - pesoAretirar
+	 					  		 	else produto.adicionaPeso(pesoAretirar);
+									);
+	 					  	);
+	 					);
+	 				);
+	 		pesoAretirar := pesoAretirar / (runs + 1); -- tenta adicionar quantidades mais pequenas 
+	 		runs := runs + 1;
+	 	);
+	);
+	
+	public geraCestaTodosClientes: () ==> ()
+	geraCestaTodosClientes() == 
+		for all centro in set centros  
+		do (
+			for all cliente in set centro.clientes -- todos os clientes em todos os centros
+			do (
+				IO`println(cliente);
+				if cliente.estadoEnc = <COM_ENC> -- tenta corresponder a uma encomenda feita pelo cliente
+				 then (
+				 				if (cliente.encomenda.tamanho = <PEQUENA>) 
+				 					then (	cliente.mudaCesta(geraCestaPequena());
+				 									cliente.verificaCestaParametros();	-- avalia se os requesitos da encomenda estao cumpridoss 
+				 							)
+				 			else
+				 				if(cliente.encomenda.tamanho = <GRANDE>)
+				 					then( cliente.mudaCesta(geraCestaGrande());
+				 								cliente.verificaCestaParametros()  
+				 							)
+				 			)				
+				else ( if cliente.estadoEnc = <POR_CONCLUIR>  -- tenta completar uma encomenda pendente
+								then (
+											preencheCesta(cliente.encomenda);
+											cliente.verificaCestaParametros();
+										  )
+				);
+			 );			 
+	  );
+end FrutaFeia
+
+
+
+

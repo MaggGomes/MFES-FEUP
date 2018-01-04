@@ -21,7 +21,7 @@ operations
   assertEqual(0, card centro.clientes);
   centro.adicionaCliente(cliente);
   assertEqual(1, card centro.clientes);
-  centro.removeCliente(cliente);
+  centro.removeCliente(cliente.nome);
 (*@
 \label{testAll:18}
 @*)
@@ -41,14 +41,14 @@ end TestCentroDistribuicao
 Function or operation & Line & Coverage & Calls \\
 \hline
 \hline
-\hyperref[testAll:18]{testAll} & 18&83.3\% & 24 \\
+\hyperref[testAll:18]{testAll} & 18&83.3\% & 28 \\
 \hline
-\hyperref[testConstructor:4]{testConstructor} & 4&90.9\% & 28 \\
+\hyperref[testConstructor:4]{testConstructor} & 4&90.9\% & 32 \\
 \hline
-\hyperref[testManageCenter:10]{testManageCenter} & 10&96.6\% & 0 \\
+\hyperref[testManageCenter:10]{testManageCenter} & 10&96.7\% & 0 \\
 \hline
 \hline
-TestCentroDistribuicao.vdmpp & & 93.6\% & 52 \\
+TestCentroDistribuicao.vdmpp & & 93.7\% & 60 \\
 \hline
 \end{longtable}
 

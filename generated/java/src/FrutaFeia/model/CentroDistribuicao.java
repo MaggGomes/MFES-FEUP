@@ -1,5 +1,6 @@
 package FrutaFeia.model;
 
+import java.util.*;
 import org.overture.codegen.runtime.*;
 
 @SuppressWarnings("all")
@@ -24,9 +25,15 @@ public class CentroDistribuicao {
     clientes = SetUtil.union(Utils.copy(clientes), SetUtil.set(cliente));
   }
 
-  public void removeCliente(final Cliente cliente) {
+  public void removeCliente(final String clienteNome) {
 
-    clientes = SetUtil.diff(Utils.copy(clientes), SetUtil.set(cliente));
+    for (Iterator iterator_22 = clientes.iterator(); iterator_22.hasNext(); ) {
+      Cliente cliente = (Cliente) iterator_22.next();
+      if (Utils.equals(cliente.nome, clienteNome)) {
+        clientes = SetUtil.diff(Utils.copy(clientes), SetUtil.set(cliente));
+        return;
+      }
+    }
   }
 
   public CentroDistribuicao() {}

@@ -101,6 +101,23 @@ operations
    pre produtos <> undefined
    post ((exists1 produto in set produtos & produto.nome = prodNome)  and   RESULT = true) or  --  produto exite retorna true ou nao existe e retorna false
       ((forall produto in set produtos & produto.nome <> prodNome) and RESULT=false); 
+      
+  ---Obtem o peso de um produto 
+  
+(*@
+\label{produtoNaCestaPeso:85}
+@*)
+   public produtoNaCestaPeso : Produto`NomeProduto ==> real
+   produtoNaCestaPeso (prodNome) == 
+   (for all produto in set produtos
+    do 
+     if prodNome = produto.nome
+       then return produto.peso;
+    return 99999;
+   )
+   pre produtos <> undefined 
+   post RESULT >= 0;
+  
 end Cesta
 \end{vdmpp}
 \bigskip
@@ -109,22 +126,24 @@ end Cesta
 Function or operation & Line & Coverage & Calls \\
 \hline
 \hline
-\hyperref[Cesta:12]{Cesta} & 12&100.0\% & 403 \\
+\hyperref[Cesta:12]{Cesta} & 12&100.0\% & 501 \\
 \hline
-\hyperref[adicionaPesoProduto:34]{adicionaPesoProduto} & 34&100.0\% & 65 \\
+\hyperref[adicionaPesoProduto:34]{adicionaPesoProduto} & 34&100.0\% & 87 \\
 \hline
-\hyperref[adicionaProduto:16]{adicionaProduto} & 16&100.0\% & 722 \\
+\hyperref[adicionaProduto:16]{adicionaProduto} & 16&100.0\% & 1070 \\
 \hline
-\hyperref[alterarTamanho:52]{alterarTamanho} & 52&100.0\% & 67 \\
+\hyperref[alterarTamanho:52]{alterarTamanho} & 52&100.0\% & 97 \\
 \hline
-\hyperref[produtoNaCesta:58]{produtoNaCesta} & 58&100.0\% & 248 \\
+\hyperref[produtoNaCesta:58]{produtoNaCesta} & 58&100.0\% & 392 \\
 \hline
-\hyperref[removePesoProduto:43]{removePesoProduto} & 43&100.0\% & 34 \\
+\hyperref[produtoNaCestaPeso:85]{produtoNaCestaPeso} & 85&100.0\% & 302 \\
 \hline
-\hyperref[removeProduto:25]{removeProduto} & 25&100.0\% & 17 \\
+\hyperref[removePesoProduto:43]{removePesoProduto} & 43&100.0\% & 42 \\
+\hline
+\hyperref[removeProduto:25]{removeProduto} & 25&100.0\% & 21 \\
 \hline
 \hline
-Cesta.vdmpp & & 100.0\% & 1556 \\
+Cesta.vdmpp & & 100.0\% & 2512 \\
 \hline
 \end{longtable}
 

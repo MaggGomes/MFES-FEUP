@@ -13,25 +13,15 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Cliente.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/FrutaFeia/model/Cliente.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="launcher.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/FrutaFeia/model/launcher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="62">
-              <caret line="449" column="26" lean-forward="true" selection-start-line="449" selection-start-column="26" selection-end-line="449" selection-end-column="26" />
+            <state relative-caret-position="430">
+              <caret line="420" column="58" lean-forward="false" selection-start-line="420" selection-start-column="58" selection-end-line="420" selection-end-column="58" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="method#viewClients#0;class#launcher#0" expanded="false" />
                 <element signature="method#addClient#0;class#launcher#0" expanded="false" />
-                <element signature="method#removeClient#0;class#launcher#0" expanded="false" />
                 <element signature="method#viewAgricultores#0;class#launcher#0" expanded="false" />
                 <element signature="method#addAgricultor#0;class#launcher#0" expanded="false" />
                 <element signature="method#removeAgricultor#0;class#launcher#0" expanded="false" />
@@ -41,26 +31,60 @@
                 <element signature="method#addCentro#0;class#launcher#0" expanded="false" />
                 <element signature="method#removeCentro#0;class#launcher#0" expanded="false" />
                 <element signature="method#displayManageCentrosMenu#0;class#launcher#0" expanded="false" />
+                <element signature="method#createCestas#0;class#launcher#0" expanded="false" />
                 <element signature="method#displayAdminMenu#0;class#launcher#0" expanded="false" />
+                <element signature="method#displayAgricultorMenu#0;class#launcher#0" expanded="false" />
+                <element signature="method#loginCliente#0;class#launcher#0" expanded="false" />
+                <element signature="method#registerCliente#0;class#launcher#0" expanded="false" />
+                <element signature="method#menuLoginCliente#0;class#launcher#0" expanded="false" />
+                <element signature="method#loginAgricultor#0;class#launcher#0" expanded="false" />
+                <element signature="method#registerAgricultor#0;class#launcher#0" expanded="false" />
+                <element signature="method#menuLoginAgricultor#0;class#launcher#0" expanded="false" />
                 <element signature="method#displayMainMenu#0;class#launcher#0" expanded="false" />
                 <element signature="method#getUserInput#0;class#launcher#0" expanded="false" />
-                <element signature="method#main#0;class#launcher#0" expanded="false" />
+                <element signature="method#initializeFrutaFeia#0;class#launcher#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Produto.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/FrutaFeia/model/Produto.java">
+      <file leaf-file-name="FrutaFeia.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/FrutaFeia/model/FrutaFeia.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="745">
+              <caret line="305" column="23" lean-forward="true" selection-start-line="305" selection-start-column="23" selection-end-line="305" selection-end-column="23" />
+              <folding>
+                <element signature="method#geraCestaGrande#0;class#FrutaFeia#0" expanded="false" />
+                <element signature="method#geraCestaPequena#0;class#FrutaFeia#0" expanded="false" />
+                <element signature="method#geraCesta#0;class#FrutaFeia#0" expanded="false" />
+                <element signature="method#preencheCesta#0;class#FrutaFeia#0" expanded="false" />
+                <element signature="method#geraCestaTodosClientes#0;class#FrutaFeia#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Cesta.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/FrutaFeia/model/Cesta.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="24" column="6" lean-forward="false" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>ver clientes</find>
+      <find>lcca</find>
+      <find>remove</find>
+      <find>removecen</find>
+      <find>agric</find>
+      <find>removece</find>
+    </findStrings>
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -74,8 +98,21 @@
         <option value="$PROJECT_DIR$/src/FrutaFeia/tests/Throwable.java" />
         <option value="$PROJECT_DIR$/src/FrutaFeia/model/CentroDistribuicao.java" />
         <option value="$PROJECT_DIR$/src/FrutaFeia/model/Agricultor.java" />
-        <option value="$PROJECT_DIR$/src/FrutaFeia/model/Cesta.java" />
+        <option value="$PROJECT_DIR$/src/Quotes/appendQuote.java" />
+        <option value="$PROJECT_DIR$/src/Quotes/CANCELADAQuote.java" />
+        <option value="$PROJECT_DIR$/src/Quotes/COM_ENCQuote.java" />
+        <option value="$PROJECT_DIR$/src/Quotes/ENTREGUEQuote.java" />
+        <option value="$PROJECT_DIR$/src/Quotes/GRANDEQuote.java" />
+        <option value="$PROJECT_DIR$/src/Quotes/HOMEMQuote.java" />
+        <option value="$PROJECT_DIR$/src/Quotes/MULHERQuote.java" />
+        <option value="$PROJECT_DIR$/src/Quotes/PEQUENAQuote.java" />
+        <option value="$PROJECT_DIR$/src/Quotes/POR_CONCLUIRQuote.java" />
+        <option value="$PROJECT_DIR$/src/Quotes/PRONTAQuote.java" />
+        <option value="$PROJECT_DIR$/src/Quotes/SEM_ENCQuote.java" />
+        <option value="$PROJECT_DIR$/src/Quotes/startQuote.java" />
+        <option value="$PROJECT_DIR$/src/FrutaFeia/model/FrutaFeia.java" />
         <option value="$PROJECT_DIR$/src/FrutaFeia/model/Cliente.java" />
+        <option value="$PROJECT_DIR$/src/FrutaFeia/model/Cesta.java" />
         <option value="$PROJECT_DIR$/src/FrutaFeia/model/launcher.java" />
       </list>
     </option>
@@ -136,6 +173,10 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Quotes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -189,6 +230,14 @@
     <property name="last_opened_file_path" value="C:/Program Files/nodejs/node.exe" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Manuel Gomes\Documents\MFES-FEUP\generated\java\src\FrutaFeia\model" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Manuel Gomes\Documents\MFES-FEUP\generated\java\src\Quotes" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -761,46 +810,55 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1514949724929</updated>
-      <workItem from="1514949726602" duration="26638000" />
+      <workItem from="1514949726602" duration="42051000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26638000" />
+    <option name="totallyTimeSpent" value="42051000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31423897" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30932897" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -815,7 +873,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/FrutaFeia/model/launcher.java</url>
-          <line>515</line>
+          <line>669</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
@@ -893,62 +951,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FrutaFeia/model/Cesta.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/FrutaFeia/tests/TestAgricultor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="3" column="13" lean-forward="false" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Quotes/MULHERQuote.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Quotes/HOMEMQuote.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="13" lean-forward="true" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FrutaFeia/model/Cliente.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FrutaFeia/model/Agricultor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="24" lean-forward="true" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-          <folding>
-            <element signature="e#66#90#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FrutaFeia/model/FrutaFeia.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-187">
-          <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
           <folding />
         </state>
       </provider>
@@ -969,14 +975,150 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Quotes/appendQuote.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="15" lean-forward="true" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Quotes/CANCELADAQuote.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="15" lean-forward="true" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Quotes/COM_ENCQuote.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Quotes/ENTREGUEQuote.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="9" lean-forward="false" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Quotes/GRANDEQuote.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="15" lean-forward="true" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Quotes/HOMEMQuote.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="34" lean-forward="false" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Quotes/MULHERQuote.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Quotes/PEQUENAQuote.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Quotes/POR_CONCLUIRQuote.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="9" lean-forward="false" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Quotes/PRONTAQuote.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="9" lean-forward="false" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Quotes/SEM_ENCQuote.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Quotes/startQuote.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="24" lean-forward="true" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+          <folding>
+            <element signature="e#57#81#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FrutaFeia/model/Cesta.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="24" column="6" lean-forward="false" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FrutaFeia/model/Agricultor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="16" column="3" lean-forward="true" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FrutaFeia/model/FrutaFeia.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="745">
+          <caret line="305" column="23" lean-forward="true" selection-start-line="305" selection-start-column="23" selection-end-line="305" selection-end-column="23" />
+          <folding>
+            <element signature="method#geraCestaGrande#0;class#FrutaFeia#0" expanded="false" />
+            <element signature="method#geraCestaPequena#0;class#FrutaFeia#0" expanded="false" />
+            <element signature="method#geraCesta#0;class#FrutaFeia#0" expanded="false" />
+            <element signature="method#preencheCesta#0;class#FrutaFeia#0" expanded="false" />
+            <element signature="method#geraCestaTodosClientes#0;class#FrutaFeia#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FrutaFeia/model/Cliente.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1026">
+          <caret line="72" column="9" lean-forward="true" selection-start-line="72" selection-start-column="9" selection-end-line="72" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/FrutaFeia/model/launcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="449" column="26" lean-forward="true" selection-start-line="449" selection-start-column="26" selection-end-line="449" selection-end-column="26" />
+        <state relative-caret-position="430">
+          <caret line="420" column="58" lean-forward="false" selection-start-line="420" selection-start-column="58" selection-end-line="420" selection-end-column="58" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#viewClients#0;class#launcher#0" expanded="false" />
             <element signature="method#addClient#0;class#launcher#0" expanded="false" />
-            <element signature="method#removeClient#0;class#launcher#0" expanded="false" />
             <element signature="method#viewAgricultores#0;class#launcher#0" expanded="false" />
             <element signature="method#addAgricultor#0;class#launcher#0" expanded="false" />
             <element signature="method#removeAgricultor#0;class#launcher#0" expanded="false" />
@@ -986,10 +1128,18 @@
             <element signature="method#addCentro#0;class#launcher#0" expanded="false" />
             <element signature="method#removeCentro#0;class#launcher#0" expanded="false" />
             <element signature="method#displayManageCentrosMenu#0;class#launcher#0" expanded="false" />
+            <element signature="method#createCestas#0;class#launcher#0" expanded="false" />
             <element signature="method#displayAdminMenu#0;class#launcher#0" expanded="false" />
+            <element signature="method#displayAgricultorMenu#0;class#launcher#0" expanded="false" />
+            <element signature="method#loginCliente#0;class#launcher#0" expanded="false" />
+            <element signature="method#registerCliente#0;class#launcher#0" expanded="false" />
+            <element signature="method#menuLoginCliente#0;class#launcher#0" expanded="false" />
+            <element signature="method#loginAgricultor#0;class#launcher#0" expanded="false" />
+            <element signature="method#registerAgricultor#0;class#launcher#0" expanded="false" />
+            <element signature="method#menuLoginAgricultor#0;class#launcher#0" expanded="false" />
             <element signature="method#displayMainMenu#0;class#launcher#0" expanded="false" />
             <element signature="method#getUserInput#0;class#launcher#0" expanded="false" />
-            <element signature="method#main#0;class#launcher#0" expanded="false" />
+            <element signature="method#initializeFrutaFeia#0;class#launcher#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -21,20 +21,20 @@ public class FrutaFeia {
 
   public void adicionaCliente(final Cliente cliente, final String centroLocal) {
 
-    for (Iterator iterator_15 = centros.iterator(); iterator_15.hasNext(); ) {
-      CentroDistribuicao centro = (CentroDistribuicao) iterator_15.next();
+    for (Iterator iterator_27 = centros.iterator(); iterator_27.hasNext(); ) {
+      CentroDistribuicao centro = (CentroDistribuicao) iterator_27.next();
       if (Utils.equals(centro.localizacao, centroLocal)) {
         centro.adicionaCliente(cliente);
       }
     }
   }
 
-  public void removeCliente(final Cliente cliente, final String centroLocal) {
+  public void removeCliente(final String clienteNome, final String centroLocal) {
 
-    for (Iterator iterator_16 = centros.iterator(); iterator_16.hasNext(); ) {
-      CentroDistribuicao centro = (CentroDistribuicao) iterator_16.next();
+    for (Iterator iterator_28 = centros.iterator(); iterator_28.hasNext(); ) {
+      CentroDistribuicao centro = (CentroDistribuicao) iterator_28.next();
       if (Utils.equals(centro.localizacao, centroLocal)) {
-        centro.removeCliente(cliente);
+        centro.removeCliente(clienteNome);
       }
     }
   }
@@ -44,9 +44,15 @@ public class FrutaFeia {
     centros = SetUtil.union(Utils.copy(centros), SetUtil.set(centro));
   }
 
-  public void removeCentro(final CentroDistribuicao centro) {
+  public void removeCentro(final String centroLocal) {
 
-    centros = SetUtil.diff(Utils.copy(centros), SetUtil.set(centro));
+    for (Iterator iterator_29 = centros.iterator(); iterator_29.hasNext(); ) {
+      CentroDistribuicao centro = (CentroDistribuicao) iterator_29.next();
+      if (Utils.equals(centroLocal, centro.localizacao)) {
+        centros = SetUtil.diff(Utils.copy(centros), SetUtil.set(centro));
+        return;
+      }
+    }
   }
 
   public void adicionaAgricultor(final Agricultor agricultor) {
@@ -54,16 +60,22 @@ public class FrutaFeia {
     agricultores = SetUtil.union(Utils.copy(agricultores), SetUtil.set(agricultor));
   }
 
-  public void removeAgricultor(final Agricultor agricultor) {
+  public void removeAgricultor(final String agricultorNome) {
 
-    agricultores = SetUtil.diff(Utils.copy(agricultores), SetUtil.set(agricultor));
+    for (Iterator iterator_30 = agricultores.iterator(); iterator_30.hasNext(); ) {
+      Agricultor agricultor = (Agricultor) iterator_30.next();
+      if (Utils.equals(agricultor.nome, agricultorNome)) {
+        agricultores = SetUtil.diff(Utils.copy(agricultores), SetUtil.set(agricultor));
+        return;
+      }
+    }
   }
 
   public VDMSet getTodosClientes() {
 
     VDMSet clientes = SetUtil.set();
-    for (Iterator iterator_17 = centros.iterator(); iterator_17.hasNext(); ) {
-      CentroDistribuicao centro = (CentroDistribuicao) iterator_17.next();
+    for (Iterator iterator_31 = centros.iterator(); iterator_31.hasNext(); ) {
+      CentroDistribuicao centro = (CentroDistribuicao) iterator_31.next();
       clientes = SetUtil.union(Utils.copy(clientes), centro.clientes);
     }
     return Utils.copy(clientes);
@@ -72,8 +84,8 @@ public class FrutaFeia {
   public VDMSet getTodosProdutos() {
 
     VDMSet produtos = SetUtil.set();
-    for (Iterator iterator_18 = agricultores.iterator(); iterator_18.hasNext(); ) {
-      Agricultor agricultor = (Agricultor) iterator_18.next();
+    for (Iterator iterator_32 = agricultores.iterator(); iterator_32.hasNext(); ) {
+      Agricultor agricultor = (Agricultor) iterator_32.next();
       produtos = SetUtil.union(Utils.copy(produtos), MapUtil.rng(agricultor.stock));
     }
     return Utils.copy(produtos);
@@ -81,13 +93,13 @@ public class FrutaFeia {
 
   public Cesta geraCestaGrande() {
 
-    Cesta cesta = geraCesta(6L, 0.8, 8L, Quotes.GRANDEQuote.getInstance());
+    Cesta cesta = geraCesta(6L, 0.75, 8L, Quotes.GRANDEQuote.getInstance());
     return cesta;
   }
 
   public Cesta geraCestaPequena() {
 
-    Cesta cesta = geraCesta(3L, 0.4, 7L, Quotes.PEQUENAQuote.getInstance());
+    Cesta cesta = geraCesta(3L, 0.43, 7L, Quotes.PEQUENAQuote.getInstance());
     return cesta;
   }
 
@@ -106,52 +118,54 @@ public class FrutaFeia {
     cesta.alterarTamanho(tipoCesta);
     Boolean whileCond_1 = true;
     while (whileCond_1) {
-      Boolean andResult_48 = false;
+      Boolean andResult_49 = false;
 
       if (minimo.doubleValue() > 0L) {
         if (runs.longValue() < 3L) {
-          andResult_48 = true;
+          andResult_49 = true;
         }
       }
 
-      whileCond_1 = andResult_48;
+      whileCond_1 = andResult_49;
 
       if (!(whileCond_1)) {
         break;
       }
 
       {
-        for (Iterator iterator_19 = produtos.iterator(); iterator_19.hasNext(); ) {
-          Produto produto = (Produto) iterator_19.next();
+        for (Iterator iterator_33 = produtos.iterator(); iterator_33.hasNext(); ) {
+          Produto produto = (Produto) iterator_33.next();
           if (produto.peso.doubleValue() >= pesoAretirar.doubleValue()) {
-            Boolean andResult_49 = false;
+            Boolean andResult_50 = false;
 
             if (Utils.equals(cesta.produtoNaCesta(produto.nome), false)) {
               if (totalNaCesta.longValue() < totalProdutos.doubleValue()) {
-                andResult_49 = true;
+                andResult_50 = true;
               }
             }
 
-            if (andResult_49) {
+            if (andResult_50) {
               produto.removePeso(pesoAretirar);
               cesta.adicionaProduto(new Produto(produto.nome, produto.origem, pesoAretirar));
               totalNaCesta = totalNaCesta.longValue() + 1L;
               minimo = minimo.doubleValue() - pesoAretirar.doubleValue();
 
             } else {
-              Boolean andResult_50 = false;
+              Boolean andResult_51 = false;
 
               if (Utils.equals(totalNaCesta, totalProdutos)) {
                 if (minimo.doubleValue() <= 0L) {
-                  andResult_50 = true;
+                  andResult_51 = true;
                 }
               }
 
-              if (andResult_50) {
+              if (andResult_51) {
                 return cesta;
 
               } else {
-                if (cesta.produtoNaCestaPeso(produto.nome).doubleValue() < 1.5) {
+                if (cesta.produtoNaCestaPeso(produto.nome).doubleValue()
+                        + pesoAretirar.doubleValue()
+                    < 0.8) {
                   produto.removePeso(pesoAretirar);
                   if (cesta.adicionaPesoProduto(produto.nome, pesoAretirar)) {
                     minimo = minimo.doubleValue() - pesoAretirar.doubleValue();
@@ -192,52 +206,54 @@ public class FrutaFeia {
 
     Boolean whileCond_2 = true;
     while (whileCond_2) {
-      Boolean andResult_51 = false;
+      Boolean andResult_52 = false;
 
       if (minimo.doubleValue() > 0L) {
         if (runs.longValue() < 3L) {
-          andResult_51 = true;
+          andResult_52 = true;
         }
       }
 
-      whileCond_2 = andResult_51;
+      whileCond_2 = andResult_52;
 
       if (!(whileCond_2)) {
         break;
       }
 
       {
-        for (Iterator iterator_20 = produtos.iterator(); iterator_20.hasNext(); ) {
-          Produto produto = (Produto) iterator_20.next();
+        for (Iterator iterator_34 = produtos.iterator(); iterator_34.hasNext(); ) {
+          Produto produto = (Produto) iterator_34.next();
           if (produto.peso.doubleValue() >= pesoAretirar.doubleValue()) {
-            Boolean andResult_52 = false;
+            Boolean andResult_53 = false;
 
             if (Utils.equals(cesta.produtoNaCesta(produto.nome), false)) {
               if (totalNaCesta.longValue() < totalProdutos.longValue()) {
-                andResult_52 = true;
+                andResult_53 = true;
               }
             }
 
-            if (andResult_52) {
+            if (andResult_53) {
               produto.removePeso(pesoAretirar);
               cesta.adicionaProduto(new Produto(produto.nome, produto.origem, pesoAretirar));
               totalNaCesta = totalNaCesta.longValue() + 1L;
               minimo = minimo.doubleValue() - pesoAretirar.doubleValue();
 
             } else {
-              Boolean andResult_53 = false;
+              Boolean andResult_54 = false;
 
               if (Utils.equals(totalNaCesta, totalProdutos)) {
                 if (minimo.doubleValue() <= 0L) {
-                  andResult_53 = true;
+                  andResult_54 = true;
                 }
               }
 
-              if (andResult_53) {
+              if (andResult_54) {
                 return;
 
               } else {
-                if (cesta.produtoNaCestaPeso(produto.nome).doubleValue() < 1.5) {
+                if (cesta.produtoNaCestaPeso(produto.nome).doubleValue()
+                        + pesoAretirar.doubleValue()
+                    < 0.8) {
                   produto.removePeso(pesoAretirar);
                   if (cesta.adicionaPesoProduto(produto.nome, pesoAretirar)) {
                     minimo = minimo.doubleValue() - pesoAretirar.doubleValue();
@@ -257,11 +273,10 @@ public class FrutaFeia {
 
   public void geraCestaTodosClientes() {
 
-    for (Iterator iterator_21 = centros.iterator(); iterator_21.hasNext(); ) {
-      CentroDistribuicao centro = (CentroDistribuicao) iterator_21.next();
-      for (Iterator iterator_22 = centro.clientes.iterator(); iterator_22.hasNext(); ) {
-        Cliente cliente = (Cliente) iterator_22.next();
-        IO.println(cliente);
+    for (Iterator iterator_35 = centros.iterator(); iterator_35.hasNext(); ) {
+      CentroDistribuicao centro = (CentroDistribuicao) iterator_35.next();
+      for (Iterator iterator_36 = centro.clientes.iterator(); iterator_36.hasNext(); ) {
+        Cliente cliente = (Cliente) iterator_36.next();
         if (Utils.equals(cliente.estadoEnc, Quotes.COM_ENCQuote.getInstance())) {
           if (Utils.equals(
               cliente.encomenda.tamanho, Quotes.PEQUENAQuote.getInstance())) {
@@ -273,14 +288,13 @@ public class FrutaFeia {
                 cliente.encomenda.tamanho, Quotes.GRANDEQuote.getInstance())) {
               cliente.mudaCesta(geraCestaGrande());
               cliente.verificaCestaParametros();
-
-            } else {
-              if (Utils.equals(
-                  cliente.estadoEnc, Quotes.POR_CONCLUIRQuote.getInstance())) {
-                preencheCesta(cliente.encomenda);
-                cliente.verificaCestaParametros();
-              }
             }
+          }
+
+        } else {
+          if (Utils.equals(cliente.estadoEnc, Quotes.POR_CONCLUIRQuote.getInstance())) {
+            preencheCesta(cliente.encomenda);
+            cliente.verificaCestaParametros();
           }
         }
       }
