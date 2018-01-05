@@ -303,11 +303,9 @@ public class FrutaFeia {
 
   public String toString() {
 
-    return "FrutaFeia{"
-        + "centros := "
+    return "centros := "
         + Utils.toString(centros)
         + ", agricultores := "
-        + Utils.toString(agricultores)
-        + "}";
+        + Utils.toString(agricultores);
   }
 }

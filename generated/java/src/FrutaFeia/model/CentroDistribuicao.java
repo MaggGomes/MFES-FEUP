@@ -40,11 +40,9 @@ public class CentroDistribuicao {
 
   public String toString() {
 
-    return "CentroDistribuicao{"
-        + "clientes := "
-        + Utils.toString(clientes)
-        + ", localizacao := "
-        + Utils.toString(localizacao)
-        + "}";
+    return "\nCentro de Distribuicao "
+            + Utils.toString(localizacao)
+            + "\nClientes:\n"
+        + Utils.toString(clientes)+"\n";
   }
 }

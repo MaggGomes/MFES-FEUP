@@ -88,13 +88,13 @@ public class Cesta {
 
   public String toString() {
 
-    return "Cesta{"
-        + "produtos := "
+    return "Cesta\n"
+        + "Produtos:\n"
         + Utils.toString(produtos)
-        + ", peso := "
+        + "\nPeso: "
         + Utils.toString(peso)
-        + ", tamanho := "
+        + "\nTamanho: "
         + Utils.toString(tamanho)
-        + "}";
+        + "\n";
   }
 }

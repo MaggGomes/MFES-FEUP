@@ -56,13 +56,23 @@ public class Agricultor {
 
   public String toString() {
 
-    return "Agricultor{"
-        + "stock := "
-        + Utils.toString(stock)
-        + ", nome := "
-        + Utils.toString(nome)
-        + ", localizacao := "
-        + Utils.toString(localizacao)
-        + "}";
+    String string = "\n";
+
+    for (Object produto: stock.values()){
+      string += "Nome: "
+              + ((Produto) produto).nome
+              + ", Origem: "
+              + ((Produto) produto).origem
+              + ", Peso: "
+              + ((Produto) produto).peso
+              + "\n";
+    }
+
+    return "\n\nNome: "
+            + Utils.toString(nome)
+            + "\nLocalização: "
+            + Utils.toString(localizacao)
+            + "\nStock: "
+            + string;
   }
 }

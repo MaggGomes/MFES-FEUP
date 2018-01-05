@@ -85,15 +85,14 @@ public class Cliente {
 
   public String toString() {
 
-    return "Cliente{"
-        + "encomenda := "
-        + Utils.toString(encomenda)
-        + ", estadoEnc := "
-        + Utils.toString(estadoEnc)
-        + ", nome := "
-        + Utils.toString(nome)
-        + ", genero := "
-        + Utils.toString(genero)
-        + "}";
+    return "\n\nCliente\n"
+            + "Nome: "
+            + Utils.toString(nome)
+            + "\nGénero: "
+            + Utils.toString(genero)
+            + "\nEncomenda:\n"
+            + Utils.toString(encomenda)
+            + "Estado da encomenda: "
+            + Utils.toString(estadoEnc);
   }
 }

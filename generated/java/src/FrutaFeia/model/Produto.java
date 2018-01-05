@@ -36,13 +36,12 @@ public class Produto {
 
   public String toString() {
 
-    return "Produto{"
-        + "nome := "
+    return "Nome: "
         + Utils.toString(nome)
-        + ", origem := "
+        + "\nOrigem: "
         + Utils.toString(origem)
-        + ", peso := "
+        + "\nPeso: "
         + Utils.toString(peso)
-        + "}";
+        + "\n";
   }
 }
